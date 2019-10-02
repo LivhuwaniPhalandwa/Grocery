@@ -7,10 +7,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import {Camera} from '@ionic-native/camera';
+
+
+
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+  HomePage
+  
   ],
   imports: [
     BrowserModule,
@@ -19,12 +24,17 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+  
   ],
-  providers: [
+  providers: [Camera,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler,},
+   
+   
+    
+    
   ]
 })
 export class AppModule {}

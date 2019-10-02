@@ -1,3 +1,37 @@
 page-home {
+    @import url('https://fonts.googleapis.com/css?family=Courgette|Josefin+Sans&display=swap');
+    .content{
+        height: 100%;
+    //     display: flex;
+    //    flex-direction: row;
+    //    align-items: flex-end;
+       background:rgb(28, 125, 236);
+    }
+    .parent{
+        height: 35%;
+        width: 100%;
+        background: white;
+        padding-top: 17PX;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        color: rgb(5, 58, 119);
+        text-align: center;
 
+
+    }
+    .box1{
+        height: 120px;
+        width: 250px;
+        background:rgb(5, 58, 119);
+        border-radius: 20px 20PX;
+        // margin: 10px 0px 10px 12px;
+        margin: 0px 30px;
+        color: aliceblue;
+
+
+        
+  
+       
+       
+    }
 }

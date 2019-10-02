@@ -1,14 +1,38 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-content >
+     
+<div class="parent">
+  <h1>
+      MY LIST
+    </h1>
+<div class="box1">
+    <!-- <h2>
+        MY LIST
+      </h2> -->
+</div>
+<div class="box2">
+    <button ion-button full (click)="takePicture(0)">Upload Image</button>
+    <img src="{{Picture}}" alt="" style="width:250px;  height: 250px;">
+
+  <ion-item>
+     <ion-input placeholder="Item Name" [(ngModel)]="item.name" round></ion-input>
+    </ion-item>
+    <ion-item>
+     <ion-input  placeholder="Item Price" [(ngModel)]="item.price"></ion-input>
+   
+  </ion-item>
+  <button (click)="incrementQ()"ion-button color="white"Font="20%" round>+</button>
+  <p style="color:white">{{item.quantity}}</p>
+  <button  (click)="decrementQ()"ion-button color="white" Font="20%" round>-</button>
+  <ion-item>
+
+    <button ion-button full (click)="addData()">Add</button>
+ </ion-item>
+ <ion-item>
+  <button ion-button full>close</button>
+</ion-item>
+</div>
+</div>
+   
+
 </ion-content>
