@@ -21,10 +21,8 @@ export class HomePage {
   name:"",
   price:null,
   quantity:0,
-  
+  totalPrice:0,
  }
-  
- 
  Picture: string;
   Picture_url: string;
  
@@ -32,7 +30,12 @@ export class HomePage {
   constructor(public navCtrl: NavController, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
     
   }
+
+ 
   addData(){
+    let totAmount=0;
+    this.item.totalPrice=this.item.price*this.item.quantity,
+    totAmount = totAmount+this.item.totalPrice,
     this.database.collection("Item").doc().set(this.item).then(res => {
       this.toastCtrl.create({
         message: 'Item added',
@@ -49,7 +52,13 @@ export class HomePage {
     this.item.quantity = this.item.quantity + 1
   }
   decrementQ(){
-    this.item.quantity = this.item.quantity - 1
+    if (this.item[i].quantity - 1 < 1) {
+      this.item.quantity = this.item.quantity - 1
+    }
+    else {
+      this.bag[i].qty -= 1;
+    }
+    
   }
 
   takePicture(sourcetype: number) {
