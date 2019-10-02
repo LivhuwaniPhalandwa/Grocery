@@ -51,12 +51,12 @@ export class HomePage {
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
-  decrementQ(){
+  decrementQ(i){
     if (this.item[i].quantity - 1 < 1) {
       this.item.quantity = this.item.quantity - 1
     }
     else {
-      this.bag[i].qty -= 1;
+      this.item[i].qty -= 1;
     }
     
   }
