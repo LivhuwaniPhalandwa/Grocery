@@ -4,6 +4,9 @@ import { Camera } from '@ionic-native/camera';
 import { LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { CameraOptions } from '@ionic-native/camera';
+import { FormGroup, FormBuilder,FormControl, Validators } from '@angular/forms';
+
+
 @Component({
  selector: 'page-home',
  templateUrl: 'home.html'
@@ -16,12 +19,27 @@ Items=[];
 item = {
  name:'',
  price:null,
- quantity:2,
+ quantity:1,
  totalPrice:0,
+ image:''
 }
 Picture: string;
  Picture_url: string;
- constructor(public navCtrl: NavController, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
+ 
+ formlogin : FormGroup;
+  alertController: any;
+
+
+ constructor(public navCtrl: NavController, public formBuilder : FormBuilder, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
+  this.formlogin = formBuilder.group({
+    itemName : new FormControl('', Validators.compose([
+        Validators.required
+    ])),        
+    itemPrice : new FormControl('', Validators.compose([
+         Validators.required
+    ]))
+});
+
  }
 
  expandDiv(){
@@ -34,6 +52,7 @@ Picture: string;
   let totAmount=0;
   this.item.totalPrice=this.item.price*this.item.quantity,
   totAmount = totAmount+this.item.totalPrice,
+  
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
       message: 'Item added',
@@ -49,22 +68,8 @@ Picture: string;
     }).present()
   })
 }
-//  Data(){
-//     let totAmount=0;
-//     this.item.totalPrice=this.item.price*this.item.quantity,
-//     totAmount = totAmount+this.item.totalPrice,
-//     this.database.collection("Item").doc().set(this.item).then(res => {
-//       this.toastCtrl.create({
-//         message: 'Item added',
-//         duration: 2000
-//       }).present()
-//     }).catch(err => {
-//       this.toastCtrl.create({
-//         message: 'Error adding item',
-//         duration: 2000
-//       }).present()
-//     })
-//   }
+
+
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
@@ -140,27 +145,46 @@ Picture: string;
   })
  
 }
-// pullData(){
-//   this.database.collection("Item").onSnapshot(doc => {
-//     doc.forEach(item => {
-//      this.Items.push(item.data());
-//      console.log(this.Items);
-     
-//       // this.Items = []
-//       // this.Items.push(item.data);
-//     /*   this.database.collection('').doc(item.id) */
-//     })
-//   })
-// }
+async EdidContacts(){
+  console.log('Your key is', );
+const alert = await this.alertController.create({
+
+  inputs: [
+    {
+      name: 'name',
+    }
+  ],
+  buttons: [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      cssClass: 'secondary',
+      handler: () => {
+        console.log('Confirm Cancel');
+      }
+    }, {
+      text: 'edit',
+      handler: (data) => {
+        
+          this.database.collection("Item").doc().update ({
+          Contact : data.name,
+      });
+  
+        
+
+      }
+    }
+  ]
+});
+await alert.present();
+  
+}
 deleteData(docid){
   console.log(docid)
    this.database.collection("Item").doc(docid).delete();
   this.Items = []
    this.pullData()
 }
-submitForm(){
-//  this.database.collection("").doc().set()
+
+
 }
- }
-
-
