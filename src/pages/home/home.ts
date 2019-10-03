@@ -26,6 +26,7 @@ Picture: string;
  Picture_url: string;
  
  formlogin : FormGroup;
+  totAmount: number=0;
 
 
  constructor(public navCtrl: NavController, public formBuilder : FormBuilder, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
@@ -47,9 +48,9 @@ Picture: string;
    this.pullData();
  }
  addData(){
-  let totAmount=0;
+  this.totAmount=0;
   this.item.totalPrice=this.item.price*this.item.quantity,
-  totAmount = totAmount+this.item.totalPrice,
+  this.totAmount = this.totAmount+this.item.totalPrice,
   this.doValidate();
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
@@ -67,29 +68,13 @@ Picture: string;
   })
 }
 doValidate(){
-  // let me = this;    
-  //       if(me.formlogin.valid){
-  //         alert('form is valid');
-  //       } else {
-  //         alert('empty fields');
-  //       }    
+  let me = this;    
+        if(me.formlogin.valid){
+          alert('form is valid');
+        } else {
+          alert('empty fields');
+        }    
 }
-//  Data(){
-//     let totAmount=0;
-//     this.item.totalPrice=this.item.price*this.item.quantity,
-//     totAmount = totAmount+this.item.totalPrice,
-//     this.database.collection("Item").doc().set(this.item).then(res => {
-//       this.toastCtrl.create({
-//         message: 'Item added',
-//         duration: 2000
-//       }).present()
-//     }).catch(err => {
-//       this.toastCtrl.create({
-//         message: 'Error adding item',
-//         duration: 2000
-//       }).present()
-//     })
-//   }
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
