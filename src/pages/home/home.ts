@@ -4,6 +4,7 @@ import { Camera } from '@ionic-native/camera';
 import { LoadingController ,MenuController} from 'ionic-angular';
 import * as firebase from 'firebase';
 import { CameraOptions } from '@ionic-native/camera';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 @Component({
  selector: 'page-home',
  templateUrl: 'home.html'
@@ -11,6 +12,7 @@ import { CameraOptions } from '@ionic-native/camera';
 export class HomePage {
  toggle: boolean;
 Storage =firebase.storage;
+itemForm: FormGroup;
 database=firebase.firestore();
 Items=[];
 Picture_url: string;
@@ -25,8 +27,13 @@ Picture: string;
 
 
 
- constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
- }
+ constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
+  this.itemForm = this.forms.group({ 
+  name: new FormControl('', Validators.compose([Validators.required])),
+   quantity: new FormControl('', Validators.compose([Validators.required])),
+     price: new FormControl('', Validators.compose([Validators.required]))
+    })
+}
 
  expandDiv(){
   this.toggle = !this.toggle;

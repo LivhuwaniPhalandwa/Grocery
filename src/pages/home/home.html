@@ -49,13 +49,13 @@
 
         
         <div class="inputt" >
-            <ion-input class="inputts" type="text" placeholder="Item name" [(ngModel)]="item.name"></ion-input>
+            <ion-input class="inputts" type="text" formControlName="name"  placeholder="Item name" [(ngModel)]="item.name"></ion-input>
    
           </div>
       
           
 <div class="boxxx" >
-    <ion-input class="input1"type="number" placeholder="Item price" [(ngModel)]="item.price"></ion-input>
+    <ion-input class="input1"type="number" formControlName="price"  placeholder="Item price" [(ngModel)]="item.price"></ion-input>
     <button (click)="decrementQ()" class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
     <p style="color:white">{{item.quantity}}</p>
     <button (click)="incrementQ()"  class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
