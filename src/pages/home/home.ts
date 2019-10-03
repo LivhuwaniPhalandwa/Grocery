@@ -16,7 +16,7 @@ Items=[];
 item = {
  name:'',
  price:null,
- quantity:0,
+ quantity:2,
  totalPrice:0,
 }
 Picture: string;
@@ -158,7 +158,9 @@ deleteData(docid){
   this.Items = []
    this.pullData()
 }
- 
+submitForm(){
+//  this.database.collection("").doc().set()
+}
  }
 
 
