@@ -72,15 +72,12 @@
 <!--    -->
   
   <ion-list color="dark" padding >
-
-
-      <ion-item-sliding style="width: 100%;border-radius: 10px; ">
-          <ion-list *ngFor = "let item of Items; let i=index;" (click)="deleteData(doc.docid) " >
+      <ion-list *ngFor = "let item of Items" (click)="deleteData(item.docid)">
 
               <!-- <ion-icon name="trash"></ion-icon> -->
-              {{ item.name}}
-             {{item.price}}
-             {{item.quantity}}
+              {{ item.doc.name}}
+             {{item.doc.price}}
+             {{item.doc.quantity}}
              
         <ion-item-options side="right">
           <button ion-button color="#f53d3d">
@@ -89,7 +86,9 @@
           </button>
         </ion-item-options>
       </ion-list>
-      </ion-item-sliding>
+
+      <ion-item-sliding>
+          </ion-item-sliding>
   </ion-list>
     </ion-content>
       

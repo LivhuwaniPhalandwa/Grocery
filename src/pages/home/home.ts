@@ -40,6 +40,8 @@ Picture: string;
       duration: 2000
 
     }).present()
+    this.Items = []
+    this.pullData();
   }).catch(err => {
     this.toastCtrl.create({
       message: 'Error adding item',
@@ -115,37 +117,43 @@ Picture: string;
  
  }
  
-//  pullData(){
-//   let data = {
-//     docid: "",
-//     doc: {}
-//   }
-//    this.database.collection("Item").onSnapshot(doc => {
-//          doc.forEach(item => {
-//            data.docid = item.id
-//            data.doc = item.data();
-//            data = {
-//             docid: "",
-//             doc: {}
-//           }
+ pullData(){
+  let data = {
+    docid: "",
+    doc: {}
+  }
+  
+   this.database.collection("Item").onSnapshot(doc => {
+      this.Items = []
+         doc.forEach(item => {
+           data.docid = item.id
+           data.doc = item.data();
+           this.Items.push(data);
+           data = {
+            docid: "",
+            doc: {}
+          }
 
-//            this.Items.push(data);
-//          })
-//          console.log("Your data is", this.Items)
-//   })
- 
-// }
-pullData(){
-  this.database.collection("Item").onSnapshot(doc => {
-    doc.forEach(item => {
-     this.Items.push(item.data());
-      // this.Items = []
-      // this.Items.push(item.data);
-    /*   this.database.collection('').doc(item.id) */
-    })
+           
+         })
+         console.log("Your data is", this.Items)
   })
+ 
 }
+// pullData(){
+//   this.database.collection("Item").onSnapshot(doc => {
+//     doc.forEach(item => {
+//      this.Items.push(item.data());
+//      console.log(this.Items);
+     
+//       // this.Items = []
+//       // this.Items.push(item.data);
+//     /*   this.database.collection('').doc(item.id) */
+//     })
+//   })
+// }
 deleteData(docid){
+  console.log(docid)
    this.database.collection("Item").doc(docid).delete();
   this.Items = []
    this.pullData()
