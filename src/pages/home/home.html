@@ -1,6 +1,35 @@
+  <ion-content >
 
-
-<ion-content >
+      <div class="parent">
+          <h1>
+              MY LIST
+            </h1>
+        <div class="box1">
+        <p>TOTAL</p>
+          <p class="money">
+            {{ totAmount }}
+         <strong>{{price | currency: '&#82;'}}</strong>
+         </p>
+        </div>
+      </div>
+     
+       <div  [ngClass]="{'minimized': toggle, 'expand': !toggle}">
+          <p class="itemms" (click)="expandDiv()">
+     
+            <br><h4>Add new item</h4></p>
+          <div class="additem" *ngIf="!toggle">
+              <form [formGroup]="formlogin">
+            <div class="inputts" >
+     
+              <button class="myImage" ion-button round ><p>Upload Image</p></button>
+            </div>
+     
+     
+            <br>
+            <div class="inputts" >
+                <ion-input class="inputts" type="Item name" placeholder="Item" formControlName="itemName"></ion-input>
+     
+              </div>
    
   <div class="parent">
       <h1>

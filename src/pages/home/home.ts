@@ -28,6 +28,7 @@ Picture: string;
  
  formlogin : FormGroup;
   alertController: any;
+  totAmount: number;
 
 
  constructor(public navCtrl: NavController, public formBuilder : FormBuilder, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
@@ -49,9 +50,9 @@ Picture: string;
    this.pullData();
  }
  addData(){
-  let totAmount=0;
+  this.totAmount=0;
   this.item.totalPrice=this.item.price*this.item.quantity,
-  totAmount = totAmount+this.item.totalPrice,
+  this.totAmount = this.totAmount+this.item.totalPrice,
   
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
@@ -71,16 +72,12 @@ Picture: string;
 
 
   incrementQ(){
-    this.item.quantity = this.item.quantity + 1
+    this.item.quantity++;
   }
-  decrementQ(i){
-    if (this.item[i].quantity - 1 < 1) {
-      this.item.quantity = this.item.quantity - 1
-    }
-    else {
-      this.item[i].qty -= 1;
-    }
-    
+   public decrementQ(){
+      if(this.item.quantity>1){
+        this.item.quantity--;
+      }
   }
   takePicture(sourcetype: number) {
     console.log(';;;;;;;;;');
