@@ -39,7 +39,7 @@
    <div  [ngClass]="{'minimized': toggle, 'expand': !toggle}">
       <p class="itemms" (click)="expandDiv()">   <ion-icon ios="ios-add-circle-outline"  md="md-add-circle"></ion-icon><br><h4>Add new item</h4></p>
       <div class="additem" *ngIf="!toggle">
-
+          <form  [formGroup]="itemForm" class="login">
         <div class="inputts" >
      
           <button (click)="takePicture(0)" class="myImage" ion-button round  >Upload Image</button>
@@ -61,7 +61,7 @@
     <button (click)="incrementQ()"  class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
 </div>
         
-     
+          </form>
 
 
       
