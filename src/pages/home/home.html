@@ -36,14 +36,14 @@
         <ion-input class="input1"type="number" placeholder="price" formControlName="itemPrice"></ion-input>
         <button (click)="decrementQ()"  class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
         <p style="color:white">{{item.quantity}}</p>
-        <button (click)="incrementQ()" class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
+        <button (click)="incrementQ()" max="1" class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
      </div>
      
     </form>
      
      
      
-              <button class="submit" ion-button full round>SUBMIT</button>
+              <button (click)="addData()" class="submit" ion-button full round>SUBMIT</button>
               <!-- <button class="Close" ion-button full round>CANCEL</button> -->
      
      

@@ -26,7 +26,7 @@ Picture: string;
  Picture_url: string;
  
  formlogin : FormGroup;
-  totAmount: number=0;
+  totAmount: number;
 
 
  constructor(public navCtrl: NavController, public formBuilder : FormBuilder, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
@@ -77,10 +77,12 @@ doValidate(){
         }    
 }
   incrementQ(){
-    this.item.quantity = this.item.quantity + 1
+    this.item.quantity++;
   }
-  decrementQ(){
-      this.item.quantity = this.item.quantity - 1
+   public decrementQ(){
+      if(this.item.quantity>1){
+        this.item.quantity--;
+      }
   }
   takePicture(sourcetype: number) {
     console.log(';;;;;;;;;');
