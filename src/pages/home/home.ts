@@ -17,7 +17,7 @@ Picture_url: string;
 item = {
  name:'',
  price:null,
- quantity:0,
+ quantity:1,
  image: '',
  totalPrice:0,
 }
@@ -70,14 +70,8 @@ Picture: string;
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
-  decrementQ(i){
-    if (this.item[i].quantity - 1 < 1) {
-      this.item.quantity = this.item.quantity - 1
-    }
-    else {
-      this.item[i].qty -= 1;
-    }
-    
+  decrementQ(){
+    this.item.quantity = this.item.quantity - 1
   }
   takePicture(sourcetype: number) {
     console.log(';;;;;;;;;');
