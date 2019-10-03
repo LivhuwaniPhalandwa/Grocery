@@ -67,6 +67,7 @@ Picture: string;
     }).present()
   })
 }
+ngOnInit() { }
 doValidate(){
   let me = this;    
         if(me.formlogin.valid){
@@ -78,14 +79,8 @@ doValidate(){
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
-  decrementQ(i){
-    if (this.item[i].quantity - 1 < 1) {
+  decrementQ(){
       this.item.quantity = this.item.quantity - 1
-    }
-    else {
-      this.item[i].qty -= 1;
-    }
-    
   }
   takePicture(sourcetype: number) {
     console.log(';;;;;;;;;');

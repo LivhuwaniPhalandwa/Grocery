@@ -33,9 +33,10 @@
    
          <br>
      <div class="boxxx" >
-        <ion-input class="input1"type="number" placeholder="Item price" formControlName="itemPrice"></ion-input>
-        <button class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
-        <button class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
+        <ion-input class="input1"type="number" placeholder="price" formControlName="itemPrice"></ion-input>
+        <button (click)="decrementQ()"  class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
+        <p style="color:white">{{item.quantity}}</p>
+        <button (click)="incrementQ()" class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
      </div>
      
     </form>
