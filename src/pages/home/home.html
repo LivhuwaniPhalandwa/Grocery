@@ -20,23 +20,30 @@
  
     
    <div  [ngClass]="{'minimized': toggle, 'expand': !toggle}">
-      <p class="itemms" (click)="expandDiv()">   <ion-icon ios="ios-add-circle-outline"  md="md-add-circle"></ion-icon><br><h4>Add new item</h4></p>
+        
+        
+          <p class="itemms" (click)="expandDiv()" >   
+           
+              <ion-icon class="xxicon" ios="ios-add-circle-outline" md="md-add-circle"></ion-icon>
+            <br><h4 *ngIf="toggle">Add new item</h4></p>
+          
+            <p class="itemms" (click)="expandDiv()" ><br><h4 *ngIf="!toggle">Add item</h4></p>
       <div class="additem" *ngIf="!toggle">
-
+  
         <div class="inputts" >
      
-          <button class="myImage" ion-button round >Upload Image</button>
+          <button class="myImage" ion-button round ><p>Upload Image</p></button>
             <!-- <ion-input class="inputts" type="upload" placeholder="image" ></ion-input> -->
         </div>
 
 
-        
-        <div class="inputt" >
+        <br>
+        <div class="inputts" >
             <ion-input class="inputts" type="Item name" placeholder="Item name"></ion-input>
    
           </div>
       
-          
+     <br>     
 <div class="boxxx" >
     <ion-input class="input1"type="number" placeholder="Item price"></ion-input>
     <button class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
@@ -48,7 +55,7 @@
 
       
           <button class="submit" ion-button full round>SUBMIT</button>
-          <button class="Close" ion-button full round>CANCEL</button>
+          <!-- <button class="Close" ion-button full round>CANCEL</button> -->
      
           
         </div> 

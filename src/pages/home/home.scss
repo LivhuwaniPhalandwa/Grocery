@@ -96,12 +96,12 @@ page-home {
 
     .expand {
         width: 100%;
-  color : rgb(3, 2, 2);
+        color : rgb(3, 2, 2);
         position: absolute;
         bottom: 0%;
         z-index: 6;
         height: 60%;
-        background-image: linear-gradient( rgb(182, 205, 219), rgb(55, 104, 238));
+        background-image: linear-gradient( rgb(232, 242, 250), rgb(54, 87, 179));
         transition: 1s;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
@@ -111,31 +111,38 @@ page-home {
      }
      .inputts{
          background: rgba(245, 245, 245, 0.973);
-         margin: 5px;
-         padding: 4px;
+        
+         box-shadow: 2px 2px 2px  rgba(150, 150, 150, 0.822);
       
 
-         border-radius: 40px;
+         border-radius: 50px;
 
      }
 
      .myImage{
          background-color: #ffffff;
-         width: 35%;
+         width: 40%;
          border-radius: 30px;
          height: 30px;
-         color: rgb(102, 102, 102);
+         color: rgb(7, 6, 6);
      }
 
-     .inputt{
-         left: 10px;
+     .inp{
+    
+         background-color: #ffffff;
+         width: 100%;
+         border-radius: 30px;
+        
+         color: rgb(7, 6, 6);
+                 
+         box-shadow: 2px 2px 2px  rgba(150, 150, 150, 0.822);
 
      }
      .input1{
         background: rgb(255, 255, 255); 
-        margin: 5px;
-        padding: 4px;
-        width: 30%;
+        margin: 7px;
+      
+        width: 50px;
       
 
         border-radius: 40px;
@@ -146,6 +153,7 @@ page-home {
      
      .boxxx{
          display: flex;
+         
 
      }
      .minimized {
@@ -158,10 +166,16 @@ page-home {
         display: flex;
         justify-content: center;
         align-items: center;
+        box-shadow: 1px 1px rgb(33, 75, 124);
+        border-radius: 10px;
  
      
         
       
+    }
+    .xxicon{
+        font-size: 15px;
+        margin: 5px;
     }
 
     
@@ -169,7 +183,10 @@ page-home {
     .itemms{
         text-align: center;
         margin: 2px;
-        color: rgba(255, 255, 255, 0.822);
+        color: rgba(255, 255, 255, 0.938);
+        // border-radius: 20px;
+        position: relative;
+        
         
     }
 
@@ -230,15 +247,16 @@ page-home {
     flex-direction: column;
     margin: 10px;
     font-size: 14px;
-    
+    border-radius: 20px;
   }
   
   .submit {
     background-color: #0b7fdd;
-    border: none;
+  
     color: #F5F5F5;
     border-radius: 10em;
     border: red;
+    box-shadow: 2px 2px 2px  rgb(33, 75, 124);
    
   }
   .Close {
