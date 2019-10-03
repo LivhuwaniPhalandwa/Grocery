@@ -21,60 +21,19 @@
     
    <div  [ngClass]="{'minimized': !toggle, 'expand': toggle}">
       <p class="itemms" (click)="expandDiv()">   <ion-icon ios="ios-add-circle-outline"  md="md-add-circle"></ion-icon><br>Add new item</p>
-      <div class="formData">
-                    
-        
-            <!-- <button ion-button full (click)="takePicture(0)">Upload Image</button>
-           <img src="{{Picture}}" alt="" style="width:250px;  height: 250px;"> -->
-     
-          <ion-input placeholder="Item name" [(ngModel)]="item.name"type="text"></ion-input>
-          <ion-input placeholder="Item price"  [(ngModel)]="item.price"type="text"></ion-input>
+      <form [formGroup]="formlogin">
+
+          <ion-input placeholder="Item" formControlName="itemName"></ion-input>
+          <ion-input placeholder="price" formControlName="itemPrice"></ion-input>
           <button ion-button full (click)="addData()">Add</button>
           <input type="button" id="Close" value="Close" onClick="submitForm()" >
-     
-          
-        </div>
+        </form>
       
-   </div>
+    </div>
   </div>
-   
-      <!-- <div *ngIf="toggle">
-       
-   
-        </div> 
-   -->
-        <!-- <div class="login-wrap">
-            
-            <body onmouseover="mouseMove(event)">
-                <div class="form" id="formID">
-                  <header><h1>ADD ITEM</h1></header> -->
-                  <!-- <p class="small.text">You can add more than one item at a time</p> -->
-                  <!-- <div class="formData">
-                    
-                    <input placeholder="Upload image" type="text">
-                    <input placeholder="Item name" type="text">
-                    <input placeholder="Item Price" type="text">
-                    <input type="button" id="submit" value="Submit" onClick="submitForm()" >
-                    <input type="button" id="Close" value="Close" onClick="submitForm()" >
-               
-                    
-                  </div>
-                  
-                  
-              
-                </div>  
-              </body>
-         
-          </div> -->
-     <!-- </div> -->
-     
-  
-<!--    -->
   
   <ion-list color="dark" padding >
       <ion-list *ngFor = "let item of Items" (click)="deleteData(item.docid)">
-
-              <!-- <ion-icon name="trash"></ion-icon> -->
               {{ item.doc.name}}
              {{item.doc.price}}
              {{item.doc.quantity}}
@@ -90,37 +49,7 @@
       <ion-item-sliding>
           </ion-item-sliding>
   </ion-list>
-    </ion-content>
-      
-  <!-- <br>
-      <ion-item-sliding style="width: 100%;border-radius: 10px; ">
-          <ion-item>
-            <ion-avatar item-start>
-              <img src="https://images3.pricecheck.co.za/images/objects/hash/product/bd6/cd0/01f/image_big_80898718.jpg?1455606184" >
-            </ion-avatar>
-            <h2><strong>NOLA Mayonnaise</strong></h2>
-            <p>
-                Amount: R 150.00<br>
-                1 items
-              </p>
-          </ion-item>
-    
-          <ion-item-options side="right">
-            <button ion-button color="#f53d3d">
-              <ion-icon name="trash"></ion-icon>
-    
-            </button>
-          </ion-item-options>
-        </ion-item-sliding>
-      
-    </ion-list >
-  <! <button class="btn1" (click)="swipeUp()" ion-button full >  <ion-icon class="iicon" ios="ios-add-circle-outline" md="md-add-circle"></ion-icon><br><br>add item</button>
-  
-  <div [ngClass]="{'add': display, 'addinactive': !display}"></div>
-  
-  <div (click)="swipeUp()" class="toggler"></div> --> 
-
-  
+</ion-content>
   
   
   

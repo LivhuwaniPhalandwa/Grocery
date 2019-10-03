@@ -4,6 +4,9 @@ import { Camera } from '@ionic-native/camera';
 import { LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { CameraOptions } from '@ionic-native/camera';
+import { FormGroup, FormBuilder,FormControl, Validators } from '@angular/forms';
+
+
 @Component({
  selector: 'page-home',
  templateUrl: 'home.html'
@@ -16,12 +19,25 @@ Items=[];
 item = {
  name:'',
  price:null,
- quantity:0,
+ quantity:1,
  totalPrice:0,
 }
 Picture: string;
  Picture_url: string;
- constructor(public navCtrl: NavController, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
+ 
+ formlogin : FormGroup;
+
+
+ constructor(public navCtrl: NavController, public formBuilder : FormBuilder, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
+  this.formlogin = formBuilder.group({
+    itemName : new FormControl('', Validators.compose([
+        Validators.required
+    ])),        
+    itemPrice : new FormControl('', Validators.compose([
+         Validators.required
+    ]))
+});
+
  }
 
  expandDiv(){
@@ -34,6 +50,7 @@ Picture: string;
   let totAmount=0;
   this.item.totalPrice=this.item.price*this.item.quantity,
   totAmount = totAmount+this.item.totalPrice,
+  this.doValidate();
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
       message: 'Item added',
@@ -48,6 +65,14 @@ Picture: string;
       duration: 2000
     }).present()
   })
+}
+doValidate(){
+  // let me = this;    
+  //       if(me.formlogin.valid){
+  //         alert('form is valid');
+  //       } else {
+  //         alert('empty fields');
+  //       }    
 }
 //  Data(){
 //     let totAmount=0;
