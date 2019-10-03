@@ -77,7 +77,7 @@ page-home {
 }
 
     }
-    .iimage{
+    .image{
         // height: 100;
         // width: 60;
         // border-right: 2px dotted #014dbe;
@@ -341,8 +341,15 @@ text-align: center;
 align-content: center;
 justify-content: center;
 }
-    
+ h1{
+   text-align: center;
+ }   
 
-    
+  ion-button{
+    padding: 25px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  }  
 
 

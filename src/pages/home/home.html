@@ -20,16 +20,19 @@
   <div class="box2">
     
    <div  [ngClass]="{'minimized': !toggle, 'expand': toggle}">
-      <p class="itemms" (click)="expandDiv()">   <ion-icon ios="ios-add-circle-outline"  md="md-add-circle"></ion-icon><br>Add new item</p>
+      <p class="itemms" (click)="expandDiv()"> <ion-icon ios="ios-add-circle-outline"  md="md-add-circle"></ion-icon><br>Add new item</p>
       <div class="formData">
-                    
-        
-            <!-- <button ion-button full (click)="takePicture(0)">Upload Image</button>
-           <img src="{{Picture}}" alt="" style="width:250px;  height: 250px;"> -->
-     
-          <ion-input placeholder="Item name" [(ngModel)]="item.name"type="text"></ion-input>
-          <ion-input placeholder="Item price"  [(ngModel)]="item.price"type="text"></ion-input>
+               <h1>Add Item</h1>     
+        <!-- <p>* You can add more than one item at a time</p> -->
+            <button ion-button full (click)="takePicture(0)">Upload Image</button>
+           <img src="{{item.image}}" alt="" >
+
+         
+          <ion-input type="text" placeholder="Item name" [(ngModel)]="item.name"type="text"></ion-input>
+          <ion-input type="number" placeholder="Item price"  [(ngModel)]="item.price"type="text"></ion-input>
           <button ion-button full (click)="addData()">Add</button>
+         
+       
           <input type="button" id="Close" value="Close" onClick="submitForm()" >
      
           
@@ -74,11 +77,22 @@
   <ion-list color="dark" padding >
       <ion-list *ngFor = "let item of Items" (click)="deleteData(item.docid)">
 
-              <!-- <ion-icon name="trash"></ion-icon> -->
-              {{ item.doc.name}}
-             {{item.doc.price}}
-             {{item.doc.quantity}}
              
+              <ion-card>
+              
+            <ion-item>
+             Name: {{ item.doc.name}}
+            </ion-item>
+
+            <ion-item>
+             Price: R{{item.doc.price}}.00
+            </ion-item>
+
+            <ion-item>
+             Quantity:{{item.doc.quantity}}
+            </ion-item>
+
+            </ion-card>
         <ion-item-options side="right">
           <button ion-button color="#f53d3d">
             <ion-icon name="trash" ></ion-icon>
@@ -93,7 +107,7 @@
     </ion-content>
       
   <br>
-      <ion-item-sliding style="width: 100%;border-radius: 10px; ">
+      <!-- <ion-item-sliding style="width: 100%;border-radius: 10px; ">
           <ion-item>
             <ion-avatar item-start>
               <img src="https://images3.pricecheck.co.za/images/objects/hash/product/bd6/cd0/01f/image_big_80898718.jpg?1455606184" >
@@ -110,8 +124,8 @@
             </button>
           </ion-item-options>
         </ion-item-sliding> -->
-      
-    </ion-list >
+<!--       
+    </ion-list >  -->
    <!-- <button class="btn1" (click)="swipeUp()" ion-button full >  <ion-icon class="iicon" ios="ios-add-circle-outline" md="md-add-circle"></ion-icon><br><br>add item</button>
   
   <div [ngClass]="{'add': display, 'addinactive': !display}"></div>
@@ -119,6 +133,6 @@
   <div (click)="swipeUp()" class="toggler"></div> --> 
 
   
-   -->
+   
   
   

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, NavParams, ToastController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController ,MenuController} from 'ionic-angular';
 import * as firebase from 'firebase';
 import { CameraOptions } from '@ionic-native/camera';
 @Component({
@@ -13,15 +13,17 @@ export class HomePage {
 Storage =firebase.storage;
 database=firebase.firestore();
 Items=[];
+Picture_url: string;
 item = {
  name:'',
  price:null,
  quantity:0,
+ image: '',
  totalPrice:0,
 }
 Picture: string;
- Picture_url: string;
- constructor(public navCtrl: NavController, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
+
+ constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
  }
 
  expandDiv(){
@@ -93,8 +95,8 @@ Picture: string;
     this.camera.getPicture(options).then((picture) => {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
-     this.Picture = 'data:image/jpeg;base64,' + picture;
-     console.log('IMG: ',this.Picture);
+     this.item.image= 'data:image/jpeg;base64,' + picture;
+  /*    console.log('IMG: ',this.Picture); */
     }, (err) => {
       console.log('error: ', err);
      // Handle error
@@ -103,11 +105,11 @@ Picture: string;
   let storageRef = firebase.storage().ref();
   const filename = Math.floor(Date.now() / 1000);
   let file = 'my-hotel/'+filename+'.jpg';
-  const imageRef = storageRef.child(file);
+  const imageRef =storageRef.child(file);
   imageRef.putString(this.Picture, firebase.storage.StringFormat.DATA_URL)
   .then((snapshot) => {
     console.log('image uploaded');
-    this.Picture_url = snapshot.downloadURL;
+    this.item.image = snapshot.downloadURL;
     let alert = this.alertCtrl.create({
       title: 'Image Upload',
       subTitle: 'Image Uploaded to firebase',
@@ -158,6 +160,7 @@ deleteData(docid){
   this.Items = []
    this.pullData()
 }
+
  
  }
 
