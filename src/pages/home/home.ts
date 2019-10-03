@@ -23,6 +23,8 @@ item = {
 }
 Picture: string;
 
+
+
  constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
  }
 
@@ -100,7 +102,7 @@ Picture: string;
   const filename = Math.floor(Date.now() / 1000);
   let file = 'my-hotel/'+filename+'.jpg';
   const imageRef =storageRef.child(file);
-  imageRef.putString(this.Picture, firebase.storage.StringFormat.DATA_URL)
+  imageRef.putString(this.item.image, firebase.storage.StringFormat.DATA_URL)
   .then((snapshot) => {
     console.log('image uploaded');
     this.item.image = snapshot.downloadURL;

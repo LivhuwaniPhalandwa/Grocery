@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import {Camera} from '@ionic-native/camera';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 
 
@@ -31,6 +32,7 @@ import {Camera} from '@ionic-native/camera';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler,},
+    AuthServiceProvider,
    
    
     
