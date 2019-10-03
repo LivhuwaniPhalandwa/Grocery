@@ -92,17 +92,15 @@
   </ion-list>
     </ion-content>
       
-  <!-- <br>
+  <br>
       <ion-item-sliding style="width: 100%;border-radius: 10px; ">
           <ion-item>
             <ion-avatar item-start>
               <img src="https://images3.pricecheck.co.za/images/objects/hash/product/bd6/cd0/01f/image_big_80898718.jpg?1455606184" >
             </ion-avatar>
-            <h2><strong>NOLA Mayonnaise</strong></h2>
-            <p>
-                Amount: R 150.00<br>
-                1 items
-              </p>
+            {{ item.doc.name}}
+            {{item.doc.price}}
+            {{item.doc.quantity}}
           </ion-item>
     
           <ion-item-options side="right">
@@ -111,16 +109,16 @@
     
             </button>
           </ion-item-options>
-        </ion-item-sliding>
+        </ion-item-sliding> -->
       
     </ion-list >
-  <! <button class="btn1" (click)="swipeUp()" ion-button full >  <ion-icon class="iicon" ios="ios-add-circle-outline" md="md-add-circle"></ion-icon><br><br>add item</button>
+   <!-- <button class="btn1" (click)="swipeUp()" ion-button full >  <ion-icon class="iicon" ios="ios-add-circle-outline" md="md-add-circle"></ion-icon><br><br>add item</button>
   
   <div [ngClass]="{'add': display, 'addinactive': !display}"></div>
   
   <div (click)="swipeUp()" class="toggler"></div> --> 
 
   
-  
+   -->
   
   
