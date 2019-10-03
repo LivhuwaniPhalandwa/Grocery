@@ -13,11 +13,11 @@
      </p>
     </div>
   </div>
-  <br>
   
   
   
-  <div class="box2">
+  
+ 
     
    <div  [ngClass]="{'minimized': !toggle, 'expand': toggle}">
       <p class="itemms" (click)="expandDiv()">   <ion-icon ios="ios-add-circle-outline"  md="md-add-circle"></ion-icon><br>Add new item</p>
@@ -39,17 +39,25 @@
              {{item.doc.quantity}}
              
         <ion-item-options side="right">
-          <button ion-button color="#f53d3d">
-            <ion-icon name="trash" ></ion-icon>
-
+            <button ion-button color="danger" >
+                <ion-icon color="#f4f4f4" name="trash"></ion-icon>
+  
           </button>
         </ion-item-options>
-      </ion-list>
+      </ion-item-sliding>
 
-      <ion-item-sliding>
-          </ion-item-sliding>
-  </ion-list>
-</ion-content>
+
+
+      
+    </ion-list >
+    
+  <!-- <button class="btn1" (click)="swipeUp()" ion-button full >  <ion-icon class="iicon" ios="ios-add-circle-outline" md="md-add-circle"></ion-icon><br><br>add item</button>
+  
+  <div [ngClass]="{'add': display, 'addinactive': !display}"></div>
+  
+  <div (click)="swipeUp()" class="toggler"></div> --> 
+
+  
   
   
   
