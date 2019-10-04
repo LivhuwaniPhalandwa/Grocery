@@ -7,7 +7,7 @@
         <div class="box1">
         <p>TOTAL</p>
           <p class="money">
-            {{ totAmount }}
+            {{amt }}
          <strong>{{price | currency: '&#82;'}}</strong>
          </p>
         </div>
@@ -27,13 +27,13 @@
      
             <br>
             <div class="inputts" >
-                <ion-input class="inputts" type="Item name" placeholder="Item" formControlName="itemName"></ion-input>
+                <ion-input class="inputts" type="Item name" placeholder="Item"[(ngModel)]="item.name" formControlName="name"></ion-input>
      
               </div>
    
          <br>
      <div class="boxxx" >
-        <ion-input class="input1"type="number" placeholder="price" formControlName="itemPrice"></ion-input>
+        <ion-input class="input1"type="number" placeholder="item price" [(ngModel)]="item.price" formControlName="price" ></ion-input>
         <button (click)="decrementQ()"  class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
         <p style="color:white">{{item.quantity}}</p>
         <button (click)="incrementQ()" max="1" class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>

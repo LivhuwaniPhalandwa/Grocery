@@ -16,25 +16,26 @@ export class HomePage {
 Storage =firebase.storage;
 database=firebase.firestore();
 Items=[];
+total = 0
+amt : number
 item = {
  name:'',
  price:null,
  quantity:1,
  totalPrice:0,
+ totalAmount:null,
 }
 Picture: string;
  Picture_url: string;
  
  formlogin : FormGroup;
-  totAmount: number;
-
 
  constructor(public navCtrl: NavController, public formBuilder : FormBuilder, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
   this.formlogin = formBuilder.group({
-    itemName : new FormControl('', Validators.compose([
+    name : new FormControl('', Validators.compose([
         Validators.required
     ])),        
-    itemPrice : new FormControl('', Validators.compose([
+    price : new FormControl('', Validators.compose([
          Validators.required
     ]))
 });
@@ -48,9 +49,9 @@ Picture: string;
    this.pullData();
  }
  addData(){
-  this.totAmount=0;
+ 
   this.item.totalPrice=this.item.price*this.item.quantity,
-  this.totAmount = this.totAmount+this.item.totalPrice,
+  // this.item.totalAmount = this.item.totalAmount+this.item.totalPrice,
   this.doValidate();
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
@@ -71,7 +72,7 @@ ngOnInit() { }
 doValidate(){
   let me = this;    
         if(me.formlogin.valid){
-          alert('form is valid');
+          // alert('form is valid');
         } else {
           alert('empty fields');
         }    
@@ -131,11 +132,12 @@ doValidate(){
   }
   
    this.database.collection("Item").onSnapshot(doc => {
-      this.Items = []
+      this.Items = [];
          doc.forEach(item => {
            data.docid = item.id
            data.doc = item.data();
            this.Items.push(data);
+           this.total += Number(item.data().totalPrice);
            data = {
             docid: "",
             doc: {}
@@ -143,7 +145,8 @@ doValidate(){
 
            
          })
-         console.log("Your data is", this.Items)
+this.amt = this.total
+         console.log(this.amt)
   })
  
 }
