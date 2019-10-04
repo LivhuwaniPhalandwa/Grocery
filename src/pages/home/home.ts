@@ -140,6 +140,33 @@ deleteData(docid){
    this.pullData()
 }
 
- 
- }
+edit(docid) {
+  const alert = this.alertCtrl.create({
+    title: 'Edit Item',
+    inputs: [
+      {
+        name: 'name',
+        placeholder: 'Enter your name'
+      }
+    ],
+    buttons: [
+      {
+        text: 'cancel',
+      },
+
+      {
+        text: 'Edit',
+        handler: data => {
+          if (this.item.name !== undefined && this.item.name !== null) {
+            firebase.database().ref('Item/' + docid).update({ Name: this.item.name });
+          }
+        }
+      }
+    ]
+  });
+
+  alert.present();
+
+}
+}
 

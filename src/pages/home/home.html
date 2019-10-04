@@ -71,10 +71,13 @@
         </ion-item>
   
         <ion-item-options side="right">
+            <button  (click)="edit(item.docid)"ion-button color="primary"> 
+                <ion-icon name="create"></ion-icon>        
+      </button>
             <button  (click)="deleteData(item.docid)"ion-button color="danger" >
                 <ion-icon color="#f4f4f4" name="trash"></ion-icon>
-  
-          </button>
+              </button>
+          
         </ion-item-options>
       </ion-item-sliding>
 
