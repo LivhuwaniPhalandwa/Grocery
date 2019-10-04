@@ -20,8 +20,27 @@
   <!-- <div class="crab">
 
    
-
-      <ion-list color="dark" padding-left padding-right>
+         <br>
+     <div class="boxxx" >
+        <ion-input class="input1"type="number" placeholder="item price" [(ngModel)]="item.price" formControlName="price" ></ion-input>
+        <button (click)="decrementQ()"  class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
+        <p style="color:white">{{item.quantity}}</p>
+        <button (click)="incrementQ()" max="1" class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
+     </div>
+     
+    </form>
+     
+     
+     
+              <button (click)="addData()" class="submit" ion-button full round>SUBMIT</button>
+              <!-- <button class="Close" ion-button full round>CANCEL</button> -->
+     
+     
+            </div>
+     
+       </div>
+     
+      <ion-list color="dark" padding>
           <ion-item-sliding style="width: 100%;border-radius: 15px;  ">
             <ion-item>
               <ion-avatar item-start>

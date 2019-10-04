@@ -151,7 +151,7 @@ deleteData(docid){
         }
       },
       {
-        text: 'Delete',
+        text: 'Del',
         handler: data => {
           console.log('Saved clicked');
           this.database.collection("Item").doc(docid).delete();
