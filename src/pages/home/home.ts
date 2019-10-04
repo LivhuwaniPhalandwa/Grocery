@@ -16,8 +16,8 @@ Storage =firebase.storage;
 itemForm: FormGroup;
 database=firebase.firestore();
 Items=[];
-total = 0
-amt : number
+total=0
+amt:number
 Picture_url: string;
 item = {
  name:'',
@@ -25,23 +25,19 @@ item = {
  quantity:1,
  image: '',
  totalPrice:0,
- totalAmount:null,
 }
 Picture: string;
- 
- 
- formlogin : FormGroup;
 
- constructor(public navCtrl: NavController, public formBuilder : FormBuilder, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
-  this.formlogin = formBuilder.group({
-    name : new FormControl('', Validators.compose([
-        Validators.required
-    ])),        
-    price : new FormControl('', Validators.compose([
-         Validators.required
-    ]))
-});
+
+
+ constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
+  this.itemForm = this.forms.group({ 
+  name: new FormControl('', Validators.compose([Validators.required])),
+   quantity: new FormControl('', Validators.compose([Validators.required])),
+   price: new FormControl('', Validators.compose([Validators.required]))
+    })
 }
+
  expandDiv(){
   this.toggle = !this.toggle;
  }
@@ -49,10 +45,9 @@ Picture: string;
    this.pullData();
  }
  addData(){
- 
+  let totAmount=0;
   this.item.totalPrice=this.item.price*this.item.quantity,
-  // this.item.totalAmount = this.item.totalAmount+this.item.totalPrice,
-  this.doValidate();
+  // totAmount = totAmount+this.item.totalPrice,
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
       message: 'Item added',
@@ -68,20 +63,14 @@ Picture: string;
     }).present()
   })
 }
-ngOnInit() { }
-doValidate(){
-  let me = this;    
-        if(me.formlogin.valid){
-          // alert('form is valid');
-        } else {
-          alert('empty fields');
-        }    
-}
+
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
   decrementQ(){
-    this.item.quantity = this.item.quantity - 1
+    if(this.item.quantity>1){
+      this.item.quantity--;
+    }
   }
   takePicture(sourcetype: number) {
     console.log(';;;;;;;;;');
@@ -130,12 +119,12 @@ doValidate(){
   }
   
    this.database.collection("Item").onSnapshot(doc => {
-      this.Items = [];
+      this.Items = []
          doc.forEach(item => {
            data.docid = item.id
            data.doc = item.data();
-           this.Items.push(item);
-           this.total += Number(item.data().totalPrice);
+           this.Items.push(data);
+           this.total +=Number(item.data().totalPrice);
            data = {
             docid: "",
             doc: {}
@@ -143,30 +132,70 @@ doValidate(){
 
            
          })
-this.amt = this.total
+         this.amt=this.total
          console.log(this.amt)
   })
  
 }
-// pullData(){
-//   this.database.collection("Item").onSnapshot(doc => {
-//     doc.forEach(item => {
-//      this.Items.push(item.data());
-//      console.log(this.Items);
-     
-//       // this.Items = []
-//       // this.Items.push(item.data);
-//     /*   this.database.collection('').doc(item.id) */
-//     })
-//   })
-// }
+
 deleteData(docid){
   console.log(docid)
-   this.database.collection("Item").doc(docid).delete();
-  this.Items = []
-   this.pullData()
-}
+  const prompt = this.alertCtrl.create({
+    title: 'DELETE!',
+    message: "Are you sure you want to delete this item?",
+
+    buttons: [
+      {
+        text: 'Cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Del',
+        handler: data => {
+          console.log('Saved clicked');
+          this.database.collection("Item").doc(docid).delete();
+          this.Items = []
+           this.pullData()
+        }
+      }
+    ]
+  });
+  prompt.present();
 
  
- }
+}
+
+edit(docid) {
+  const alert = this.alertCtrl.create({
+    title: 'Edit Item',
+    inputs: [
+      {
+        name: 'name',
+        placeholder: 'Enter your name'
+      }
+    ],
+    buttons: [
+      {
+        text: 'cancel',
+      },
+
+      {
+        text: 'Edit',
+        handler: data => {
+       
+          if (data.name !== undefined && data.name !== null) {
+            this.database.doc(docid).update({ name:this.item.name });
+          }
+
+        }
+      }
+    ]
+  });
+
+  alert.present();
+
+}
+}
 

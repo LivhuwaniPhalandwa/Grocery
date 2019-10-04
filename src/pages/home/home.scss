@@ -64,31 +64,14 @@ page-home {
         color: black;
 
     }
-    // .one{
+    
 
         
         
      
 
     }
-    // .image{
-        // height: 100;
-        // width: 60;
-        // border-right: 2px dotted #014dbe;
-        // position: relative;
-        // &::before {
-        //     content: ' ';
-        //     position: absolute;
-        //     top: 0;
-        //     background: rgb(56, 106, 243);
-        //     right: -10%;
-        //    width: 15px;
-        //    height: 10px;
-        //     border-radius: 0 0 50px 50px;
-        // }
-      
-    // }
-
+   
     
     .add1{
         text-align: center;
@@ -100,7 +83,7 @@ page-home {
         position: absolute;
         bottom: 0%;
         z-index: 6;
-        height: 60%;
+        height: 90%;
         background-image: linear-gradient( rgb(232, 242, 250), rgb(54, 87, 179));
         transition: 1s;
         border-top-left-radius: 15px;
@@ -115,7 +98,7 @@ page-home {
          box-shadow: 2px 2px 2px  rgba(150, 150, 150, 0.822);
       
 
-         border-radius: 50px;
+         border-radius: 30px;
 
      }
 
@@ -160,7 +143,7 @@ page-home {
         // bottom: 20%;
         right: 20%;
         left: 20%;
-        top:85%;
+        top:84%;
         background:#3e9ef8;
         position: absolute;
         display: flex;
@@ -186,13 +169,8 @@ page-home {
         // display: flex;
         // flex-direction: column;
         // justify-content: center;
-        // ion-list {
-            // border: 1px solid white;
-            // ion-item {
-
-            }
-        // }
-    // }
+       
+    }
 
     
  
@@ -283,9 +261,6 @@ page-home {
     
    
   }
-  
-  
-
 .btn1{
    background: #67a0f5;
    margin-bottom: 10px;
@@ -312,7 +287,7 @@ justify-content: center;
   text-decoration: none;
   display: inline-block;
   }  
-img{
-  border-radius: 30px;
-}
-
+// img{
+//   border-radius: 30px;
+//   padding: 20px;
+// }
