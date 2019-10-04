@@ -157,9 +157,11 @@ edit(docid) {
       {
         text: 'Edit',
         handler: data => {
-          if (this.item.name !== undefined && this.item.name !== null) {
-            firebase.database().ref('Item/' + docid).update({ Name: this.item.name });
+       
+          if (data.name !== undefined && data.name !== null) {
+            this.database.doc(docid).update({ name:this.item.name });
           }
+          
         }
       }
     ]
