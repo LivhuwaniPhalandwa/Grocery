@@ -35,10 +35,6 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler,},
     AuthServiceProvider,
-   
-   
-    
-    
   ]
 })
 export class AppModule {}

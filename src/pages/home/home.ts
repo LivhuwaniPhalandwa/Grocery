@@ -5,6 +5,7 @@ import { LoadingController ,MenuController} from 'ionic-angular';
 import * as firebase from 'firebase';
 import { CameraOptions } from '@ionic-native/camera';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+
 @Component({
  selector: 'page-home',
  templateUrl: 'home.html'
@@ -40,8 +41,7 @@ Picture: string;
          Validators.required
     ]))
 });
-
-
+}
  expandDiv(){
   this.toggle = !this.toggle;
  }
@@ -134,7 +134,7 @@ doValidate(){
          doc.forEach(item => {
            data.docid = item.id
            data.doc = item.data();
-           this.Items.push(data);
+           this.Items.push(item);
            this.total += Number(item.data().totalPrice);
            data = {
             docid: "",
