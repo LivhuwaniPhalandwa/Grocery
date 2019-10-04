@@ -3,16 +3,16 @@ page-home {
     .content{
         height: 100%;
 
-       background:rgb(56, 106, 243);
+        background-image: linear-gradient( rgb(203, 220, 235), rgb(54, 87, 179));
     }
     .parent{
         height: 25%;
      
         background: white;
-      
+        margin-bottom: 3%;
         border-bottom-left-radius: 50px;
         border-bottom-right-radius: 50px;
-        color: rgb(5, 58, 119);
+        color: rgb(36, 99, 170);
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -31,7 +31,7 @@ page-home {
         width: 82%;
         display: flex;
       flex-direction: row;
-        background:#00398e;
+        background:#1453aa;
         border-radius: 30px 2px 30px 30px;
         
         margin: 10px 0px 10px 12px;
@@ -123,7 +123,7 @@ page-home {
          background-color: #ffffff;
          width: 40%;
          border-radius: 30px;
-         height: 30px;
+         height: 34px;
          color: rgb(7, 6, 6);
      }
 
@@ -157,16 +157,16 @@ page-home {
 
      }
      .minimized {
-        bottom: 10%;
-        right: 10%;
-        left: 10%;
-        top: 80%;
+        bottom: 20%;
+        right: 20%;
+        left: 20%;
+        top: 90%;
         background:rgb(92, 127, 221);
         position: absolute;
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: 1px 1px rgb(33, 75, 124);
+        box-shadow:  1px 1px 2px 2px  rgb(0, 109, 235);
         border-radius: 10px;
  
      
@@ -176,6 +176,22 @@ page-home {
     .xxicon{
         font-size: 15px;
         margin: 5px;
+    }
+    .crab{
+        width: 100%;
+        height: 60%;
+        overflow: scroll;
+        // overflow: hidden;
+        // border: 1px solid red;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        ion-list {
+            // border: 1px solid white;
+            ion-item {
+
+            }
+        }
     }
 
     
@@ -191,7 +207,7 @@ page-home {
     }
 
 
-  
+
   .form {
     margin: 1em auto;
     display: flex;
