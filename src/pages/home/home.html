@@ -1,26 +1,57 @@
 
 
-<ion-content >
+      <div class="parent">
+          <h1>
+              MY LIST
+            </h1>
+        <div class="box1">
+        <p>TOTAL</p>
+          <p class="money">
+            {{amt }}
+         <strong>{{price | currency: '&#82;'}}</strong>
+         </p>
+        </div>
+      </div>
+     
+       <div  [ngClass]="{'minimized': toggle, 'expand': !toggle}">
+          <p class="itemms" (click)="expandDiv()">
+     
+            <br><h4>Add new item</h4></p>
+          <div class="additem" *ngIf="!toggle">
+              <form [formGroup]="formlogin">
+            <div class="inputts" >
+     
+              <button class="myImage" ion-button round ><p>Upload Image</p></button>
+            </div>
+     
+     
+            <br>
+            <div class="inputts" >
+                <ion-input class="inputts" type="Item name" placeholder="Item"[(ngModel)]="item.name" formControlName="name"></ion-input>
+     
+              </div>
    
-  <div class="parent">
-      <h1>
-          MY LIST
-        </h1>
-    <div class="box1">
-    <p>TOTAL</p>
-      <p class="money">
-     <strong>{{price | currency: '&#82;'}}</strong>
-     </p>
-    </div>
-  </div>
-  
-  
-  
-  <div class="crab">
-
-   
-
-      <ion-list color="dark" padding-left padding-right>
+         <br>
+     <div class="boxxx" >
+        <ion-input class="input1"type="number" placeholder="item price" [(ngModel)]="item.price" formControlName="price" ></ion-input>
+        <button (click)="decrementQ()"  class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
+        <p style="color:white">{{item.quantity}}</p>
+        <button (click)="incrementQ()" max="1" class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
+     </div>
+     
+    </form>
+     
+     
+     
+              <button (click)="addData()" class="submit" ion-button full round>SUBMIT</button>
+              <!-- <button class="Close" ion-button full round>CANCEL</button> -->
+     
+     
+            </div>
+     
+       </div>
+     
+      <ion-list color="dark" padding>
           <ion-item-sliding style="width: 100%;border-radius: 15px;  ">
             <ion-item>
               <ion-avatar item-start>
