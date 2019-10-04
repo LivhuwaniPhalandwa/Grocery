@@ -31,7 +31,7 @@ Picture: string;
   this.itemForm = this.forms.group({ 
   name: new FormControl('', Validators.compose([Validators.required])),
    quantity: new FormControl('', Validators.compose([Validators.required])),
-     price: new FormControl('', Validators.compose([Validators.required]))
+   price: new FormControl('', Validators.compose([Validators.required]))
     })
 }
 
@@ -60,27 +60,14 @@ Picture: string;
     }).present()
   })
 }
-//  Data(){
-//     let totAmount=0;
-//     this.item.totalPrice=this.item.price*this.item.quantity,
-//     totAmount = totAmount+this.item.totalPrice,
-//     this.database.collection("Item").doc().set(this.item).then(res => {
-//       this.toastCtrl.create({
-//         message: 'Item added',
-//         duration: 2000
-//       }).present()
-//     }).catch(err => {
-//       this.toastCtrl.create({
-//         message: 'Error adding item',
-//         duration: 2000
-//       }).present()
-//     })
-//   }
+
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
   decrementQ(){
-    this.item.quantity = this.item.quantity - 1
+    if(this.item.quantity>1){
+      this.item.quantity--;
+    }
   }
   takePicture(sourcetype: number) {
     console.log(';;;;;;;;;');
@@ -145,18 +132,7 @@ Picture: string;
   })
  
 }
-// pullData(){
-//   this.database.collection("Item").onSnapshot(doc => {
-//     doc.forEach(item => {
-//      this.Items.push(item.data());
-//      console.log(this.Items);
-     
-//       // this.Items = []
-//       // this.Items.push(item.data);
-//     /*   this.database.collection('').doc(item.id) */
-//     })
-//   })
-// }
+
 deleteData(docid){
   console.log(docid)
    this.database.collection("Item").doc(docid).delete();
