@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, NavParams, ToastController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController ,MenuController} from 'ionic-angular';
 import * as firebase from 'firebase';
 import { CameraOptions } from '@ionic-native/camera';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 @Component({
  selector: 'page-home',
  templateUrl: 'home.html'
@@ -11,18 +12,28 @@ import { CameraOptions } from '@ionic-native/camera';
 export class HomePage {
  toggle: boolean;
 Storage =firebase.storage;
+itemForm: FormGroup;
 database=firebase.firestore();
 Items=[];
+Picture_url: string;
 item = {
  name:'',
  price:null,
- quantity:0,
+ quantity:1,
+ image: '',
  totalPrice:0,
 }
 Picture: string;
- Picture_url: string;
- constructor(public navCtrl: NavController, private toastCtrl: ToastController,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
- }
+
+
+
+ constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
+  this.itemForm = this.forms.group({ 
+  name: new FormControl('', Validators.compose([Validators.required])),
+   quantity: new FormControl('', Validators.compose([Validators.required])),
+     price: new FormControl('', Validators.compose([Validators.required]))
+    })
+}
 
  expandDiv(){
   this.toggle = !this.toggle;
@@ -68,14 +79,8 @@ Picture: string;
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
-  decrementQ(i){
-    if (this.item[i].quantity - 1 < 1) {
-      this.item.quantity = this.item.quantity - 1
-    }
-    else {
-      this.item[i].qty -= 1;
-    }
-    
+  decrementQ(){
+    this.item.quantity = this.item.quantity - 1
   }
   takePicture(sourcetype: number) {
     console.log(';;;;;;;;;');
@@ -93,8 +98,8 @@ Picture: string;
     this.camera.getPicture(options).then((picture) => {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
-     this.Picture = 'data:image/jpeg;base64,' + picture;
-     console.log('IMG: ',this.Picture);
+     this.item.image= 'data:image/jpeg;base64,' + picture;
+  /*    console.log('IMG: ',this.Picture); */
     }, (err) => {
       console.log('error: ', err);
      // Handle error
@@ -103,11 +108,11 @@ Picture: string;
   let storageRef = firebase.storage().ref();
   const filename = Math.floor(Date.now() / 1000);
   let file = 'my-hotel/'+filename+'.jpg';
-  const imageRef = storageRef.child(file);
-  imageRef.putString(this.Picture, firebase.storage.StringFormat.DATA_URL)
+  const imageRef =storageRef.child(file);
+  imageRef.putString(this.item.image, firebase.storage.StringFormat.DATA_URL)
   .then((snapshot) => {
     console.log('image uploaded');
-    this.Picture_url = snapshot.downloadURL;
+    this.item.image = snapshot.downloadURL;
     let alert = this.alertCtrl.create({
       title: 'Image Upload',
       subTitle: 'Image Uploaded to firebase',
@@ -158,7 +163,7 @@ deleteData(docid){
   this.Items = []
    this.pullData()
 }
+
  
  }
-
 
