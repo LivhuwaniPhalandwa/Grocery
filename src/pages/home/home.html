@@ -12,7 +12,15 @@
     </div>
   </div>
    <div  [ngClass]="{'minimized': toggle, 'expand': !toggle}">
-      <p class="itemms" (click)="expandDiv()">   <ion-icon ios="ios-add-circle-outline"  md="md-add-circle"></ion-icon><br><h4>Add new item</h4></p>
+        
+        
+    
+          <p class="itemms" (click)="expandDiv()" >   
+           
+              <!-- <ion-icon class="xxicon" ios="ios-add-circle-outline" md="md-add-circle"></ion-icon> -->
+            <br><h4 *ngIf="toggle">Add new item</h4></p>
+          
+            <p class="itemms" (click)="expandDiv()" ><br><h4 *ngIf="!toggle">Add item</h4></p>
       <div class="additem" *ngIf="!toggle">
         <div class="inputts" >
           <button (click)="takePicture(0)" class="myImage" ion-button round  >Upload Image</button>
