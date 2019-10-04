@@ -22,6 +22,7 @@ item = {
  quantity:1,
  image: '',
  totalPrice:0,
+ 
 }
 Picture: string;
 
@@ -76,12 +77,14 @@ Picture: string;
 //       }).present()
 //     })
 //   }
-  incrementQ(){
-    this.item.quantity = this.item.quantity + 1
-  }
-  decrementQ(){
-    this.item.quantity = this.item.quantity - 1
-  }
+incrementQ(){
+  this.item.quantity++;
+}
+ public decrementQ(){
+    if(this.item.quantity>1){
+      this.item.quantity--;
+    }
+}
   takePicture(sourcetype: number) {
     console.log(';;;;;;;;;');
  
@@ -159,11 +162,22 @@ Picture: string;
 // }
 deleteData(docid){
   console.log(docid)
+
    this.database.collection("Item").doc(docid).delete();
   this.Items = []
    this.pullData()
 }
+update(docid){
 
+this.database.collection("Item").doc(docid).update({
+name:this.item.name,
+price:this.item.price,
+quantity:this.item.quantity
+
+
+});
+this.Items=[]
+}
  
  }
 
