@@ -98,7 +98,7 @@ page-home {
          box-shadow: 2px 2px 2px  rgba(150, 150, 150, 0.822);
       
 
-         border-radius: 50px;
+         border-radius: 30px;
 
      }
 
@@ -169,12 +169,7 @@ page-home {
         // display: flex;
         // flex-direction: column;
         // justify-content: center;
-        ion-list {
-            // border: 1px solid white;
-            ion-item {
-
-            }
-        }
+       
     }
 
     
@@ -292,6 +287,7 @@ justify-content: center;
   text-decoration: none;
   display: inline-block;
   }  
-img{
-  border-radius: 30px;
-}
+// img{
+//   border-radius: 30px;
+//   padding: 20px;
+// }

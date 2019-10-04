@@ -15,6 +15,8 @@ Storage =firebase.storage;
 itemForm: FormGroup;
 database=firebase.firestore();
 Items=[];
+total=0
+amt:number
 Picture_url: string;
 item = {
  name:'',
@@ -44,7 +46,7 @@ Picture: string;
  addData(){
   let totAmount=0;
   this.item.totalPrice=this.item.price*this.item.quantity,
-  totAmount = totAmount+this.item.totalPrice,
+  // totAmount = totAmount+this.item.totalPrice,
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
       message: 'Item added',
@@ -121,6 +123,7 @@ Picture: string;
            data.docid = item.id
            data.doc = item.data();
            this.Items.push(data);
+           this.total +=Number(item.data().totalPrice);
            data = {
             docid: "",
             doc: {}
@@ -128,16 +131,39 @@ Picture: string;
 
            
          })
-         console.log("Your data is", this.Items)
+         this.amt=this.total
+         console.log(this.amt)
   })
  
 }
 
 deleteData(docid){
   console.log(docid)
-   this.database.collection("Item").doc(docid).delete();
-  this.Items = []
-   this.pullData()
+  const prompt = this.alertCtrl.create({
+    title: 'DELETE!',
+    message: "Are you sure you want to delete this item?",
+
+    buttons: [
+      {
+        text: 'Cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Delete',
+        handler: data => {
+          console.log('Saved clicked');
+          this.database.collection("Item").doc(docid).delete();
+          this.Items = []
+           this.pullData()
+        }
+      }
+    ]
+  });
+  prompt.present();
+
+ 
 }
 
 edit(docid) {
@@ -161,7 +187,7 @@ edit(docid) {
           if (data.name !== undefined && data.name !== null) {
             this.database.doc(docid).update({ name:this.item.name });
           }
-          
+
         }
       }
     ]
