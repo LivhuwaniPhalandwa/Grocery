@@ -10,14 +10,15 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
  templateUrl: 'home.html'
 })
 export class HomePage {
- toggle: boolean;
+ toggle: boolean=true;
 Storage =firebase.storage;
 itemForm: FormGroup;
 database=firebase.firestore();
 Items=[];
 total=0
 amt:number
-Picture_url: string;
+
+
 item = {
  name:'',
  price:null,
@@ -25,14 +26,21 @@ item = {
  image: '',
  totalPrice:0,
 }
-Picture: string;
-
-
+  validation_messages = {
+    'name': [
+      {type: 'required', message: 'name  is required.'},
+      
+    ],
+    'price': [
+      {type: 'required', message: 'price  is required.'},
+     
+   ]
+   }
 
  constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
   this.itemForm = this.forms.group({ 
   name: new FormControl('', Validators.compose([Validators.required])),
-   quantity: new FormControl('', Validators.compose([Validators.required])),
+  quantity: new FormControl('', Validators.compose([Validators.required])),
    price: new FormControl('', Validators.compose([Validators.required]))
     })
 }
@@ -43,10 +51,10 @@ Picture: string;
  ionViewDidLoad(){
    this.pullData();
  }
- addData(){
+ addData(item){
+  if (item !== undefined || item!== null) {
   let totAmount=0;
   this.item.totalPrice=this.item.price*this.item.quantity,
-  // totAmount = totAmount+this.item.totalPrice,
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
       message: 'Item added',
@@ -55,6 +63,10 @@ Picture: string;
     }).present()
     this.Items = []
     this.pullData();
+    this.itemForm.reset();
+    this.item.image = '';
+    this.toggle = !this.toggle;
+    
   }).catch(err => {
     this.toastCtrl.create({
       message: 'Error adding item',
@@ -62,7 +74,7 @@ Picture: string;
     }).present()
   })
 }
-
+ }
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
@@ -88,6 +100,7 @@ Picture: string;
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
      this.item.image= 'data:image/jpeg;base64,' + picture;
+     this.itemForm.reset();
   /*    console.log('IMG: ',this.Picture); */
     }, (err) => {
       console.log('error: ', err);
@@ -106,10 +119,17 @@ Picture: string;
       title: 'Image Upload',
       subTitle: 'Image Uploaded to firebase',
       buttons: ['Ok']
-    }).present();
+      
+    }).present()
+  
+  }).catch(err => {
+    this.toastCtrl.create({
+      message: 'Error uploading image',
+      duration: 2000
+    }).present()
   })
- 
- }
+}
+
  
  pullData(){
   let data = {
@@ -166,35 +186,59 @@ deleteData(docid){
  
 }
 
-edit(docid) {
+edit(document) {
+  this.item.name = document.doc.name
+  this.item.price = document.doc.price
+  this.item.quantity = document.doc.quantity
+  this.item.image = document.doc.image
+  console.log(document);
   const alert = this.alertCtrl.create({
     title: 'Edit Item',
     inputs: [
       {
         name: 'name',
-        placeholder: 'Enter your name'
+        placeholder: 'Enter your name',
+        value: document.doc.name
+      },
+      {
+        name: 'price',
+        placeholder: 'Enter your name',
+        value: document.doc.price
+      },
+      {
+        name: 'quantity',
+        placeholder: 'Enter your name',
+        value: document.doc.quantity ,
+      
       }
     ],
     buttons: [
       {
         text: 'cancel',
       },
-
       {
-        text: 'Edit',
+        text: 'update',
         handler: data => {
-       
           if (data.name !== undefined && data.name !== null) {
-            this.database.doc(docid).update({ name:this.item.name });
+            this.database.collection('Item').doc(document.docid).update({
+               name:data.name ,
+               price:data.price ,
+               quantity:data.quantity
+            });
           }
-
         }
       }
     ]
   });
-
   alert.present();
+}
 
+
+onSubmit() {
+  if (this.itemForm.valid) {
+    console.log("Form Submitted!");
+    this.itemForm.reset();
+  }
 }
 }
 
