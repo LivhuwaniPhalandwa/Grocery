@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, AlertController, NavParams, ToastController, Popover, PopoverController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
-import { LoadingController ,MenuController} from 'ionic-angular';
+import { LoadingController, MenuController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { CameraOptions } from '@ionic-native/camera';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProfileComponent } from '../../components/profile/profile';
+
+
 @Component({
- selector: 'page-home',
- templateUrl: 'home.html'
+  selector: 'page-home',
+  templateUrl: 'home.html'
 })
 export class HomePage {
  toggle: boolean=true;
@@ -43,7 +46,7 @@ item = {
   quantity: new FormControl('', Validators.compose([Validators.required])),
    price: new FormControl('', Validators.compose([Validators.required]))
     })
-}
+  }
 
  expandDiv(){
   this.toggle = !this.toggle;
@@ -78,14 +81,14 @@ item = {
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
-  decrementQ(){
-    if(this.item.quantity>1){
+  decrementQ() {
+    if (this.item.quantity > 1) {
       this.item.quantity--;
     }
   }
   takePicture(sourcetype: number) {
     console.log(';;;;;;;;;');
- 
+
     const options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -104,7 +107,7 @@ item = {
   /*    console.log('IMG: ',this.Picture); */
     }, (err) => {
       console.log('error: ', err);
-     // Handle error
+      // Handle error
     });
  
   let storageRef = firebase.storage().ref();
@@ -130,61 +133,61 @@ item = {
   })
 }
 
- 
- pullData(){
-  let data = {
-    docid: "",
-    doc: {}
-  }
-  
-   this.database.collection("Item").onSnapshot(doc => {
+
+  pullData() {
+    let data = {
+      docid: "",
+      doc: {}
+    }
+
+    this.database.collection("Item").onSnapshot(doc => {
       this.Items = []
-         doc.forEach(item => {
-           data.docid = item.id
-           data.doc = item.data();
-           this.Items.push(data);
-           this.total +=Number(item.data().totalPrice);
-           data = {
-            docid: "",
-            doc: {}
+      doc.forEach(item => {
+        data.docid = item.id
+        data.doc = item.data();
+        this.Items.push(data);
+        this.total += Number(item.data().totalPrice);
+        data = {
+          docid: "",
+          doc: {}
+        }
+
+
+      })
+      this.amt = this.total
+      console.log(this.amt)
+    })
+
+  }
+
+  deleteData(docid) {
+    console.log(docid)
+    const prompt = this.alertCtrl.create({
+      title: 'DELETE!',
+      message: "Are you sure you want to delete this item?",
+
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
           }
-
-           
-         })
-         this.amt=this.total
-         console.log(this.amt)
-  })
- 
-}
-
-deleteData(docid){
-  console.log(docid)
-  const prompt = this.alertCtrl.create({
-    title: 'DELETE!',
-    message: "Are you sure you want to delete this item?",
-
-    buttons: [
-      {
-        text: 'Cancel',
-        handler: data => {
-          console.log('Cancel clicked');
+        },
+        {
+          text: 'Del',
+          handler: data => {
+            console.log('Saved clicked');
+            this.database.collection("Item").doc(docid).delete();
+            this.Items = []
+            this.pullData()
+          }
         }
-      },
-      {
-        text: 'Del',
-        handler: data => {
-          console.log('Saved clicked');
-          this.database.collection("Item").doc(docid).delete();
-          this.Items = []
-           this.pullData()
-        }
-      }
-    ]
-  });
-  prompt.present();
+      ]
+    });
+    prompt.present();
 
- 
-}
+
+  }
 
 edit(document) {
   this.item.name = document.doc.name

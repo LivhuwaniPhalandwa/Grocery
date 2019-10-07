@@ -10,13 +10,15 @@ import { HomePage } from '../pages/home/home';
 
 import {Camera} from '@ionic-native/camera';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { ProfileComponent } from '../components/profile/profile';
 
 
 
 @NgModule({
   declarations: [
     MyApp,
-  HomePage
+  HomePage,
+  ProfileComponent
   
   ],
   imports: [
@@ -28,6 +30,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
   entryComponents: [
     MyApp,
     HomePage,
+    ProfileComponent
   
   ],
   providers: [Camera,
