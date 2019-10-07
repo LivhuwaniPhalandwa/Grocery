@@ -55,8 +55,8 @@ item = {
    this.pullData();
  }
  addData(item){
-  if (item !== undefined || item!== null) {
-  let totAmount=0;
+  if  (item !== undefined || item!== null)  {
+  this.total=0
   this.item.totalPrice=this.item.price*this.item.quantity,
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
@@ -140,7 +140,7 @@ item = {
       doc: {}
     }
 
-    this.database.collection("Item").onSnapshot(doc => {
+    this.database.collection("Item").get().then(doc => {
       this.Items = []
       doc.forEach(item => {
         data.docid = item.id
@@ -174,7 +174,7 @@ item = {
           }
         },
         {
-          text: 'Del',
+          text: 'Delete',
           handler: data => {
             console.log('Saved clicked');
             this.database.collection("Item").doc(docid).delete();

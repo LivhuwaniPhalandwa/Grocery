@@ -34,8 +34,8 @@
           <br>
           <div class="inputts" >
               <ion-input class="inputts" type="Item name"  formControlName="name"  placeholder="Item name" [(ngModel)]="item.name" ></ion-input>
-              <div class="error" *ngFor="let validate of validation_messages.email">
-                <div class="messages" *ngIf="loginForm.get('email').hasError(validate.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+              <div class="error" *ngFor="let validate of validation_messages.name">
+                <div class="messages" *ngIf="itemForm.get('name').hasError(validate.type) && (itemForm.get('name').dirty || itemForm.get('name').touched)">
                   {{validate.message}}
               </div> 
             </div>
@@ -44,8 +44,8 @@
        <br>     
   <div class="boxxx" >
       <ion-input  class="input1" type="number" formControlName="price"  placeholder="Item price" [(ngModel)]="item.price" ></ion-input>
-      <div class="error" *ngFor="let validate of validation_messages.email">
-        <div class="messages" *ngIf="loginForm.get('email').hasError(validate.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+      <div class="error" *ngFor="let validate of validation_messages.price">
+        <div class="messages" *ngIf="itemForm.get('price').hasError(validate.type) && (itemForm.get('price').dirty || itemForm.get('price').touched)">
           {{validate.message}}
       </div> 
     </div>
@@ -58,7 +58,7 @@
   
   
         
-            <button (click)="addData()" class="submit" ion-button full round>SUBMIT</button>
+            <button (click)="addData(item)" class="submit" ion-button full round>SUBMIT</button>
           </form>
           </div> 
         
