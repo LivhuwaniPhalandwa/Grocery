@@ -1,8 +1,7 @@
 
 
-<ion-content >
    
-  <div class="parent">
+   <div class="parent">
       <h1>
           MY LIST
         </h1>
@@ -10,26 +9,127 @@
     <p>TOTAL</p>
     <p class="money">
       <!-- R{{amt}} -->
-     <strong>{{amt | currency: '&#82;'}}</strong>
+     <strong>{{total | currency: '&#82;'}}</strong>
      </p>
     </div>
   </div>
-     
-            </div>
-     
-       </div>
-     
-      <ion-list color="dark" padding>
+  
+  
+  
+  <!-- <div class="crab">
+
+   
+
+      <ion-list color="dark" padding-left padding-right>
           <ion-item-sliding style="width: 100%;border-radius: 15px;  ">
             <ion-item>
               <ion-avatar item-start>
                   <img src="{{item.doc.image}}" alt="" style="width:50px;  height: 50px;">
               </ion-avatar> -->
-             
+              <!-- <h2><strong>{{item.doc.name}}</strong></h2>
+              <p class="ttext">
+                  Amount: R{{item.doc.price}}.00<br>
+                  {{item.doc.quantity}}items
+                </p>
+            </ion-item>
+      
+            <ion-item-options side="right">
+                <button ion-button color="danger" >
+                    <ion-icon color="#f4f4f4" name="trash"></ion-icon>
+      
+              </button>
+            </ion-item-options>
+
+            <ion-item-options side="left">
+                <button ion-button color="secondary" >
+                    <ion-icon color="#f4f4f4" name="md-create"></ion-icon>
+      
+              </button>
+            </ion-item-options>
+
+          </ion-item-sliding>
+    
+    
+    
+          
+        </ion-list >
+
+
+       
+
+    
+        
+
+         
+
+ 
+      </div>  -->
   
     
+   <div  [ngClass]="{'minimized': toggle, 'expand': !toggle}">
+        
+        
+    
+          <p class="itemms" (click)="expandDiv()" >   
+           
+              <!-- <ion-icon class="xxicon" ios="ios-add-circle-outline" md="md-add-circle"></ion-icon> -->
+            <br><h4 *ngIf="toggle">Add new item</h4></p>
+          
+            <p class="itemms" (click)="expandDiv()" ><br><h4 *ngIf="!toggle">Add item</h4></p>
+      <div class="additem" *ngIf="!toggle">
+  
+        <div class="inputts" >
+     
+          <button (click)="takePicture(0)"class="myImage" ion-button round ><p>Upload Image</p></button>
+          <img src="{{item.image}}" alt="" style="width:300px;  height: 250px;">
+        </div>
+
+        <br>
+        <div class="inputts" >
+            <ion-input class="inputts" type="Item name" placeholder="Item name" [(ngModel)]="item.name" required></ion-input>
    
-            <button  (click)="deleteData(item.docid)"ion-button color="danger" >
+          </div>
+      
+     <br>     
+<div class="boxxx" >
+    <ion-input class="input1"type="number" placeholder="Item price" [(ngModel)]="item.price"></ion-input>
+    <button (click)="decrementQ()" class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
+    <p style="color:white">{{item.quantity}}</p>
+    <button (click)="incrementQ()" class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
+</div>
+        
+     
+
+
+      
+          <button (click)="addData(item)" class="submit" ion-button full round>SUBMIT</button>
+        
+     
+          
+        </div> 
+      
+   </div>
+   
+   <div class="crab">
+  <ion-list color="dark" padding>
+      <ion-list *ngFor = "let item of Items" >
+      <ion-item-sliding style="width: 100%;border-radius: 15px;  ">
+        <ion-item>
+          <ion-avatar item-start>
+             <img src="{{item.doc.image}}" alt="" style="width:50px;  height: 50px;"> 
+          </ion-avatar> 
+          <h2><strong> {{ item.doc.name}}</strong></h2>
+          <p class="ttext">
+            Price: R{{item.doc.price}}<br>
+            Quantity:{{item.doc.quantity}}
+            </p>
+        </ion-item>
+  
+        <ion-item-options side="right">
+            <!-- <button  (click)="edit(item.docid)"ion-button color="primary"> 
+                <ion-icon name="create"></ion-icon>        
+      </button> -->
+            <button  (click)="deleteData(item.docid, item)"ion-button color="danger" >
                 <ion-icon color="#f4f4f4" name="trash"></ion-icon>
               </button>
           
@@ -47,7 +147,6 @@
 
    
   </ion-list>
- 
 
   
   

@@ -44,9 +44,11 @@ Picture: string;
  ionViewDidLoad(){
    this.pullData();
  }
- addData(){
-  let totAmount=0;
-  this.item.totalPrice=this.item.price*this.item.quantity,
+ addData(x){
+   console.log(x)
+   this.total = 0
+    this.Items = []
+  this.item.totalPrice =this.item.price*this.item.quantity,
   // totAmount = totAmount+this.item.totalPrice,
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
@@ -54,7 +56,7 @@ Picture: string;
       duration: 2000
 
     }).present()
-    this.Items = []
+    
     this.pullData();
   }).catch(err => {
     this.toastCtrl.create({
@@ -86,13 +88,9 @@ Picture: string;
       targetWidth: 500
     }
     this.camera.getPicture(options).then((picture) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
      this.item.image= 'data:image/jpeg;base64,' + picture;
-  /*    console.log('IMG: ',this.Picture); */
     }, (err) => {
       console.log('error: ', err);
-     // Handle error
     });
  
   let storageRef = firebase.storage().ref();
@@ -118,27 +116,27 @@ Picture: string;
     doc: {}
   }
   
-   this.database.collection("Item").onSnapshot(doc => {
+   this.database.collection("Item").get().then(doc => {
       this.Items = []
          doc.forEach(item => {
            data.docid = item.id
            data.doc = item.data();
            this.Items.push(data);
-           this.total +=Number(item.data().totalPrice);
+           this.total = this.total + parseFloat(item.data().totalPrice);
            data = {
             docid: "",
             doc: {}
           }
-
+          console.log(this.total)
            
          })
-         this.amt=this.total
-         console.log(this.amt)
+         
+         console.log('Final' ,this.total)
   })
  
 }
 
-deleteData(docid){
+deleteData(docid, item) {
   console.log(docid)
   const prompt = this.alertCtrl.create({
     title: 'DELETE!',
@@ -152,19 +150,18 @@ deleteData(docid){
         }
       },
       {
-        text: 'Del',
+        text: 'Delete',
         handler: data => {
-          console.log('Saved clicked');
+          console.log('Saved clicked', item.doc.price);
           this.database.collection("Item").doc(docid).delete();
-          this.Items = []
-           this.pullData()
+          this.total = this.total - item.doc.price;
+          // this.Items = [];
+          // this.pullData()
         }
       }
     ]
   });
   prompt.present();
-
- 
 }
 
 edit(docid) {
