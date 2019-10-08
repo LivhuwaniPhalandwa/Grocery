@@ -25,10 +25,11 @@ amt:number
 item = {
  name:'',
  price:null,
- quantity:1,
+ quantity: 1,
  image: '',
  totalPrice:0,
 }
+docId:string;
   validation_messages = {
     'name': [
       {type: 'required', message: 'name  is required.'},
@@ -37,13 +38,17 @@ item = {
     'price': [
       {type: 'required', message: 'price  is required.'},
      
-   ]
+   ],
+   'quantity': [
+    {type: 'required', message: 'quantity  is required.'},
+   
+ ]
    }
 
- constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
+ constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController)
+  {
   this.itemForm = this.forms.group({ 
   name: new FormControl('', Validators.compose([Validators.required])),
-  quantity: new FormControl('', Validators.compose([Validators.required])),
    price: new FormControl('', Validators.compose([Validators.required]))
     })
   }
@@ -54,10 +59,14 @@ item = {
  ionViewDidLoad(){
    this.pullData();
  }
- addData(item){
-  if  (item !== undefined || item!== null)  {
+
+ addData(itemForm){
+  console.log(itemForm.valid);
+
+  if (itemForm.valid) {
   this.total=0
   this.item.totalPrice=this.item.price*this.item.quantity,
+  
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
       message: 'Item added',
@@ -76,8 +85,9 @@ item = {
       duration: 2000
     }).present()
   })
+  }
 }
- }
+ 
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
@@ -160,12 +170,12 @@ item = {
 
   }
 
-  deleteData(docid) {
+  deleteData(docid){
     console.log(docid)
     const prompt = this.alertCtrl.create({
       title: 'DELETE!',
       message: "Are you sure you want to delete this item?",
-
+  
       buttons: [
         {
           text: 'Cancel',
@@ -179,14 +189,12 @@ item = {
             console.log('Saved clicked');
             this.database.collection("Item").doc(docid).delete();
             this.Items = []
-            this.pullData()
+             this.pullData()
           }
         }
       ]
     });
     prompt.present();
-
-
   }
 
 edit(document) {
@@ -228,6 +236,7 @@ edit(document) {
                price:data.price ,
                quantity:data.quantity
             });
+            this.pullData();
           }
         }
       }
@@ -236,7 +245,29 @@ edit(document) {
   alert.present();
 }
 
+// addData1(data){
+//   console.log(data, 'sss');
+//   if (data.name !== undefined && data.name !== null) {
+//               this.database.collection('Item').doc(this.docId).update({
+//                  name:data.name ,
+//                  price:data.price ,
+//                  quantity:data.quantity,
+//                  image:data.image
+//               });
+//             }
+// }
+// edit(document) {
+//   this.item.name = document.doc.name
+//   this.item.price = document.doc.price
+//   this.item.quantity = document.doc.quantity
+//   this.item.totalPrice=document.doc.price*document.doc.quantity
+//   this.item.image = document.doc.image
+//   this.docId = document.docid
+//   console.log(document);
+//   this.toggle = !this.toggle;
 
+
+// }
 onSubmit() {
   if (this.itemForm.valid) {
     console.log("Form Submitted!");
