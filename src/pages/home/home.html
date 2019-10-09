@@ -8,7 +8,7 @@
       <div class="box1">
       <p>TOTAL</p>
       <p class="money">
-       <strong>{{amt | currency: '&#82;'}}</strong>
+       <strong>{{total | currency: '&#82;'}}</strong>
        </p>
       </div>
     </div>
@@ -24,7 +24,7 @@
               <p class="itemms" (click)="expandDiv()" ><br><h4 *ngIf="!toggle">Add item</h4></p>
         <div class="additem" *ngIf="!toggle">
 
-            <div class="inputts" >
+            <div class="inputts" *ngIf="isUploading && !isUploaded">
        
                 <button (click)="takePicture(0)"class="myImage" ion-button round ><p>Upload Image</p></button>
                 <img src="{{item.image}}" alt="" style="width:300px;  height: 250px;">
@@ -51,8 +51,8 @@
           {{validate.message}}
       </div> 
     </div>
-
-      <button (click)="decrementQ()" class="Close"  ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
+    
+      <button (click)="decrementQ()" class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
       <p   style="color:white">{{item.quantity}}</p>
       <button (click)="incrementQ()" class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
   </div>
@@ -73,10 +73,10 @@
             </ion-avatar> 
             <h2><strong> {{ item.doc.name}}</strong></h2>
             <p class="ttext">
-              Price: R{{item.doc.price}}<br>
-              Quantity:{{item.doc.quantity}}
+              Amount: R{{item.doc.price}}<br>
+              {{item.doc.quantity}} item(s)
               </p>
-            <input type="checkbox">
+              <input type="checkbox">
           </ion-item>
     
           <ion-item-options side="right">

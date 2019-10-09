@@ -41,15 +41,21 @@ docId:string;
    ],
    'quantity': [
     {type: 'required', message: 'quantity  is required.'},
-   
- ]
-   }
+   ],
+  }
+//  ],
+//    'image': [
+//       {type: 'required', message: 'price  is required.'},
+     
+//    ],
+  //  }
 
  constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController)
   {
   this.itemForm = this.forms.group({ 
   name: new FormControl('', Validators.compose([Validators.required])),
-   price: new FormControl('', Validators.compose([Validators.required]))
+   price: new FormControl('', Validators.compose([Validators.required])),
+  //  image: new FormControl('', Validators.compose([Validators.required]))
     })
   }
 
@@ -62,18 +68,17 @@ docId:string;
 
  addData(itemForm){
   console.log(itemForm.valid);
-
   if (itemForm.valid) {
   this.total=0
-  this.item.totalPrice=this.item.price*this.item.quantity,
-  
+  this.Items = [] 
+  this.item.totalPrice =this.item.price*this.item.quantity,
+  // totAmount = totAmount+this.item.totalPrice,
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
       message: 'Item added',
       duration: 2000
 
     }).present()
-    this.Items = []
     this.pullData();
     this.itemForm.reset();
     this.item.image = '';
@@ -110,8 +115,6 @@ docId:string;
       targetWidth: 500
     }
     this.camera.getPicture(options).then((picture) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
      this.item.image= 'data:image/jpeg;base64,' + picture;
      this.itemForm.reset();
   /*    console.log('IMG: ',this.Picture); */
@@ -134,69 +137,58 @@ docId:string;
       buttons: ['Ok']
       
     }).present()
-  
-  }).catch(err => {
-    this.toastCtrl.create({
-      message: 'Error uploading image',
-      duration: 2000
-    }).present()
   })
 }
-
-
   pullData() {
     let data = {
       docid: "",
       doc: {}
     }
-
-    this.database.collection("Item").get().then(doc => {
+   this.database.collection("Item").get().then(doc => {
       this.Items = []
-      doc.forEach(item => {
-        data.docid = item.id
-        data.doc = item.data();
-        this.Items.push(data);
-        this.total += Number(item.data().totalPrice);
-        data = {
-          docid: "",
-          doc: {}
-        }
-
-
-      })
-      this.amt = this.total
-      console.log(this.amt)
-    })
-
-  }
-
-  deleteData(docid){
-    console.log(docid)
-    const prompt = this.alertCtrl.create({
-      title: 'DELETE!',
-      message: "Are you sure you want to delete this item?",
-  
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
+         doc.forEach(item => {
+           data.docid = item.id
+           data.doc = item.data();
+           this.Items.push(data);
+           this.total = this.total + parseFloat(item.data().totalPrice);
+           data = {
+            docid: "",
+            doc: {}
           }
-        },
-        {
-          text: 'Delete',
-          handler: data => {
-            console.log('Saved clicked');
-            this.database.collection("Item").doc(docid).delete();
-            this.Items = []
-             this.pullData()
-          }
-        }
-      ]
-    });
-    prompt.present();
-  }
+          console.log(this.total)
+           
+         })
+         
+         console.log('Final' ,this.total)
+  })
+}
+deleteData(docid){
+  console.log(docid)
+  const prompt = this.alertCtrl.create({
+    title: 'DELETE!',
+    message: "Are you sure you want to delete this item?",
 
+    buttons: [
+      {
+        text: 'Cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Delete',
+        handler: data => {
+          console.log('Saved clicked');
+          this.database.collection("Item").doc(docid).delete();
+          this.Items = []
+          this.pullData();
+        }
+      }
+    ]
+  });
+  prompt.present();
+
+}
 edit(document) {
   this.item.name = document.doc.name
   this.item.price = document.doc.price
@@ -245,34 +237,12 @@ edit(document) {
   alert.present();
 }
 
-// addData1(data){
-//   console.log(data, 'sss');
-//   if (data.name !== undefined && data.name !== null) {
-//               this.database.collection('Item').doc(this.docId).update({
-//                  name:data.name ,
-//                  price:data.price ,
-//                  quantity:data.quantity,
-//                  image:data.image
-//               });
-//             }
-// }
-// edit(document) {
-//   this.item.name = document.doc.name
-//   this.item.price = document.doc.price
-//   this.item.quantity = document.doc.quantity
-//   this.item.totalPrice=document.doc.price*document.doc.quantity
-//   this.item.image = document.doc.image
-//   this.docId = document.docid
-//   console.log(document);
-//   this.toggle = !this.toggle;
 
-
-// }
-onSubmit() {
-  if (this.itemForm.valid) {
+onSubmit(itemForm) {
+  if (itemForm.valid) {
     console.log("Form Submitted!");
     this.itemForm.reset();
   }
 }
-}
 
+}

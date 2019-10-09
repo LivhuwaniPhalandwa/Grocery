@@ -38,10 +38,6 @@ import { ProfileComponent } from '../components/profile/profile';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler,},
     AuthServiceProvider,
-   
-   
-    
-    
   ]
 })
 export class AppModule {}
