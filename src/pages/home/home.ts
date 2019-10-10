@@ -42,20 +42,19 @@ docId:string;
    'quantity': [
     {type: 'required', message: 'quantity  is required.'},
    ],
-  }
-//  ],
-//    'image': [
-//       {type: 'required', message: 'price  is required.'},
+  /*   'image': [
+       {type: 'required', message: 'price  is required.'},
      
-//    ],
-  //  }
+    ] */
+  }
 
  constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController)
   {
+   
   this.itemForm = this.forms.group({ 
   name: new FormControl('', Validators.compose([Validators.required])),
    price: new FormControl('', Validators.compose([Validators.required])),
-  //  image: new FormControl('', Validators.compose([Validators.required]))
+  // image: new FormControl('', Validators.compose([Validators.required]))
     })
   }
 
@@ -74,6 +73,11 @@ docId:string;
   this.item.totalPrice =this.item.price*this.item.quantity,
   // totAmount = totAmount+this.item.totalPrice,
   this.database.collection("Item").doc().set(this.item).then(res => {
+    this.item={name:'',
+    price:null,
+    quantity: 1,
+    image: '',
+    totalPrice:0,}
     this.toastCtrl.create({
       message: 'Item added',
       duration: 2000
@@ -102,6 +106,7 @@ docId:string;
     }
   }
   takePicture(sourcetype: number) {
+    
     console.log(';;;;;;;;;');
 
     const options: CameraOptions = {
@@ -116,7 +121,8 @@ docId:string;
     }
     this.camera.getPicture(options).then((picture) => {
      this.item.image= 'data:image/jpeg;base64,' + picture;
-     this.itemForm.reset();
+     
+   //  this.itemForm.reset();
   /*    console.log('IMG: ',this.Picture); */
     }, (err) => {
       console.log('error: ', err);
@@ -129,15 +135,19 @@ docId:string;
   const imageRef =storageRef.child(file);
   imageRef.putString(this.item.image, firebase.storage.StringFormat.DATA_URL)
   .then((snapshot) => {
+    this.item.image = '';
     console.log('image uploaded');
     this.item.image = snapshot.downloadURL;
     let alert = this.alertCtrl.create({
       title: 'Image Upload',
       subTitle: 'Image Uploaded to firebase',
       buttons: ['Ok']
-      
+     
     }).present()
+
   })
+  
+  
 }
   pullData() {
     let data = {
@@ -226,7 +236,8 @@ edit(document) {
             this.database.collection('Item').doc(document.docid).update({
                name:data.name ,
                price:data.price ,
-               quantity:data.quantity
+               quantity:data.quantity,
+               image: data.image
             });
             this.pullData();
           }
@@ -244,5 +255,7 @@ onSubmit(itemForm) {
     this.itemForm.reset();
   }
 }
-
+// setDefaultPic() {
+//   this.item.image ="src\assets\imgs\grocery package 3-700x700_0.jpg";
+// }
 }
