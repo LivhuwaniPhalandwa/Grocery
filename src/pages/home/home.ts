@@ -6,8 +6,8 @@ import * as firebase from 'firebase';
 import { CameraOptions } from '@ionic-native/camera';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProfileComponent } from '../../components/profile/profile';
-
-
+import { Profile1Component } from '../../components/profile1/profile1';
+import {StatusBar} from '@ionic-native/status-bar';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -18,6 +18,7 @@ Storage =firebase.storage;
 itemForm: FormGroup;
 database=firebase.firestore();
 Items=[];
+MyItems = [];
 total=0
 amt:number
 
@@ -32,35 +33,79 @@ item = {
 docId:string;
   validation_messages = {
     'name': [
-      {type: 'required', message: 'name  is required.'},
+      {type: 'required', message: 'Name  is required.'},
       
     ],
     'price': [
-      {type: 'required', message: 'price  is required.'},
+      {type: 'required', message: 'Price  is required.'},
      
    ],
    'quantity': [
     {type: 'required', message: 'quantity  is required.'},
    ],
-  /*   'image': [
-       {type: 'required', message: 'price  is required.'},
-     
-    ] */
+  
   }
-
- constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController)
+  myObjec: any;
+  Picture: string;
+  MyValue : boolean;
+  MyValue1 : boolean;
+  
+  update = false;
+ constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
+ 
   {
-   
+
+
+
+    const loader = this.loadingCtrl.create({
+      // spinner: 'hide',
+      content: "Just a sec...",
+      duration: 3000
+    });
+    loader.present();
+
+    
+    this.statusbar.backgroundColorByHexString('#3657AF');
   this.itemForm = this.forms.group({ 
   name: new FormControl('', Validators.compose([Validators.required])),
    price: new FormControl('', Validators.compose([Validators.required])),
-  // image: new FormControl('', Validators.compose([Validators.required]))
+    });
+
+    this.database.collection("Item").onSnapshot(data => {
+      data.forEach(item => {
+        console.log("This is your data", item.data());
+        this.MyItems.push(item.data())
+        
+      })
     })
   }
 
- expandDiv(){
-  this.toggle = !this.toggle;
+
+  expandDiv(){
+    this.item.name = ''
+    this.item.price = ''
+    this.item.quantity = 1
+    this.item.image = ''
+    this.CheckData();
+    this.toggle = !this.toggle;
  }
+ CheckData(){
+  if(this.item.name === ''){
+    console.log("Data is empty");
+    this.MyValue = true;
+    
+  }else{
+    console.log("Data is not empty");
+    this.MyValue = false;
+  }
+}
+expandDiv1(i){
+  this.myObjec = i;
+ this.toggle = !this.toggle;
+ console.log("This is your item ",  this.myObjec);
+
+}
+
  ionViewDidLoad(){
    this.pullData();
  }
@@ -71,7 +116,6 @@ docId:string;
   this.total=0
   this.Items = [] 
   this.item.totalPrice =this.item.price*this.item.quantity,
-  // totAmount = totAmount+this.item.totalPrice,
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.item={name:'',
     price:null,
@@ -96,7 +140,24 @@ docId:string;
   })
   }
 }
- 
+addData1(data){
+  console.log(data, 'Update data');
+  
+  if (data.name !== undefined && data.name !== null) {
+              this.database.collection('Item').doc(this.docId).update({
+                 name:data.name ,
+                 price:data.price ,
+                 quantity:data.quantity,
+                 image:data.image,
+                 totalPrice:this.item.price*this.item.quantity,
+
+              });
+              this. expandDiv()
+              this.Items=[];
+              this.navCtrl.setRoot(this.navCtrl.getActive().component);
+            }
+}
+
   incrementQ(){
     this.item.quantity = this.item.quantity + 1
   }
@@ -172,8 +233,11 @@ docId:string;
          console.log('Final' ,this.total)
   })
 }
-deleteData(docid){
-  console.log(docid)
+
+
+
+deleteData(docid ,item){
+  console.log(item.doc.price)
   const prompt = this.alertCtrl.create({
     title: 'DELETE!',
     message: "Are you sure you want to delete this item?",
@@ -188,74 +252,50 @@ deleteData(docid){
       {
         text: 'Delete',
         handler: data => {
-          console.log('Saved clicked');
+          console.log('Saved clicked' ,item.doc.price);
           this.database.collection("Item").doc(docid).delete();
+          this.total=this.total - item.doc.price
           this.Items = []
-          this.pullData();
+          // this.pullData();
+          // window.location.reload();
+          this.navCtrl.setRoot(this.navCtrl.getActive().component);
+          
         }
       }
     ]
   });
   prompt.present();
-
+ 
 }
+
+
+
 edit(document) {
+  this.update = true;
   this.item.name = document.doc.name
   this.item.price = document.doc.price
   this.item.quantity = document.doc.quantity
   this.item.image = document.doc.image
+  this.docId = document.docid
   console.log(document);
-  const alert = this.alertCtrl.create({
-    title: 'Edit Item',
-    inputs: [
-      {
-        name: 'name',
-        placeholder: 'Enter your name',
-        value: document.doc.name
-      },
-      {
-        name: 'price',
-        placeholder: 'Enter your name',
-        value: document.doc.price
-      },
-      {
-        name: 'quantity',
-        placeholder: 'Enter your name',
-        value: document.doc.quantity ,
-      
-      }
-    ],
-    buttons: [
-      {
-        text: 'cancel',
-      },
-      {
-        text: 'update',
-        handler: data => {
-          if (data.name !== undefined && data.name !== null) {
-            this.database.collection('Item').doc(document.docid).update({
-               name:data.name ,
-               price:data.price ,
-               quantity:data.quantity,
-               image: data.image
-            });
-            this.pullData();
-          }
-        }
-      }
-    ]
+  this.toggle = !this.toggle;
+  this.CheckData();
+  
+ 
+
+}
+
+viewProfile(myEvent) {
+  let popover = this.popoverCtrl.create(ProfileComponent, { image: myEvent });
+  popover.present({
+    ev: myEvent
   });
-  alert.present();
-}
 
-
-onSubmit(itemForm) {
-  if (itemForm.valid) {
-    console.log("Form Submitted!");
-    this.itemForm.reset();
-  }
 }
-// setDefaultPic() {
-//   this.item.image ="src\assets\imgs\grocery package 3-700x700_0.jpg";
-// }
+viewProfile1(myEvent) {
+  let popover = this.popoverCtrl.create(Profile1Component, { image: myEvent });
+  popover.present({
+    ev: myEvent
+  });
+}
 }
