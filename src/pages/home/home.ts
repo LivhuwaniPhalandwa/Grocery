@@ -21,7 +21,7 @@ Items=[];
 total=0
 amt:number
 
-
+amount;
 item = {
  name:'',
  price:null,
@@ -40,6 +40,18 @@ item = {
    ]
    }
 
+   
+  docId : string;
+
+  myObjec: any;
+
+  Picture: string;
+
+  MyValue : boolean;
+  MyValue1 : boolean;
+  
+  update = false;
+
  constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController) {
   this.itemForm = this.forms.group({ 
   name: new FormControl('', Validators.compose([Validators.required])),
@@ -49,16 +61,31 @@ item = {
   }
 
  expandDiv(){
+  this.item.name = ''
+  this.item.price = ''
+  this.item.quantity = 1
+  this.item.image = ''
+  this.CheckData();
   this.toggle = !this.toggle;
  }
  ionViewDidLoad(){
    this.pullData();
- }
- addData(x){
-   console.log(x)
+ 
+  }
+  
+  checkboxClick(item, isChecked:boolean){
+    
+    if(isChecked){
+      item.total=!this.total;
+    }else{
+    this.total =this.total-item.doc.price
+    }
+  }
+ addData(){
+   console.log()
    this.total = 0
-    this.Items = []
-  this.item.totalPrice =this.item.price*this.item.quantity,
+   this.Items = []
+    this.item.totalPrice =this.item.price*this.item.quantity
   // totAmount = totAmount+this.item.totalPrice,
   this.database.collection("Item").doc().set(this.item).then(res => {
     this.toastCtrl.create({
@@ -150,7 +177,7 @@ item = {
 }
   
 
-deleteData(docid, item, index) {
+deleteData(docid, item) {
   console.log(item.doc.price)
   const prompt = this.alertCtrl.create({
     title: 'DELETE!',
@@ -170,65 +197,63 @@ deleteData(docid, item, index) {
           this.database.collection("Item").doc(docid).delete();
           this.total = this.total - item.doc.price;
           this.Items = [];
-          this.pullData();
+        //  this.pullData();
+        // window.location.reload();
+        this.navCtrl.setRoot(this.navCtrl.getActive().component);
         }
       }
     ]
   });
   prompt.present();
 }
+CheckData(){
+  if(this.item.name === ''){
+    console.log("Data is empty");
+    this.MyValue = true;
+    
+  }else{
+    // this.item.totalPrice=document.doc.price*document.doc.quantity
+    
+  }
+}
+
+expandDiv1(i){
+  this.myObjec = i;
+ this.toggle = !this.toggle;
+ console.log("This is your item ",  this.myObjec);
+
+}
+
+
+addData1(data){
+  console.log(data, 'Update data');
+  
+  if (data.name !== undefined && data.name !== null) {
+              this.database.collection('Item').doc(this.docId).update({
+                 name:data.name ,
+                 price:data.price ,
+                 quantity:data.quantity,
+                 image:data.image,
+                 totalPrice:this.item.price*this.item.quantity,
+              });
+              this. expandDiv()
+              this.Items=[];
+              this.navCtrl.setRoot(this.navCtrl.getActive().component);
+          //  this.pullData();   
+            }
+}
 
 edit(document) {
   this.item.name = document.doc.name
-  this.item.price = document.doc.price
-  this.item.quantity = document.doc.quantity
-  this.item.image = document.doc.image
-  console.log(document);
-  const alert = this.alertCtrl.create({
-    title: 'Edit Item',
-    inputs: [
-      {
-        name: 'name',
-        placeholder: 'Enter your name',
-        value: document.doc.name
-      },
-      {
-        name: 'price',
-        placeholder: 'Enter your name',
-        value: document.doc.price
-      },
-      {
-        name: 'quantity',
-        placeholder: 'Enter your name',
-        value: document.doc.quantity ,
-      
-      }
-    ],
-    buttons: [
-      {
-        text: 'cancel',
-      },
-      {
-        text: 'update',
-        handler: data => {
-          if (data.name !== undefined && data.name !== null) {
-            this.database.collection('Item').doc(document.docid).update({
-               name:data.name ,
-               price:data.price ,
-               quantity:data.quantity
-            });
-          }
-        }
-      }
-    ]
-  });
-  alert.present();
-}
-onSubmit() {
-  if (this.itemForm.valid) {
-    console.log("Form Submitted!");
-    this.itemForm.reset();
-  }
+   this.item.price = document.doc.price
+   this.item.quantity = document.doc.quantity
+   this.item.image = document.doc.image
+   this.docId = document.docid
+   
+   console.log(document);
+   this.toggle = !this.toggle;
+
+   this.CheckData();
 }
 
 }

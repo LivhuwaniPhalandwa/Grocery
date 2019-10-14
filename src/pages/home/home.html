@@ -95,7 +95,7 @@
      
     </ion-list>
     -->
-  
+
     <div class="parent">
       <h1>
           MY LIST
@@ -109,8 +109,7 @@
   </div>
   
 
-  
-    
+  <!-- <ion-content> -->
    <div  [ngClass]="{'minimized': toggle, 'expand': !toggle}">
           <p class="itemms" (click)="expandDiv()" >   
            
@@ -120,7 +119,7 @@
       <div class="additem" *ngIf="!toggle">
 
         <form  [formGroup]="itemForm" class="item">
-        <div class="inputts" >
+        <div class="inputts">
      
           <button (click)="takePicture(0)"class="myImage" ion-button round ><p>Upload Image</p></button>
           <img src="{{item.image}}" alt="" style="width:300px;  height: 250px;">
@@ -149,7 +148,8 @@
     <button (click)="incrementQ()" class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
 </div>
         
-          <button (click)="addData()" class="submit" ion-button full round>SUBMIT</button>
+<button  *ngIf="MyValue" (click)="addData()" class="submit" ion-button full round>Add</button>
+<button  *ngIf="!MyValue" (click)="addData1(item)" class="submit" ion-button full round>Edit</button>
         </form>
         </div> 
       
@@ -166,12 +166,14 @@
           <h2><strong> {{ item.doc.name}}</strong></h2>
           <p class="ttext">
             Price: R{{item.doc.price}}<br>
-            Quantity:{{item.doc.quantity}}
+            {{item.doc.quantity}} item(s)
             </p>
+                  <input type="checkbox" (ionChange)="checkboxClick($event, i)" checked> 
+                 
         </ion-item>
   
         <ion-item-options side="right">
-            <button  (click)="deleteData(item.docid, item, i)"ion-button color="danger" >
+            <button  (click)="deleteData(item.docid, item)"ion-button color="danger" >
                 <ion-icon color="#f4f4f4" name="trash"></ion-icon>
               </button>
           
@@ -184,13 +186,7 @@
           </button>
         </ion-item-options>
       </ion-item-sliding>
-
-
-
-   
   </ion-list>
-    
-    
-    
+
     
   
