@@ -13,9 +13,13 @@ import { NavParams } from 'ionic-angular';
 })
 export class ProfileComponent {
 
+  text: string;
+
   image: string;
- constructor(public navParam: NavParams) {
-   console.log('this.navParams.data');
-   this.image = this.navParam.get('image');
- }
-}
+  constructor(public navParam: NavParams) {
+    console.log('this.navParams.data');
+    this.image = this.navParam.get('image');
+  }
+  }
+
+
