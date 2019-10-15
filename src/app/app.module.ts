@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import {Camera} from '@ionic-native/camera';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ProfileComponent } from '../components/profile/profile';
+import { Profile1Component } from '../components/profile1/profile1';
 
 
 
@@ -18,6 +19,7 @@ import { ProfileComponent } from '../components/profile/profile';
   declarations: [
     MyApp,
   HomePage,
+  Profile1Component,
   ProfileComponent
   
   ],
@@ -30,6 +32,7 @@ import { ProfileComponent } from '../components/profile/profile';
   entryComponents: [
     MyApp,
     HomePage,
+    Profile1Component,
     ProfileComponent
   
   ],
