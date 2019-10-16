@@ -8,6 +8,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ProfileComponent } from '../../components/profile/profile';
 import { Profile1Component } from '../../components/profile1/profile1';
 import {StatusBar} from '@ionic-native/status-bar';
+import { HistoryPage } from '../history/history';
+import { SuccessPage } from '../success/success';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -112,7 +114,7 @@ expandDiv1(i){
  }
 
  addData(itemForm){
-   this.loaderAnimate = true;
+  
   console.log(itemForm.valid);
   if (itemForm.valid) {
   this.total=0
@@ -124,11 +126,12 @@ expandDiv1(i){
     quantity: 1,
     image: '',
     totalPrice:0,}
-    this.toastCtrl.create({
-      message: 'Item added',
-      duration: 2000
+    this.navCtrl.setRoot(SuccessPage);
+    // this.toastCtrl.create({
+    //   message: 'Item added',
+    //   duration: 2000
 
-    }).present();
+    // }).present();
 /* LOADER  */
     setTimeout(()=>{
       this.loaderAnimate = false;
@@ -145,6 +148,31 @@ expandDiv1(i){
       duration: 2000
     }).present()
   })
+  this.loaderAnimate = true;
+  }
+  else{
+
+    const prompt = this.alertCtrl.create({
+      title: '',
+      message: "Please insert following item details!",
+  
+      buttons: [
+        {
+          text: 'Ok',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        // {
+        //   text: 'Delete',
+        //   handler: data => {
+          
+        //   }
+        // }
+      ]
+    });
+    prompt.present();
+
   }
 }
 addData1(data){
@@ -241,6 +269,9 @@ addData1(data){
   })
 }
 
+history(){
+  this.navCtrl.push(SuccessPage)
+}
 
 
 deleteData(docid ,item){

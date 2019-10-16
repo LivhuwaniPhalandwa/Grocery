@@ -2,11 +2,11 @@ page-home {
   @import url('https://fonts.googleapis.com/css?family=Courgette|Josefin+Sans&display=swap');
   .content{
       height: 100%;
-      background-image: linear-gradient( rgba(59, 87, 248, 0.664), rgb(54, 87, 179));
+      background-image: linear-gradient( rgba(59, 87, 248, 0.664), #3657b3);
   }
   
   .parent{
-      height: 25%;
+      height: 27%;
       
       background: white;
       margin-bottom: 4%;
@@ -33,7 +33,7 @@ page-home {
     margin-bottom: -150px;
   }
   .box1{
-      height: 60%;
+      height: 65%;
       width: 85%;
       display: flex;
       flex-direction: row;
@@ -131,9 +131,10 @@ page-home {
       z-index: 6;
       height: 100%;
       background-image: linear-gradient( rgb(232, 242, 250), rgb(118, 152, 247));
-      transition: 1s;
+      transition: 2s;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
+      
       
   
  
@@ -267,24 +268,26 @@ page-home {
      }
 
    }
-  //  .minimized {
-  //     // bottom: 20%;
-  //     // right: 10%;
-  //     // left: 10%;
-  //     // top:85%;
-  //     // background:#75b4f0;
-  //     // position: absolute;
-  //     // display: flex;
-  //     // justify-content: center;
-  //     // align-items: center;
-  //     // box-shadow: 0px 0px 0px 0px rgb(33, 75, 124);
-  //     // border-radius: 10px;
-  //     // z-index: 6;
-  //     // height: 70px;
+   .minimized {
+      // bottom: 50%;
+      // right: 10%;
+      // left: 40%;
+      // top:50%;
+  //   // margin-left: 80px;
+  //     position: absolute;
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //     box-shadow: 0px 0px 0px 0px rgb(33, 75, 124);
+  //     border-radius: 10px;
+      z-index: 6;
+      height: 5px;
+    
    
+  
       
     
-  // }
+   }
   .xxicon{
       font-size: 15px;
       margin: 5px;
@@ -309,11 +312,14 @@ page-home {
             padding-left: 5vw;
             justify-items: center;
             box-shadow: 0px 0px 0px 0px rgb(33, 75, 124);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             padding-top: 1%;
             flex: 1;
             h1, p {
               text-align: left;
+            }
+            h2{
+              font-size: 6vw;
             }
             
           }
@@ -322,6 +328,7 @@ page-home {
             .item {
               justify-self: flex-end;
               border: none;
+              
 
             }
             
@@ -335,7 +342,7 @@ page-home {
   .itemms{
       text-align: center;
       margin: 2px;
-      color: rgba(255, 255, 255, 0.938);
+      color: rgba(8, 7, 7, 0.938);
       // border-radius: 20px;
       // position: relative;
       
@@ -388,6 +395,13 @@ page-home {
   border-radius: 20em;
   
  
+}
+.btn1234{
+  opacity: 4;
+
+}
+.icon1234{
+  font-size: 8vw;
 }
 
 .btn1{

@@ -12,6 +12,8 @@ import {Camera} from '@ionic-native/camera';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ProfileComponent } from '../components/profile/profile';
 import { Profile1Component } from '../components/profile1/profile1';
+import { HistoryPage } from '../pages/history/history';
+import { SuccessPage } from '../pages/success/success';
 
 
 
@@ -20,7 +22,9 @@ import { Profile1Component } from '../components/profile1/profile1';
     MyApp,
   HomePage,
   Profile1Component,
-  ProfileComponent
+  ProfileComponent,
+  HistoryPage,
+  SuccessPage
   
   ],
   imports: [
@@ -33,7 +37,9 @@ import { Profile1Component } from '../components/profile1/profile1';
     MyApp,
     HomePage,
     Profile1Component,
-    ProfileComponent
+    ProfileComponent,
+    HistoryPage,
+    SuccessPage
   
   ],
   providers: [Camera,
