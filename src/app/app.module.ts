@@ -7,11 +7,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-
+import {ItemsProvider} from '../providers/items/items';
 import {Camera} from '@ionic-native/camera';
 import { ProfileComponent } from '../components/profile/profile';
 import { Profile1Component } from '../components/profile1/profile1';
-import { ItemsProvider } from '../providers/items/items';
+import { HistoryPage } from '../pages/history/history';
+import { SuccessPage } from '../pages/success/success';
 
 
 
@@ -20,7 +21,9 @@ import { ItemsProvider } from '../providers/items/items';
     MyApp,
   HomePage,
   Profile1Component,
-  ProfileComponent
+  ProfileComponent,
+  HistoryPage,
+  SuccessPage
   
   ],
   imports: [
@@ -34,15 +37,17 @@ import { ItemsProvider } from '../providers/items/items';
     MyApp,
     HomePage,
     Profile1Component,
-    ProfileComponent
+    ProfileComponent,
+    HistoryPage,
+    SuccessPage
   
   ],
   providers: [Camera,
     StatusBar,
     SplashScreen,
-    ItemsProvider,
+   
     {provide: ErrorHandler, useClass: IonicErrorHandler,},
-  
+    ItemsProvider
   ]
 })
 export class AppModule {}

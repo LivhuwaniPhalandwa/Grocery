@@ -64,16 +64,14 @@ docId:string;
   image:string;
 
 
-  MyItem : string = 'Milk';
+  MyItem : string = 'Freshpack';
   MyArray = [];
 
  constructor(public navCtrl: NavController,public items:ItemsProvider,public menuCtrl: MenuController,public http: Http,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
- 
   {
    this.itemname=this.navParams.get('itemname') ;
    this.itemname=this.navParams.get('image');
       this.items.getData().subscribe(data => {
-       
         this.MyArray = data.Item;
         console.log("eeeeeeeee", this.MyArray);
       });
@@ -106,10 +104,10 @@ docId:string;
   CheckInArray(){
     this.MyArray.forEach(item => {
       if(item.itemname === this.MyItem){
-        console.log("My item just matched",item.image,item.itemname)
+        console.log("My item just matched",item.image)
+        
       }else{
         console.log("Item not found");
-        
       }
     })
   }
@@ -147,7 +145,7 @@ expandDiv1(i){
 
  addData(itemForm){
   console.log(itemForm.valid);
-  this.CheckInArray();
+
   if (itemForm.valid) {
   this.total=0
   this.Items = [] 
