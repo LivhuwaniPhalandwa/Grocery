@@ -4,14 +4,14 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import {Camera} from '@ionic-native/camera';
-import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ProfileComponent } from '../components/profile/profile';
 import { Profile1Component } from '../components/profile1/profile1';
+import { ItemsProvider } from '../providers/items/items';
 
 
 
@@ -26,6 +26,7 @@ import { Profile1Component } from '../components/profile1/profile1';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -39,8 +40,9 @@ import { Profile1Component } from '../components/profile1/profile1';
   providers: [Camera,
     StatusBar,
     SplashScreen,
+    ItemsProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler,},
-    AuthServiceProvider,
+  
   ]
 })
 export class AppModule {}

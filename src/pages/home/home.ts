@@ -8,6 +8,12 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ProfileComponent } from '../../components/profile/profile';
 import { Profile1Component } from '../../components/profile1/profile1';
 import {StatusBar} from '@ionic-native/status-bar';
+import { Observable } from 'rxjs/Observable';
+import { Http } from '@angular/http';
+import { ItemsProvider } from '../../providers/items/items';
+
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -21,6 +27,7 @@ Items=[];
 MyItems = [];
 total=0
 amt:number
+
 
 
 item = {
@@ -49,14 +56,29 @@ docId:string;
   Picture: string;
   MyValue : boolean;
   MyValue1 : boolean;
-  
+
   update = false;
- constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
+  productState: boolean;
+  produto: any;
+  itemname:string;
+  image:string;
+
+
+  MyItem : string = 'Milk';
+  MyArray = [];
+
+ constructor(public navCtrl: NavController,public items:ItemsProvider,public menuCtrl: MenuController,public http: Http,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
  
   {
-
-
-
+   this.itemname=this.navParams.get('itemname') ;
+   this.itemname=this.navParams.get('image');
+      this.items.getData().subscribe(data => {
+       
+        this.MyArray = data.Item;
+        console.log("eeeeeeeee", this.MyArray);
+      });
+    this.CheckInArray();
+  
     const loader = this.loadingCtrl.create({
       // spinner: 'hide',
       content: "Just a sec...",
@@ -78,8 +100,19 @@ docId:string;
         
       })
     })
+    
   }
 
+  CheckInArray(){
+    this.MyArray.forEach(item => {
+      if(item.itemname === this.MyItem){
+        console.log("My item just matched",item.image,item.itemname)
+      }else{
+        console.log("Item not found");
+        
+      }
+    })
+  }
 
   expandDiv(){
     this.item.name = ''
@@ -87,6 +120,7 @@ docId:string;
     this.item.quantity = 1
     this.item.image = ''
     this.CheckData();
+
     this.toggle = !this.toggle;
  }
  CheckData(){
@@ -108,10 +142,12 @@ expandDiv1(i){
 
  ionViewDidLoad(){
    this.pullData();
+ 
  }
 
  addData(itemForm){
   console.log(itemForm.valid);
+  this.CheckInArray();
   if (itemForm.valid) {
   this.total=0
   this.Items = [] 
@@ -298,4 +334,5 @@ viewProfile1(myEvent) {
     ev: myEvent
   });
 }
+
 }
