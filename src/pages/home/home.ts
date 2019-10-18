@@ -8,12 +8,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ProfileComponent } from '../../components/profile/profile';
 import { Profile1Component } from '../../components/profile1/profile1';
 import {StatusBar} from '@ionic-native/status-bar';
+import { isCheckedProperty } from 'ionic-angular/umd/util/util';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  selectedAll: boolean = true;
+  selectedAll: boolean = false;
  toggle: boolean=true;
 Storage =firebase.storage;
 itemForm: FormGroup;
@@ -80,21 +81,31 @@ docId:string;
       })
     })
   }
-
- 
   
-  
-  select(item: Items, isChecked: boolean){
-    const receivedItems = <FormArray>this.itemForm.controls.receivedItems;
-  
-    if(isChecked) {
-      
-  
+  check(event, item): void{
+      let checked: boolean;
+      if(checked==true){
+        
+        console.log("hahaha");
+      // if (this.name !== undefined && this.name !== null) {
+      //   this.database.collection('Item').doc().update({
+      //      totalPrice:this.item.totalPrice,
+      //      total:this.total - (this.item.totalPrice)
+      //   })
+      // }
+    
     } else {
-        let index = receivedItems.controls.findIndex(x => x.value.id == item.id);
-        receivedItems.removeAt(index);
+      console.log("krikrikri");
+        // this.database.collection('Item').doc(this.docId).update({
+        //   total: this.total - parseFloat(item.data().totalPrice),
+          
+    //     });
+    //     this. expandDiv()
+    //     this.Items=[];
+    //     this.navCtrl.setRoot(this.navCtrl.getActive().component);
     }
-  }
+  
+}
 
   expandDiv(){
     this.item.name = ''
@@ -114,12 +125,6 @@ docId:string;
     this.MyValue = false;
   }
 }
-// expandDiv1(i){
-//   this.myObjec = i;
-//  this.toggle = !this.toggle;
-//  console.log("This is your item ",  this.myObjec);
-
-// }
 
  ionViewDidLoad(){
    this.pullData();

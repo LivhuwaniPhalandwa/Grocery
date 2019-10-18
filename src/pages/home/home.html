@@ -90,7 +90,7 @@
      
      <div class="crab">
     <ion-list color="dark" padding>
-        <ion-list *ngFor = "let item of Items" >
+        <ion-list *ngFor = "let item of Items;" >
         <ion-item-sliding style="width: 100%;border-radius: 15px;  ">
           <ion-item>
             <div class="main">
@@ -102,12 +102,15 @@
                   </ion-avatar> 
               </div>
               <div class="two">
+            
                   <h1><strong>{{item.doc.name}}</strong></h1>
                   <p class="ttext">
                     Amount: R{{item.doc.price}}<br>
                     {{item.doc.quantity}} item(s)
                     </p>
-                      <input type="checkbox" [checked]="selectedAll" value="item" (ionChange)="select(item, $event.checked)">
+                    <ion-item>
+                      <ion-checkbox color="dark" [checked]="true" (click)="check($event, item)"></ion-checkbox>
+                  </ion-item>
               </div>
             </div>
         
