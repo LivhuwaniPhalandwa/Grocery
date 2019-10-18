@@ -1,0 +1,27 @@
+{
+    "Item": [
+      { "itemname": "Milk",  "image":"../../assets/imgs/clover-milk-full-cream-1-litre.jpg"},
+      { "itemname": "Maize meal",  "image":"../../assets/imgs/maize meal.jpg"},
+      { "itemname": "Brown bread", "image": "../../assets/imgs/brown bread.jpg"},
+      { "itemname": "Sunlight-Liquid", "image": "../../assets/imgs/Sunlight-Liquid.png"},
+      { "itemname": "Rice",  "image": "../../assets/imgs/rice.jpg"},
+      { "itemname": "Protex Soap", "image": "../../assets/imgs/protex soap.jpg"},
+      { "itemname": "selati sugar", "image": "../../assets/imgs/selati sugar.jpg"},
+      {"itemname": "Twinsaver tissue", "image":"../../assets/imgs/Twinsaver tissue.jpg"},
+      { "itemname": "Colgate", "image": "../../assets/imgs/colgate.jpg"},
+      { "itemname": "Nivea body lotion", "image": "../../assets/imgs/nivea body lotion.jpg"},
+      { "itemname": "koo beans", "image": "../../assets/imgs/koo beans.jpg"},
+      { "itemname": "Salt", "image": "../../assets/imgs/salt.jpg"},
+      {"itemname": "Always pads","image": "../../assets/imgs/always pads.jpg"},
+      {"itemname": "Parmalat cheese", "image": "../../assets/imgs/parmalat cheese.jpg"},
+      {"itemname": "kellogs cornflakes", "image": "../../assets/kellogs cornflakes.jpg"},
+      {"itemname": "jungle oats.jpg", "image": "../../assets/imgs/jungle oats.jpg"},
+      {"itemname": "Eggs", "image": "../../assets/imgs/eggs.jpg"},
+      { "itemname": "Freshpack","image": "../../assets/imgs/Freshpak (1).jpg"},
+      { "itemname": "Goldi braaipack", "image": "../../assets/imgs/goldi braaipack.jpg"},
+      { "itemname": "washing powder", "image": "../../assets/imgs/washing powder.jpg"},
+      { "itemname": "Beef meat", "image": "../../assets/imgs/beef meat.jpeg"},
+      { "itemname": "Nola mayonaise", "image": "../../assets/imgs/nola mayonaise.jpg"}
+    
+    ]
+  }
