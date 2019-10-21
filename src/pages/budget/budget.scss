@@ -59,7 +59,7 @@ h1.main, p.demos {
   
   
 	top: 50px;
-	line-height: 50px;
+	line-height: 70px;
 	height: 100px;
 	margin-top: 50px;
 	font-size: 40px;
@@ -138,7 +138,7 @@ h1.main, p.demos {
 	animation: fadeInBack 3.6s linear 5s backwards;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
 	filter: alpha(opacity=30);
-	opacity: 0.3;
+	opacity: 0.5;
 	-webkit-transform: scale(5);
 	-moz-transform: scale(5);
 	-o-transform: scale(5);
@@ -358,7 +358,7 @@ h1.main, p.demos {
     // margin-top: 50%;
      color: whitesmoke;
    
-     font-size: 18px;
+     font-size: 20px;
      font-family: 'Josefin Sans', sans-serif;
      .h1{
         font-family: 'Josefin Sans', sans-serif;

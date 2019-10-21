@@ -71,7 +71,7 @@ console.log('sssssssssssssssssssss', this.newItems);
     this.newItems
   );
    // Set chart options
-   var options = {'title':' Grocery Budget Overview ',
+   var options = {'title':' Grocery Item Total Overview ',
                   'width':350,
                   'height':350};
 
