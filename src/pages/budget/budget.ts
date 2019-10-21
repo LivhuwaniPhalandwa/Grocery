@@ -47,7 +47,9 @@ item={
 
 // if(this.total==this.totalBudget) {
 //   console.log('You have reached your limit');
-
+nextp(){
+  this.navCtrl.setRoot(HomePage, this.navParams.data);
+}
 }
 
 
