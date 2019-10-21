@@ -135,7 +135,7 @@ expandDiv1(i){
 /* LOADER  */
     setTimeout(()=>{
       this.loaderAnimate = false;
-      },1000)
+      },5000)
 
     this.pullData();
     this.itemForm.reset();
@@ -269,8 +269,8 @@ addData1(data){
   })
 }
 
-history(){
-  this.navCtrl.push(SuccessPage)
+togohistory(){
+  this.navCtrl.push(HistoryPage)
 }
 
 

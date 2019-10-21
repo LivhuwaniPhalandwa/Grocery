@@ -1,9 +1,16 @@
 page-history {
     .content{
         height: 100%;
-        background-image: linear-gradient( rgba(80, 102, 221, 0.664), #3657b3);
+        background-image: linear-gradient( rgba(212, 215, 228, 0.664), #3657b3);
     }
     .ion-segment{
         color: white;
+    }
+
+    #chart_div{
+        font-size: 10px;
+    }
+    .heading{
+        text-align: center;
     }
 }

@@ -7,13 +7,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-
+import { IonicStorageModule } from '@ionic/storage';
 import {Camera} from '@ionic-native/camera';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { ProfileComponent } from '../components/profile/profile';
 import { Profile1Component } from '../components/profile1/profile1';
 import { HistoryPage } from '../pages/history/history';
 import { SuccessPage } from '../pages/success/success';
+import { OnboardingPage } from '../pages/onboarding/onboarding';
+import { BudgetPage } from '../pages/budget/budget';
 
 
 
@@ -24,14 +26,26 @@ import { SuccessPage } from '../pages/success/success';
   Profile1Component,
   ProfileComponent,
   HistoryPage,
-  SuccessPage
+  SuccessPage,
+  OnboardingPage,
+  BudgetPage
   
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    IonicModule.forRoot(MyApp)
+    
+
+    IonicModule.forRoot(MyApp, {
+      scrollPadding: false,
+      scrollAssist: false,
+      autoFocusAssist:false,
+
+    }),
+    IonicStorageModule.forRoot()
+    
   ],
+
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -39,7 +53,10 @@ import { SuccessPage } from '../pages/success/success';
     Profile1Component,
     ProfileComponent,
     HistoryPage,
-    SuccessPage
+    SuccessPage,
+    OnboardingPage,
+    BudgetPage
+
   
   ],
   providers: [Camera,
