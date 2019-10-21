@@ -11,6 +11,8 @@ import {StatusBar} from '@ionic-native/status-bar';
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { ItemsProvider } from '../../providers/items/items';
+import { HistoryPage } from '../history/history';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -27,7 +29,7 @@ Items=[];
 MyItems = [];
 total=0
 amt:number
-
+checked:boolean
 
 
 item = {
@@ -64,7 +66,7 @@ docId:string;
   image:string;
 
 
-  MyItem : string = 'Freshpack';
+  MyItem : string = '';
   MyArray = [];
 
  constructor(public navCtrl: NavController,public items:ItemsProvider,public menuCtrl: MenuController,public http: Http,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
@@ -97,6 +99,7 @@ docId:string;
         this.MyItems.push(item.data())
         
       })
+     
     })
     
   }
@@ -301,9 +304,6 @@ deleteData(docid ,item){
   prompt.present();
  
 }
-
-
-
 edit(document) {
   this.update = true;
   this.item.name = document.doc.name
@@ -332,5 +332,22 @@ viewProfile1(myEvent) {
     ev: myEvent
   });
 }
+saveData(){   
+   this.navCtrl.push(HistoryPage);
+  }
+
+
+check(item){
+  if(item.checked==true){
+    console.log("Am checked")
+
+  }else{
+    console.log("Am not checked")
+  }
+}
+
+
+
+
 
 }

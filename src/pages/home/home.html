@@ -24,7 +24,7 @@
        <strong>{{total | currency: '&#82;'}}</strong><br>
        <!-- <ion-icon name="ios-arrow-down-outline"></ion-icon>  -->
       </h3>
-
+      <button (click)="saveData(docid)">Testing</button>
       
       </div>
     </div>
@@ -85,7 +85,7 @@
               </div> 
             </div>
    
-        <button (click)="CheckInArray()">Testing</button>
+        <!-- <button (click)="CheckInArray()">Testing</button> -->
     
  
     
@@ -140,7 +140,6 @@
                     Amount: R{{item.doc.price}}<br>
                     {{item.doc.quantity}} item(s)
                     </p>
-
                 <input class="check" type="checkbox" >
               </div>
             </div>
