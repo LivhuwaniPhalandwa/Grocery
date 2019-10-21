@@ -25,18 +25,18 @@ export class HistoryPage {
     totalPrice:0,
    }
    total=0
-   MyItems:[];
+  //  MyItems:[];
    docId
   Items: any[];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.saveDataa();
-    // this.database.collection("Item").get(this.docId).then(data => {
-    //   data.forEach(item => {
-    //     console.log("This is your data", item.data());
+    // this.saveDataa();
+    this.database.collection("Item").get(this.docId).then(data => {
+      data.forEach(item => {
+        console.log("This is your data", item.data());
         // this.MyItems.push(item.data())
         
-    //   })
-    // })
+      })
+    })
   }
   
 
@@ -47,12 +47,13 @@ this.saveData();
   saveDataa(){   
     this.database.collection('Item').get(this.docId).then(res => {
       res.forEach(doc => {
+
         console.log(doc.data());
         this.item.image = doc.data().image
         this.item.name = doc.data().name
         this.item.price = doc.data().price 
         this.item.quantity = doc.data().quantity
-        // this.total=(this.item.price*this.item.quantity)
+        this.total=(this.item.price*this.item.quantity)
       })
 })
 

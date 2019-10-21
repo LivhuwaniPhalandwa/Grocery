@@ -24,7 +24,7 @@
        <strong>{{total | currency: '&#82;'}}</strong><br>
        <!-- <ion-icon name="ios-arrow-down-outline"></ion-icon>  -->
       </h3>
-      <button (click)="saveData(docid)">Testing</button>
+      <button (click)="saveData(docid)">Save</button>
       
       </div>
     </div>
@@ -122,7 +122,7 @@
      
      <div class="crab">
     <ion-list color="dark" padding>
-        <ion-list *ngFor = "let item of Items">
+        <ion-list *ngFor = "let item of Items;" >
         <ion-item-sliding style="width: 100%;border-radius: 15px;  ">
           <ion-item>
             <div class="main">
@@ -140,7 +140,16 @@
                     Amount: R{{item.doc.price}}<br>
                     {{item.doc.quantity}} item(s)
                     </p>
+
+
+                    <ion-item>
+                      <ion-checkbox color="dark" [checked]="true" (click)="check($event, item)"></ion-checkbox>
+                  </ion-item>
+
+
+
                 <input class="check" type="checkbox" >
+
               </div>
             </div>
         
