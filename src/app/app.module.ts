@@ -7,13 +7,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import {ItemsProvider} from '../providers/items/items';
+import { IonicStorageModule } from '@ionic/storage';
 import {Camera} from '@ionic-native/camera';
 import { ProfileComponent } from '../components/profile/profile';
 import { Profile1Component } from '../components/profile1/profile1';
 import { HistoryPage } from '../pages/history/history';
 import { SuccessPage } from '../pages/success/success';
-
+import { OnboardingPage } from '../pages/onboarding/onboarding';
+import { BudgetPage } from '../pages/budget/budget';
+import {ItemsProvider} from '../providers/items/items'
 
 
 @NgModule({
@@ -23,15 +25,26 @@ import { SuccessPage } from '../pages/success/success';
   Profile1Component,
   ProfileComponent,
   HistoryPage,
-  SuccessPage
+  SuccessPage,
+  OnboardingPage,
+  BudgetPage
   
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpModule,
-    IonicModule.forRoot(MyApp)
+    
+
+    IonicModule.forRoot(MyApp, {
+      scrollPadding: false,
+      scrollAssist: false,
+      autoFocusAssist:false,
+
+    }),
+    IonicStorageModule.forRoot()
+    
   ],
+
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -39,7 +52,10 @@ import { SuccessPage } from '../pages/success/success';
     Profile1Component,
     ProfileComponent,
     HistoryPage,
-    SuccessPage
+    SuccessPage,
+    OnboardingPage,
+    BudgetPage
+
   
   ],
   providers: [Camera,

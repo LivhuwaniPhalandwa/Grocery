@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { HistoryPage } from '../history/history';
 
 /**
  * Generated class for the SuccessPage page.
@@ -24,5 +25,9 @@ export class SuccessPage {
   }
   takeHome(){
     this.navCtrl.push(HomePage)
+  }
+
+  togohistory(){
+    this.navCtrl.push(HistoryPage)
   }
 }

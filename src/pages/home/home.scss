@@ -1,15 +1,15 @@
 page-home {
-  @import url('https://fonts.googleapis.com/css?family=Courgette|Josefin+Sans&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
   .content{
       height: 100%;
       background-image: linear-gradient( rgba(59, 87, 248, 0.664), #3657b3);
   }
   
   .parent{
-      height: 27%;
-      
+      height: 28%;
+      font-family: 'Josefin Sans', sans-serif;
       background: white;
-      margin-bottom: 4%;
+      margin-bottom: 1%;
       border-bottom-left-radius: 50px;
       border-bottom-right-radius: 50px;
       color: rgb(36, 99, 170);
@@ -29,17 +29,20 @@ page-home {
   
       
   }
+  .totalfigure{
+    font-size: 30px;
+  }
   .ICON{
     margin-bottom: -150px;
   }
   .box1{
-      height: 65%;
+      height: 70%;
       width: 85%;
       display: flex;
       flex-direction: row;
       background:#003074;
       border-radius: 30px 2px 30px 30px;
-      position: relative;
+   
       margin: 10px 0px 10px 12px;
       margin: 0px 10px;
       color: aliceblue;
@@ -50,14 +53,17 @@ page-home {
       p {
           letter-spacing: 0em;
             color: aliceblue;
+            font-family: 'Josefin Sans', sans-serif;
       }
       .money{
           font-size: 5vw;
       }
       .info{
+          // margin: 5px;
           padding: 10px;
           margin-right: 10px;
           position: fixed;
+          font-family: 'Josefin Sans', sans-serif;
           
       }
      
@@ -65,6 +71,7 @@ page-home {
   }
   .ttext{
       color: rgb(68, 68, 68);
+      font-family: 'Josefin Sans', sans-serif;
   }
   
       
@@ -77,10 +84,12 @@ page-home {
     align-items: center;
     width: 100vw;
     font-size: 16px;
+    font-family: 'Josefin Sans', sans-serif;
     .amount {
       flex-basis: 105%;
       display: block;
       font-size: 16px;
+      font-family: 'Josefin Sans', sans-serif;
       // padding: 5px 0px;
       .input {
         width: 90%;
@@ -89,11 +98,13 @@ page-home {
         // padding: 3px 10px;
         margin: 0px;
         box-shadow: 2px 2px 2px  rgba(150, 150, 150, 0.822);
+        font-family: 'Josefin Sans', sans-serif;
       }
       .error {
         width: 100%;
         // padding: 5px 20px;
         font-size: 16px;
+        font-family: 'Josefin Sans', sans-serif;
       }
     }
     .quantity {
@@ -101,6 +112,7 @@ page-home {
       display: flex;
       padding: 5px 20px;
       transform: translateY(-10px);
+      font-family: 'Josefin Sans', sans-serif;
       
       .fab {
         margin:0px 5px !important;
@@ -133,23 +145,32 @@ page-home {
       transition: 2s;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
-      
-      
-  
- 
+   }
+   .minimized {
+    width: 100%;
+    color : rgb(3, 2, 2);
+    position: absolute;
+    bottom: 0%;
+    z-index: 6;
+    height: 0%;
+    background-image: linear-gradient( rgb(232, 242, 250), rgb(118, 152, 247));
+    transition: 2s;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
    }
    .inputts{
-       background: rgba(255, 255, 255, 0.973);
+      background: rgba(255, 255, 255, 0.973);
       color: black;
-       box-shadow: 2px 2px 2px  rgba(150, 150, 150, 0.822);
-         font-size: 16px;
-       border-radius: 30px;
+      box-shadow: 2px 2px 2px  rgba(150, 150, 150, 0.822);
+      font-size: 16px;
+      border-radius: 30px;
+      font-family: 'Josefin Sans', sans-serif;
    }
    .myImage{
        background-color: #ffffff;
        width: 40%;
        border-radius: 30px;
-       height: 35px;
+       height: 34px;
        color: rgb(7, 6, 6);
    }
    .inp{
@@ -194,7 +215,7 @@ page-home {
      .load2 {
        width: 64px;
       //  height:74px;
-       background: white;
+       background:#3657b3;
        margin: auto;
        border-radius: 10px;
        display: grid;
@@ -220,7 +241,7 @@ page-home {
         width: 11px;
         height: 11px;
         border-radius: 50%;
-        background: rgb(0, 0, 0);
+        background:whitesmoke;
         animation-timing-function: cubic-bezier(0, 1, 1, 0);
       }
       .lds-ellipsis div:nth-child(1) {
@@ -267,26 +288,7 @@ page-home {
      }
 
    }
-   .minimized {
-      // bottom: 50%;
-      // right: 10%;
-      // left: 40%;
-      // top:50%;
-  //   // margin-left: 80px;
-  //     position: absolute;
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-  //     box-shadow: 0px 0px 0px 0px rgb(33, 75, 124);
-  //     border-radius: 10px;
-      z-index: 6;
-      height: 5px;
-    
-   
-  
-      
-    
-   }
+
   .xxicon{
       font-size: 15px;
       margin: 5px;
@@ -301,6 +303,7 @@ page-home {
           display: flex;
           flex-direction: row;
           // background: red;
+          font-family: 'Josefin Sans', sans-serif;
           box-shadow: 0px 0px 0px 0px rgb(33, 75, 124);
           align-items: center;
           .one{
@@ -308,17 +311,19 @@ page-home {
           }
           .two{
             
-            padding-left: 5vw;
+            padding-left: 7vw;
             justify-items: center;
             box-shadow: 0px 0px 0px 0px rgb(33, 75, 124);
-            letter-spacing: 1px;
+            letter-spacing: 3px;
             padding-top: 1%;
             flex: 1;
             h1, p {
               text-align: left;
+              font-family: 'Josefin Sans', sans-serif;
             }
             h2{
               font-size: 6vw;
+              font-family: 'Josefin Sans', sans-serif;
             }
             
           }
@@ -327,6 +332,7 @@ page-home {
             .item {
               justify-self: flex-end;
               border: none;
+              font-family: 'Josefin Sans', sans-serif;
               
 
             }
@@ -342,6 +348,7 @@ page-home {
       text-align: center;
       margin: 2px;
       color: rgba(8, 7, 7, 0.938);
+      font-family: 'Josefin Sans', sans-serif;
       // border-radius: 20px;
       // position: relative;
       
@@ -383,7 +390,7 @@ page-home {
   color: #F5F5F5;
   border-radius: 10em;
   border: red;
-  
+  font-family: 'Josefin Sans', sans-serif;
   box-shadow: 2px 2px 2px  rgb(33, 75, 124);
  
 }
@@ -461,12 +468,12 @@ overflow: hidden;
   }
 }
 
-// img {
-//   padding: 0;
-//   margin: auto;
-//   width: 90%;
-//   border-radius: 10px;
-// }
+img {
+  padding: 0;
+  margin: auto;
+  width: 90%;
+  border-radius: 10px;
+}
 
 }
 

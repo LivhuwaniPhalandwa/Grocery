@@ -5,6 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import * as firebase from 'firebase';
 import { firebaseConfig } from './Firebase';
 import { HomePage } from '../pages/home/home';
+import {OnboardingPage} from '../pages/onboarding/onboarding'
+import { Storage } from '@ionic/storage';
+import { BudgetPage } from '../pages/budget/budget';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,8 +15,24 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
 
   
-  rootPage:any = HomePage;
-   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  rootPage:any = BudgetPage;
+ 
+   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private storage: Storage) {
+
+
+    this.storage.get('my-hotel').then(val => {
+      if(val == true)  {
+        console.log(val);
+      this.rootPage = BudgetPage
+        
+      }else {
+        console.log('on-boarding now');
+        this.rootPage = BudgetPage
+        
+      }
+      
+    });
+
       platform.ready().then(() => {
         // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
@@ -23,6 +42,7 @@ export class MyApp {
       });
       firebase.initializeApp(firebaseConfig);
     }
+
     
   }
 

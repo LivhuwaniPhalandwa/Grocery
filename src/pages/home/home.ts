@@ -8,14 +8,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ProfileComponent } from '../../components/profile/profile';
 import { Profile1Component } from '../../components/profile1/profile1';
 import {StatusBar} from '@ionic-native/status-bar';
-import { Observable } from 'rxjs/Observable';
-import { Http } from '@angular/http';
-import { ItemsProvider } from '../../providers/items/items';
 import { HistoryPage } from '../history/history';
-import { Storage } from '@ionic/storage';
-
-
-
+import { SuccessPage } from '../success/success';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -31,13 +25,14 @@ total=0
 amt:number
 checked:boolean
 
-
+loaderAnimate = true
 item = {
  name:'',
  price:null,
  quantity: 1,
  image: '',
  totalPrice:0,
+ saved: false
 }
 docId:string;
   validation_messages = {
@@ -58,33 +53,23 @@ docId:string;
   Picture: string;
   MyValue : boolean;
   MyValue1 : boolean;
-
-  update = false;
-  productState: boolean;
-  produto: any;
-  itemname:string;
-  image:string;
-
-
-  MyItem : string = '';
-  MyArray = [];
-
- constructor(public navCtrl: NavController,public items:ItemsProvider,public menuCtrl: MenuController,public http: Http,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
-  {
-   this.itemname=this.navParams.get('itemname') ;
-   this.itemname=this.navParams.get('image');
-      this.items.getData().subscribe(data => {
-        this.MyArray = data.Item;
-        console.log("eeeeeeeee", this.MyArray);
-      });
-    this.CheckInArray();
   
-    const loader = this.loadingCtrl.create({
-      // spinner: 'hide',
-      content: "Just a sec...",
-      duration: 3000
-    });
-    loader.present();
+  update = false;
+  MyArray= [];
+  MyItem="Milk";
+ constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
+ 
+  {
+
+setTimeout(()=>{
+this.loaderAnimate = false;
+},2000)
+
+    // const loader = this.loadingCtrl.create({
+    //   content: "Please wait...",
+    //   duration: 3000
+    // });
+    // loader.present();
 
     
     this.statusbar.backgroundColorByHexString('#3657AF');
@@ -101,18 +86,23 @@ docId:string;
       })
      
     })
-    
   }
 
   CheckInArray(){
-    this.MyArray.forEach(item => {
-      if(item.itemname === this.MyItem){
-        console.log("My item just matched",item.image)
-        
-      }else{
-        console.log("Item not found");
-      }
-    })
+
+    if( this.item.image === ''){
+      this.MyArray.forEach(item => {
+        if(item.itemname === this.MyItem){
+          console.log("My item just matched",item.image);
+          this.item.image = item.image
+          
+        }else{
+          console.log("Item not found");
+        }
+      })
+    }
+
+ 
   }
 
   expandDiv(){
@@ -121,9 +111,10 @@ docId:string;
     this.item.quantity = 1
     this.item.image = ''
     this.CheckData();
-
     this.toggle = !this.toggle;
  }
+
+
  CheckData(){
   if(this.item.name === ''){
     console.log("Data is empty");
@@ -134,6 +125,8 @@ docId:string;
     this.MyValue = false;
   }
 }
+
+
 expandDiv1(i){
   this.myObjec = i;
  this.toggle = !this.toggle;
@@ -143,12 +136,13 @@ expandDiv1(i){
 
  ionViewDidLoad(){
    this.pullData();
- 
+   console.log();
+   
  }
 
  addData(itemForm){
+  
   console.log(itemForm.valid);
-
   if (itemForm.valid) {
   this.total=0
   this.Items = [] 
@@ -157,13 +151,20 @@ expandDiv1(i){
     this.item={name:'',
     price:null,
     quantity: 1,
+    saved: false,
     image: '',
     totalPrice:0,}
-    this.toastCtrl.create({
-      message: 'Item added',
-      duration: 2000
+    this.navCtrl.setRoot(SuccessPage);
+    // this.toastCtrl.create({
+    //   message: 'Item added',
+    //   duration: 2000
 
-    }).present()
+    // }).present();
+/* LOADER  */
+    setTimeout(()=>{
+      this.loaderAnimate = false;
+      },5000)
+
     this.pullData();
     this.itemForm.reset();
     this.item.image = '';
@@ -175,6 +176,31 @@ expandDiv1(i){
       duration: 2000
     }).present()
   })
+  this.loaderAnimate = true;
+  }
+  else{
+
+    const prompt = this.alertCtrl.create({
+      title: '',
+      message: "Please insert following item details!",
+  
+      buttons: [
+        {
+          text: 'Ok',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        // {
+        //   text: 'Delete',
+        //   handler: data => {
+          
+        //   }
+        // }
+      ]
+    });
+    prompt.present();
+
   }
 }
 addData1(data){
@@ -245,8 +271,10 @@ addData1(data){
 
   })
   
-  
+  this.item.image = '' 
 }
+
+
   pullData() {
     let data = {
       docid: "",
@@ -271,6 +299,9 @@ addData1(data){
   })
 }
 
+togohistory(){
+  this.navCtrl.push(HistoryPage)
+}
 
 
 deleteData(docid ,item){
@@ -332,8 +363,23 @@ viewProfile1(myEvent) {
     ev: myEvent
   });
 }
-saveData(){   
-   this.navCtrl.push(HistoryPage);
+
+
+saveData(obj){
+
+  this.CheckInArray();
+  this.database.collection('Item').doc(obj.docid).update(
+    {saved: true}
+    ).then(res => {
+      console.log('Document updated');
+      
+    }).catch(err =>{
+      console.log('An error occuerd', err);
+      
+    })
+  console.log(obj);
+  
+  //  this.navCtrl.push(HistoryPage);
   }
 
 

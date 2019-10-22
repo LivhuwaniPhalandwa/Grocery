@@ -1,5 +1,5 @@
 page-success {
-
+    @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
     .content{
         height: 100%;
         background-image: linear-gradient( rgba(175, 183, 226, 0.664), #3884f7);
@@ -11,12 +11,12 @@ page-success {
         background: url(../../assets/imgs/hotel3.jpg);
         background-size: cover;
         background-position: center;
-        font-family: sans-serif;
+        font-family: 'Josefin Sans', sans-serif;
     }
     
     .loginbox{
         width: 300px;
-        height: 250px;
+        height: 300px;
         background-image: linear-gradient( rgba(59, 87, 248, 0.664), #3657b3);
         color: #fff;
         top: 50%;
@@ -26,6 +26,7 @@ page-success {
         box-sizing: border-box;
         padding: 70px 30px;
         border-radius: 12px;
+        font-family: 'Josefin Sans', sans-serif;
         
     }
     // .text1{
@@ -47,12 +48,14 @@ page-success {
         padding: 0 0 20px;
         text-align: center;
         font-size: 22px;
+        font-family: 'Josefin Sans', sans-serif;
     }
     
     .loginbox p{
         margin: 0;
         padding: 0;
         font-weight: bold;
+        font-family: 'Josefin Sans', sans-serif;
     }
     
     // .loginbox input{
