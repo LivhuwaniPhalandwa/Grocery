@@ -2,9 +2,11 @@ page-history {
     .content{
         height: 100%;
         background-image: linear-gradient( rgba(212, 215, 228, 0.664), #3657b3);
+        font-family: 'Josefin Sans', sans-serif;
     }
     .ion-segment{
         color: white;
+        font-family: 'Josefin Sans', sans-serif;
     }
 
     #chart_div{
@@ -12,5 +14,6 @@ page-history {
     }
     .heading{
         text-align: center;
+        font-family: 'Josefin Sans', sans-serif;
     }
 }

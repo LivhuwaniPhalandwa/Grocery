@@ -1,6 +1,6 @@
 {
     "Item": [
-      { "itemname": "Milk",  "image":"../../assets/imgs/clover-milk-full-cream-1-litre.jpg"},
+      { "itemname": "Fresh Milk",  "image":"../../assets/imgs/clover-milk-full-cream-1-litre.jpg"},
       { "itemname": "Maize meal",  "image":"../../assets/imgs/maize meal.jpg"},
       { "itemname": "Brown bread", "image": "../../assets/imgs/brown bread.jpg"},
       { "itemname": "Sunlight-Liquid", "image": "../../assets/imgs/Sunlight-Liquid.png"},

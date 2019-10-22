@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from  'rxjs';
+
 /*
   Generated class for the ItemsProvider provider.
 
@@ -12,9 +13,6 @@ import {Observable} from  'rxjs';
 @Injectable()
 export class ItemsProvider {
 
-
- 
-MyArray = [];
 
   constructor(public http: Http) {
     console.log('Hello ItemsProvider Provider');

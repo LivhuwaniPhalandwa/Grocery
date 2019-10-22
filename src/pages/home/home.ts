@@ -25,6 +25,40 @@ total=0
 amt:number
 checked:boolean
 
+////////////////////////////////////////////////////////////
+
+
+
+
+Item = [
+  { "itemname": "Milk",  "image":"../../assets/imgs/clover-milk-full-cream-1-litre.jpg"},
+  { "itemname": "Maize meal",  "image":"../../assets/imgs/maize meal.jpg"},
+  { "itemname": "Brown bread", "image": "../../assets/imgs/brown bread.jpg"},
+  { "itemname": "Sunlight-Liquid", "image": "../../assets/imgs/Sunlight-Liquid.png"},
+  { "itemname": "Rice",  "image": "../../assets/imgs/rice.jpg"},
+  { "itemname": "Protex Soap", "image": "../../assets/imgs/protex soap.jpg"},
+  { "itemname": "selati sugar", "image": "../../assets/imgs/selati sugar.jpg"},
+  {"itemname": "Twinsaver tissue", "image":"../../assets/imgs/Twinsaver tissue.jpg"},
+  { "itemname": "Colgate", "image": "../../assets/imgs/colgate.jpg"},
+  { "itemname": "Nivea body lotion", "image": "../../assets/imgs/nivea body lotion.jpg"},
+  { "itemname": "koo beans", "image": "../../assets/imgs/koo beans.jpg"},
+  { "itemname": "Salt", "image": "../../assets/imgs/salt.jpg"},
+  {"itemname": "Always pads","image": "../../assets/imgs/always pads.jpg"},
+  {"itemname": "Parmalat cheese", "image": "../../assets/imgs/parmalat cheese.jpg"},
+  {"itemname": "kellogs cornflakes", "image": "../../assets/kellogs cornflakes.jpg"},
+  {"itemname": "jungle oats.jpg", "image": "../../assets/imgs/jungle oats.jpg"},
+  {"itemname": "Eggs", "image": "../../assets/imgs/eggs.jpg"},
+  { "itemname": "Freshpack","image": "../../assets/imgs/Freshpak (1).jpg"},
+  { "itemname": "Goldi braaipack", "image": "../../assets/imgs/goldi braaipack.jpg"},
+  { "itemname": "washing powder", "image": "../../assets/imgs/washing powder.jpg"},
+  { "itemname": "Beef meat", "image": "../../assets/imgs/beef meat.jpeg"},
+  { "itemname": "Nola mayonaise", "image": "../../assets/imgs/nola mayonaise.jpg"}
+
+]
+
+
+/////////////////////////////////////////////////
+
 loaderAnimate = true
 item = {
  name:'',
@@ -57,7 +91,7 @@ docId:string;
   update = false;
   MyArray= [];
   MyItem="Milk";
- constructor(public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
+ constructor(public toastController: ToastController,public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
  
   {
 
@@ -65,11 +99,7 @@ setTimeout(()=>{
 this.loaderAnimate = false;
 },2000)
 
-    // const loader = this.loadingCtrl.create({
-    //   content: "Please wait...",
-    //   duration: 3000
-    // });
-    // loader.present();
+   
 
     
     this.statusbar.backgroundColorByHexString('#3657AF');
@@ -88,22 +118,6 @@ this.loaderAnimate = false;
     })
   }
 
-  CheckInArray(){
-
-    if( this.item.image === ''){
-      this.MyArray.forEach(item => {
-        if(item.itemname === this.MyItem){
-          console.log("My item just matched",item.image);
-          this.item.image = item.image
-          
-        }else{
-          console.log("Item not found");
-        }
-      })
-    }
-
- 
-  }
 
   expandDiv(){
     this.item.name = ''
@@ -113,6 +127,16 @@ this.loaderAnimate = false;
     this.CheckData();
     this.toggle = !this.toggle;
  }
+
+
+
+
+
+
+
+
+
+
 
 
  CheckData(){
@@ -142,7 +166,32 @@ expandDiv1(i){
 
  addData(itemForm){
   
-  console.log(itemForm.valid);
+  console.log(itemForm.value.name.toUpperCase());
+
+  for(var r = 0;r<this.Item.length;r++)
+  {
+  
+  
+    console.log("matched",this.Item[r].itemname.toUpperCase().search(itemForm.value.name.toUpperCase()))
+    console.log("Look =",this.Item[r].itemname)
+    if(this.Item[r].itemname.toUpperCase().search(itemForm.value.name.toUpperCase())>=0){
+
+     
+
+      console.log("My item just matched",this.Item[r].image);
+      this.item.image = this.Item[r].image;
+      
+  
+    }else{
+      console.log("Item not found");
+
+    }
+  }
+
+
+
+
+
   if (itemForm.valid) {
   this.total=0
   this.Items = [] 
@@ -155,11 +204,7 @@ expandDiv1(i){
     image: '',
     totalPrice:0,}
     this.navCtrl.setRoot(SuccessPage);
-    // this.toastCtrl.create({
-    //   message: 'Item added',
-    //   duration: 2000
-
-    // }).present();
+ 
 /* LOADER  */
     setTimeout(()=>{
       this.loaderAnimate = false;
@@ -202,7 +247,7 @@ expandDiv1(i){
     prompt.present();
 
   }
-}
+  }
 addData1(data){
   console.log(data, 'Update data');
   
@@ -367,7 +412,14 @@ viewProfile1(myEvent) {
 
 saveData(obj){
 
-  this.CheckInArray();
+  
+
+
+
+
+
+
+
   this.database.collection('Item').doc(obj.docid).update(
     {saved: true}
     ).then(res => {
@@ -379,7 +431,29 @@ saveData(obj){
     })
   console.log(obj);
   
-  //  this.navCtrl.push(HistoryPage);
+  const prompt = this.alertCtrl.create({
+    title: 'Item saved!',
+    message: "Would you like to view the saved items list?",
+    buttons: [
+      {
+        text: 'No',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Yes',
+        handler: data => {
+          console.log('Saved clicked');
+          this.navCtrl.push(HistoryPage);
+        }
+      }
+    ]
+  });
+  prompt.present();
+
+
+
   }
 
 
