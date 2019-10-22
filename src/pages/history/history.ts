@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
 import {Storage} from '@ionic/storage'
+import { ItemsProvider } from '../../providers/items/items';
 
 declare var google;
 
@@ -30,7 +31,7 @@ export class HistoryPage {
  rice : number = 0;
 
   Items: any[];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public storage:Storage) {
+  constructor(public items:ItemsProvider,public navCtrl: NavController, public navParams: NavParams,public storage:Storage) {
     this.saveDataa()
     
   }
@@ -58,7 +59,7 @@ export class HistoryPage {
 })
   }
  ionViewWillEnter(){
-  this.database.collection("Item").where('saved', '==', true) .onSnapshot(data => {
+  this.database.collection(this.items.usernumber).where('saved', '==', true) .onSnapshot(data => {
     data.forEach(item => {
       this.newItems.push([item.data().name, item.data().quantity])
       this.MyItems.push(item.data())

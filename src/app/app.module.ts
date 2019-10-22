@@ -61,7 +61,6 @@ import {ItemsProvider} from '../providers/items/items'
   providers: [Camera,
     StatusBar,
     SplashScreen,
-   
     {provide: ErrorHandler, useClass: IonicErrorHandler,},
     ItemsProvider
   ]

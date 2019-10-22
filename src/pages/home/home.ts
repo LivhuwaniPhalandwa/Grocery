@@ -10,6 +10,7 @@ import { Profile1Component } from '../../components/profile1/profile1';
 import {StatusBar} from '@ionic-native/status-bar';
 import { HistoryPage } from '../history/history';
 import { SuccessPage } from '../success/success';
+import { ItemsProvider } from '../../providers/items/items';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -91,7 +92,7 @@ docId:string;
   update = false;
   MyArray= [];
   MyItem="Milk";
- constructor(public toastController: ToastController,public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
+ constructor(public items:ItemsProvider,public toastController: ToastController,public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
  
   {
 
@@ -196,7 +197,7 @@ expandDiv1(i){
   this.total=0
   this.Items = [] 
   this.item.totalPrice =this.item.price*this.item.quantity,
-  this.database.collection("Item").doc().set(this.item).then(res => {
+  this.database.collection(this.items.usernumber).doc().set(this.item).then(res => {
     this.item={name:'',
     price:null,
     quantity: 1,
@@ -325,7 +326,9 @@ addData1(data){
       docid: "",
       doc: {}
     }
-   this.database.collection("Item").get().then(doc => {
+
+    
+   this.database.collection(this.items.usernumber).get().then(doc => {
       this.Items = []
          doc.forEach(item => {
            data.docid = item.id
@@ -366,7 +369,7 @@ deleteData(docid ,item){
         text: 'Delete',
         handler: data => {
           console.log('Saved clicked' ,item.doc.price);
-          this.database.collection("Item").doc(docid).delete();
+          this.database.collection(this.items.usernumber).doc(docid).delete();
           this.total=this.total - item.doc.price
           this.Items = []
           // this.pullData();
@@ -415,12 +418,12 @@ saveData(obj){
   
 
 
+console.log(obj)
 
 
 
 
-
-  this.database.collection('Item').doc(obj.docid).update(
+  this.database.collection(this.items.usernumber).doc(obj.docid).update(
     {saved: true}
     ).then(res => {
       console.log('Document updated');
