@@ -6,20 +6,20 @@ page-home {
   }
   
   .parent{
-      height: 26%;
+      height: 31%;
       font-family: 'Josefin Sans', sans-serif;
       background: white;
-      margin-bottom: 1%;
+      // margin-bottom: 1%;
       border-bottom-left-radius: 50px;
       border-bottom-right-radius: 50px;
-  
+  color: #3657b3;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-transform: uppercase;
       justify-content: flex-end;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
       box-shadow: 5px 5px 5px 3px rgb(33, 75, 124);
       line-height: 1px;
       // .logo{
@@ -27,7 +27,7 @@ page-home {
       //  margin-bottom: -25px
       // }
       .topprice{
-        color:#003074;
+        color: rgb(232, 242, 250);
         padding-bottom: -100px;;
         
       }
@@ -38,37 +38,39 @@ page-home {
     font-size: 30px;
   }
   h1{
-    color: rgb(232, 242, 250);
+    color: #003074;
     font-family: 'Josefin Sans', sans-serif;
     letter-spacing: 8px;
 
   }
-  .ICON{
-    margin-bottom: -150px;
-  }
+  // .ICON{
+  //   margin-bottom: -100px;
+  // }
 
   .options{
     float: right;
-    bottom: 20px;
+    bottom: 10px;
+    color: #003074;
 
   }
   .menu{
     float: left;
-    bottom: 20px;
+    bottom: 10px;
+    color: #003074;
   }
-  .box2{
-    height: 20px;
-    width: 100%;
-    background: red;;
-  }
+  // .box2{
+  //   height: 30px;
+  //   width: 100%;
+  //   background: red;;
+  // }
   .box1{
-      height: 70%;
-      width: 85%;
+      height: 50%;
+      width: 80%;
       display: flex;
       flex-direction: row;
       background:#003074;
       border-radius: 30px 2px 30px 30px;
-   
+    position: relative;
       margin: 10px 0px 10px 12px;
       margin: 0px 10px;
       color: aliceblue;
@@ -80,6 +82,7 @@ page-home {
           letter-spacing: 0em;
             color: aliceblue;
             font-family: 'Josefin Sans', sans-serif;
+            letter-spacing: 3px;
       }
       .money{
           font-size: 5vw;
@@ -166,23 +169,23 @@ page-home {
       position: absolute;
       bottom: 0%;
       z-index: 6;
-      height: 85%;
+      height: 92%;
       background-image: linear-gradient( rgb(232, 242, 250), rgb(118, 152, 247));
       transition: 3s;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
    }
    .minimized {
     width: 100%;
     color : rgb(3, 2, 2);
     position: absolute;
     bottom: 0%;
-    z-index: 6;
+    // z-index: 6;
     height: 0%;
     background-image: linear-gradient( rgb(232, 242, 250), rgb(118, 152, 247));
     transition: 3s;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
    }
    .inputts{
       background: rgba(255, 255, 255, 0.973);
@@ -219,14 +222,14 @@ page-home {
    }
   
    
-   .boxxx{
-       display: flex;
-       float: right;
-       position: relative;
+  //  .boxxx{
+  //      display: flex;
+  //      float: right;
+  //      position: relative;
    
-       margin-top: -50px;
+  //      margin-top: -50px;
        
-   }
+  //  }
 
    .load{
      position: absolute;
@@ -250,6 +253,7 @@ page-home {
       p {
         margin: 0;
         padding: 10px 0px;
+        letter-spacing: 3px;
       }
        div {
         width: 100%;
@@ -372,7 +376,7 @@ page-home {
   
   .itemms{
       text-align: center;
-      margin: 2px;
+      // margin: 2px;
       color: rgba(8, 7, 7, 0.938);
       font-family: 'Josefin Sans', sans-serif;
       // border-radius: 20px;
@@ -452,6 +456,7 @@ justify-content: center;
 }
 h1{
  text-align: center;
+ 
 }   
 ion-button{
   padding: 25px 32px;
