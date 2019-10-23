@@ -34,9 +34,10 @@ export class HistoryPage {
    totals9=0
    totals10=0;
    total=0
+   q5;
   //  MyItems:[];
    docId
-  
+  q3=[];
  MyItems = [];
  newItems = []
 
@@ -46,16 +47,7 @@ export class HistoryPage {
   constructor(public vw:ViewController,public items:ItemsProvider,private dragulaService: DragulaService, public navCtrl: NavController, public navParams: NavParams,private toastController: ToastController,public storage:Storage) {
     this.saveDataa()
     
-
-    
-    firebase.firestore().collection(this.items.usernumber+this.items.supermarket).onSnapshot(data => {
-      data.forEach(item => {
-        console.log("This is your data", item.data());
-        this.q1.push(item.data());
-        
-      })
-     
-    })
+   
 
 
    
@@ -71,28 +63,43 @@ val.forEach(res=>{
     
     
     
-    
-    
-    
-    
-    
-    
-    this.dragulaService.drag('bag')
+    this.dragulaService.drag('oop')
     .subscribe(({ name, el, source }) => {
       el.setAttribute('color', 'danger');
       console.log(name )
       console.log("look here1")
+
+
+
+
+      let toast = this.toastController.create({
+        message: 'Wrong selection',
+        duration: 3000,
+        position: 'bottom'
+      });
+
+      toast.present();
     });
+    
+    
+    
+    
+    
+    // this.dragulaService.drag('bag')
+    // .subscribe(({ name, el, source }) => {
+    //   el.setAttribute('color', 'danger');
+    //   console.log(name )
+    //   console.log("look here1")
+      
+    // });
  
     this.dragulaService.removeModel('bag')
     .subscribe(({ item }) => {
 
-      console.log(item )
-
-
-
-   firebase.firestore().collection(this.items.usernumber).add(item).then(val=>
-        {
+      console.log('look',item )
+ 
+   firebase.firestore().collection(this.items.usernumber+this.items.supermarket).add(item);
+        
           console.log("added")
 
           let toast = this.toastController.create({
@@ -101,19 +108,17 @@ val.forEach(res=>{
             position: 'bottom'
           });
           toast.present();
-        })
-        
+    
      
     });
  
-    this.dragulaService.dropModel('bag')
-      .subscribe(({ item }) => {
-        item['color'] = 'success';
-      });
+    
       console.log("look here3")
     this.dragulaService.createGroup('bag', {
       removeOnSpill: true
     });
+
+    
 
     this.database.collection(this.items.usernumber+'Shoprite').get().then(doc => {
       this.Items = []
@@ -224,17 +229,26 @@ this.database.collection(this.items.usernumber+'Cambridge').get().then(doc => {
 
 
   }
+
+
+
+  ionViewDidLeave()
+  {
+    this.dragulaService.destroy('bag');
+    console.log("He left")
+  }
   
 
-  ionViewDidLoad(){
-    this.MyItems=[]
-    this.docId=this.navParams.data.docId
-    this.item.name = this.navParams.data.name
-    this.item.price = this.navParams.data.price
-    this.item.quantity = this.navParams.data.quantity
-    this.item.image = this.navParams.data.image
-    this.total=(this.item.price*this.item.quantity)
-  }
+
+
+
+
+
+
+
+
+
+  
   saveDataa(){   
     this.database.collection('Item').get(this.docId).then(res => {
       res.forEach(doc => {
@@ -255,15 +269,9 @@ this.database.collection(this.items.usernumber+'Cambridge').get().then(doc => {
 
   }
  ionViewWillEnter(){
-  this.database.collection(this.items.usernumber+this.items.supermarket).where('saved', '==', true) .onSnapshot(data => {
-    data.forEach(item => {
-      this.newItems.push([item.data().name, item.data().quantity])
-      this.MyItems.push(item.data())
-      
-    })
-  })
-
- 
+ this.items.loaded(this.items.supermarket,this.items.usernumber)
+  this.q1 =this.items.q1;
+ console.log("Q1 =",this.q1 )
   
  }
 
@@ -324,28 +332,14 @@ q1 = [];
  
 
 
-  todo = { value: '', color: '' };
-  selectedQuadrant = 'q1';
 
 
 
-  addTodo() {
-    switch (this.selectedQuadrant) {
-      case 'q1':
-        this.todo.color = 'primary';
-        break;
-      case 'q2':
-        this.todo.color = 'secondary';
-        break;
-      case 'q3':
-        this.todo.color = 'tertiary';
-        break;
-      case 'q4':
-        this.todo.color = 'warning';
-        break;
-    }
-    this[this.selectedQuadrant].push(this.todo);
-    this.todo = { value: '', color: '' };
+
+  addTodo(x) {
+  console.log(x);
+    this.q3.push(x);
+    
   }
 
 close()
