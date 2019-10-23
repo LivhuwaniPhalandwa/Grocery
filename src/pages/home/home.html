@@ -1,6 +1,6 @@
 <ion-header style="height: 0px;" >
   <h1 >
-    R{{budget}}.00
+    <!-- R{{budget}}.00 -->
       <button clear class="menu" ion-button icon-only (click) ="options()" >
           <ion-icon class="iconcolor" name="menu"></ion-icon>
         </button>
@@ -79,7 +79,7 @@
             <img  *ngIf="!item.image" src="assets\imgs\grocery package 3-700x700_0.jpg"  alt="" style="width:300px;  height: 250px;" >
         </div>
        <br>
-       
+
         <form  [formGroup]="itemForm"  >
             <div [ngClass]="{'load': loaderAnimate}">
    

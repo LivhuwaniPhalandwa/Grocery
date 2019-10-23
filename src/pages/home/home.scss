@@ -6,7 +6,7 @@ page-home {
   }
   
   .parent{
-      height: 31%;
+      height: 26%;
       font-family: 'Josefin Sans', sans-serif;
       background: white;
       // margin-bottom: 1%;
@@ -169,11 +169,11 @@ page-home {
       position: absolute;
       bottom: 0%;
       z-index: 6;
-      height: 92%;
+      height: 94%;
       background-image: linear-gradient( rgb(232, 242, 250), rgb(118, 152, 247));
       transition: 3s;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
    }
    .minimized {
     width: 100%;
@@ -192,21 +192,8 @@ page-home {
       color: black;
       box-shadow: 2px 2px 2px  rgba(150, 150, 150, 0.822);
       font-size: 16px;
-
-      
+      border-radius: 30px;
       font-family: 'Josefin Sans', sans-serif;
-      width: 100%;
-      height: 50vw;
-      border-radius: 20px;
-      img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 20px;
-        
-        
-      }
-
    }
    .myImage{
        background-color: #ffffff;
@@ -214,7 +201,6 @@ page-home {
        border-radius: 30px;
        height: 34px;
        color: rgb(7, 6, 6);
-       z-index: 6;
    }
    .inp{
   
