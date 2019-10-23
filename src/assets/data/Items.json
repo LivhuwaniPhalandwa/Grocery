@@ -65,10 +65,19 @@
       { "itemname": "Johnson wipes",  "image": "../../assets/imgs/Johnson wipes.jpg"},
       { "itemname": "Lamb",  "image": "../../assets/imgs/lamb.jpg"},
       { "itemname": "Lettuce",  "image": "../../assets/imgs/lettuce.jpg"},
-      { "itemname": "Rice",  "image": "../../assets/imgs/rice.jpg"},
-      { "itemname": "Rice",  "image": "../../assets/imgs/rice.jpg"},
-      { "itemname": "Rice",  "image": "../../assets/imgs/rice.jpg"}
-
+      { "itemname": "Danone",  "image": "../../assets/imgs/danone.png"},
+      { "itemname": "Doritos",  "image": "../../assets/imgs/doritos.jpg"},
+      { "itemname": "Flora-margarine",  "image": "../../assets/imgs/Flora-Margarine-500g_512x.jpg"},
+      { "itemname": "Niknaks",  "image": "../../assets/imgs/niknaks.jpg"},
+      { "itemname": "Pork",  "image": "../../assets/imgs/pork meat.jpg"},
+      { "itemname": "Rama",  "image": "../../assets/imgs/Rama margarine.jpg"},
+      { "itemname": "Roll on",  "image": "../../assets/imgs/roll on.jpg"},
+      { "itemname": "Simba",  "image": "../../assets/imgs/simba.jpg"},
+      { "itemname": "Black cat butter",  "image": "../../assets/imgs/black cat butter.jpg"},
+      { "itemname": "White sugar",  "image": "../../assets/imgs/white sugar.jpg"},
+      { "itemname": "Ultramel custard",  "image": "../../assets/imgs/ultramel custard.jpg"},
+      { "itemname": "Trotters jelly",  "image": "../../assets/imgs/trotters jelly.jpg"},
+      { "itemname": "Lasagne",  "image": "../../assets/imgs/lasagne.jpg"}
     
     ]
   }

@@ -21,25 +21,33 @@ export class DreggerPage {
    
  
  
-
+disable = true;
 
   todo = { value: '', color: '' };
   selectedQuadrant = 'q1';
   constructor(public vw:ViewController,public items:ItemsProvider,private dragulaService: DragulaService, public navCtrl: NavController, public navParams: NavParams,private toastController: ToastController) {
    
 
-    firebase.firestore().collection(this.items.usernumber+this.items.supermarket).onSnapshot(data => {
+    firebase.firestore().collection('1234567890Shoprite').onSnapshot(data => {
       data.forEach(item => {
+
+if(item==undefined)
+{
+ console.log("Got It") 
+}
+else
+{
+
         console.log("This is your data", item.data());
         this.q1.push(item.data());
-        
+}       
       })
      
     })
 
 
    
-    firebase.firestore().collection("Saved").where("phone","==",this.items.usernumber).get().then(val=>{
+    firebase.firestore().collection("Saved").where("phone","==",'1234567890').get().then(val=>{
 val.forEach(res=>{
 
   this.q2.push(res.data());
@@ -61,6 +69,7 @@ val.forEach(res=>{
     .subscribe(({ name, el, source }) => {
       el.setAttribute('color', 'danger');
       console.log(name )
+      
       console.log("look here1")
     });
  
@@ -71,7 +80,16 @@ val.forEach(res=>{
 
 
 
-   firebase.firestore().collection(this.items.usernumber).add(item).then(val=>
+      if(item==undefined)
+      {
+       console.log("Got It") 
+      }
+
+      else{
+
+      this.q1.push(item)
+
+   firebase.firestore().collection('1234567890Shoprite').add(item).then(val=>
         {
           console.log("added")
 
@@ -82,10 +100,10 @@ val.forEach(res=>{
           });
           toast.present();
         })
-        
+      }   
      
     });
- 
+  
     this.dragulaService.dropModel('bag')
       .subscribe(({ item }) => {
         item['color'] = 'success';
@@ -94,6 +112,7 @@ val.forEach(res=>{
     this.dragulaService.createGroup('bag', {
       removeOnSpill: true
     });
+  
   }
   
   

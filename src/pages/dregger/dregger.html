@@ -34,11 +34,11 @@
       Add Todo
     </button>
  
-    <ion-row no-padding class="matrix">
+    <ion-row no-padding class="matrix"   disabled ="disable">
       <ion-col size="6" class="q1">
         <div class="q-header">Shopping list</div>
-        <ion-list dragula="bag" [(dragulaModel)]="q1" >
-          <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
+        <ion-list dragula="oop" [(dragulaModel)]="q1"   disabled ="disable">
+          <ion-item  disabled ="disable" *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
             
             <ion-avatar slot="start">
               <img src="{{item.image}}">

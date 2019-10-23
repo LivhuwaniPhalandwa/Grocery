@@ -1,8 +1,6 @@
 
 <ion-header>
-    <ion-navbar>
-      <ion-title></ion-title>
-    </ion-navbar>
+   <button (click) ="close()">Close</button>
    </ion-header>
    
    <ion-content>
@@ -119,43 +117,48 @@
            
             <ion-grid *ngSwitchCase="'drags'">
            
-              <ion-row no-padding class="matrix">
-                <ion-col size="6" class="q1">
-                  <div class="q-header">Shopping list</div>
-                  <ion-list dragula="bag" [(dragulaModel)]="q1" >
-                    <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
-                      
-                      <ion-avatar slot="start">
-                        <img src="{{item.image}}">
-                      </ion-avatar> 
-                      
-                      {{ item.name }}
-                      {{ item.price }}
-                      {{ item.quantity}}
-                    </ion-item>
-                  </ion-list>
-                </ion-col>
-           
-                <ion-col size="6" class="q2">
-                  <div class="q-header">Saved</div>
-                  <ion-list dragula="bag" [(dragulaModel)]="q2" >
-                    <ion-item *ngFor="let item of q2" [color]="item.color" expand="block" text-wrap>
-                                <ion-avatar slot="start">
-                        <img *ngIf="item.doc.image" src="{{item.doc.image}}">
-                        <img  *ngIf="!item.doc.image" src="../../assets/imgs/grocery package 3-700x700_0.jpg" >
-                      </ion-avatar> 
-                      
-                      {{ item.doc.name }}
-                      {{ item.doc.price }}
-                      {{ item.doc.quantity}}
-                    </ion-item>
-                  </ion-list>
-                </ion-col>
-           
                
-           
-               
-              </ion-row>
+              <ion-grid>
+             
+         <ion-row no-padding class="matrix">
+                  <ion-col size="6" class="q1">
+                    <div class="q-header">Shopping list</div>
+                    <ion-list dragula="oop" [(dragulaModel)]="q1" >
+                      <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
+                        
+                        <ion-avatar slot="start">
+                          <img src="{{item.image}}">
+                        </ion-avatar> 
+                        
+                        {{ item.name }}
+                        {{ item.price }}
+                        {{ item.quantity}}
+                      </ion-item>
+                    </ion-list>
+                  </ion-col>
+             
+                  <ion-col size="6" class="q2">
+                    <div class="q-header">Saved</div>
+                    <ion-list dragula="bag" [(dragulaModel)]="q2" >
+                      <ion-item *ngFor="let item of q2" [color]="item.color" expand="block" text-wrap>
+                                  <ion-avatar slot="start">
+                          <img src="{{item.image}}">
+                        </ion-avatar> 
+                        
+                        {{ item.name }}
+                        {{ item.price }}
+                        {{ item.quantity}}
+                      </ion-item>
+                    </ion-list>
+                  </ion-col>
+             
+                 
+             
+                 
+                </ion-row>
+              </ion-grid>
+             
+             
             </ion-grid>
            
             

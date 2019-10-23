@@ -90,8 +90,32 @@ Item = [
   { "itemname": "Weetbix",  "image": "../../assets/imgs/weetbix.jpg"},
   { "itemname": "Sunlight soap",  "image": "../../assets/imgs/sunlight-soap.jpg"},
   { "itemname": "Knorr Tomato",  "image": "../../assets/imgs/Knorr Tomato Base Cook-In-Sauce 48g.png"},
-  { "itemname": "Boerewors",  "image": "../../assets/imgs/Bushveld's Finest Venison Boerewors Per kg.png"}
-
+  { "itemname": "Boerewors",  "image": "../../assets/imgs/Bushveld's Finest Venison Boerewors Per kg.png"},
+  { "itemname": "Apples",  "image": "../../assets/imgs/Apples.webp"},
+  { "itemname": "Beetroot",  "image": "../../assets/imgs/beetroot.jpg"},
+  { "itemname": "Banana",  "image": "../../assets/imgs/banana.jpg"},
+  { "itemname": "Cabbage",  "image": "../../assets/imgs/cabbage.jpg"},
+  { "itemname": "Carrots",  "image": "../../assets/imgs/carrots.jpg"},
+  { "itemname": "Ice cream",  "image": "../../assets/imgs/country fresh ice cream.jpg"},
+  { "itemname": "Cucumber",  "image": "../../assets/imgs/cucumber.jpg"}, 
+  { "itemname": "Hake fish",  "image": "../../assets/imgs/hakes fish.jpg"},
+  { "itemname": "Jam",  "image": "../../assets/imgs/jam.jpg"},
+  { "itemname": "Johnson wipes",  "image": "../../assets/imgs/Johnson wipes.jpg"},
+  { "itemname": "Lamb",  "image": "../../assets/imgs/lamb.jpg"},
+  { "itemname": "Lettuce",  "image": "../../assets/imgs/lettuce.jpg"},
+  { "itemname": "Danone",  "image": "../../assets/imgs/danone.png"},
+  { "itemname": "Doritos",  "image": "../../assets/imgs/doritos.jpg"},
+  { "itemname": "Flora-margarine",  "image": "../../assets/imgs/Flora-Margarine-500g_512x.jpg"},
+  { "itemname": "Niknaks",  "image": "../../assets/imgs/niknaks.jpg"},
+  { "itemname": "Pork",  "image": "../../assets/imgs/pork meat.jpg"},
+  { "itemname": "Rama",  "image": "../../assets/imgs/Rama margarine.jpg"},
+  { "itemname": "Roll on",  "image": "../../assets/imgs/roll on.jpg"},
+  { "itemname": "Simba",  "image": "../../assets/imgs/simba.jpg"},
+  { "itemname": "Black cat butter",  "image": "../../assets/imgs/black cat butter.jpg"},
+  { "itemname": "White sugar",  "image": "../../assets/imgs/white sugar.jpg"},
+  { "itemname": "Ultramel custard",  "image": "../../assets/imgs/ultramel custard.jpg"},
+  { "itemname": "Trotters jelly",  "image": "../../assets/imgs/trotters jelly.jpg"},
+  { "itemname": "Lasagne",  "image": "../../assets/imgs/lasagne.jpg"}
 
 ]
 
@@ -154,13 +178,6 @@ docId:string;
 ////////////////////////////////////////////
 
 
-for (var i = 0; i < 6; i++) {
-  this.q1.push("1. <" + i + ">");
-  this.q2.push("2. <" + i + ">");
-}
-dragulaService.drop;
-console.log("Item moved",dragulaService.drop)
-
 
 
 
@@ -197,15 +214,25 @@ this.loaderAnimate = false;
    price: new FormControl('', Validators.compose([Validators.required])),
     });
 
-    this.database.collection(this.items.usernumber).onSnapshot(data => {
-      data.forEach(item => {
-        console.log("This is your data", item.data());
-        this.MyItems.push(item.data())
-        
-      })
-     
-    })
+   
   }
+
+ionViewWillEnter()
+{
+  this.MyItems =[];
+  console.log("yyyyyyyyyyyyyyyyyyyy")
+  this.database.collection(this.items.usernumber+this.items.supermarket).onSnapshot(data => {
+    data.forEach(item => {
+      console.log("This is your data", item.data());
+      this.MyItems.push(item.data())
+      
+    })
+   
+  })
+}
+
+
+
 
 
   expandDiv(){
@@ -543,7 +570,11 @@ newbudgettoast()
 
 
 togohistory(){
-  this.navCtrl.push(HistoryPage)
+  let profileModal = this.modalCtrl.create(HistoryPage);
+  profileModal.onDidDismiss(val=>{
+    this.navCtrl.push(HomePage);
+  })
+  profileModal.present();
 }
 
 
@@ -607,19 +638,20 @@ viewProfile1(myEvent) {
   });
 }
 
-
+object =[];
 saveData(obj){
 
   
 
 
 console.log(obj)
+this.object.push({...{id:obj.docid,phone:this.items.usernumber},...obj.doc});
 
+console.log(this.object[0])
 
-
-this.database.collection("Saved").add({...{phone:this.items.usernumber},...obj}).then(res=>{
-  console.log("ADDED")
-})
+ this.database.collection("Saved").add(this.object[0]).then(res=>{
+   console.log("ADDED")
+ })
 
   // this.database.collection(this.items.usernumber+this.items.supermarket).doc(obj.docid).update(
   //   {saved: true}
@@ -646,7 +678,7 @@ this.database.collection("Saved").add({...{phone:this.items.usernumber},...obj})
         text: 'Yes',
         handler: data => {
           console.log('Saved clicked');
-          this.DropModal();
+          this.navCtrl.push(HistoryPage);
         }
       }
     ]
@@ -742,10 +774,10 @@ options()
   
   this.items.supermarket =data;
   console.log(this.items.supermarket+this.items.usernumber)
+  this.items.loaded(this.items.usernumber,this.items.supermarket);
   
-  
-  // this.navCtrl.setRoot(HomePage, this.navParams.data);
-  this.DropModal();
+   this.navCtrl.setRoot(HomePage, this.navParams.data);
+
   
         }
       }
@@ -756,19 +788,19 @@ options()
 
 
 
-DropModal() {
+// DropModal() {
 
-  console.log('Modal clicked');
-  let profileModal = this.modalCtrl.create(DreggerPage);
-  profileModal.onDidDismiss(res=>{
+//   console.log('Modal clicked');
+//   let profileModal = this.modalCtrl.create(DreggerPage);
+//   profileModal.onDidDismiss(res=>{
 
-    console.log("We Dismissed")
-  })
-  profileModal.present();
+//     console.log("We Dismissed")
+//   })
+//   profileModal.present();
 
 
 
-}
+// }
 
 
 
