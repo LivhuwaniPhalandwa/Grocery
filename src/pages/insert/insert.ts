@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BudgetPage } from '../budget/budget';
 
-/**
+import {  Slides } from 'ionic-angular';
+/*
  * Generated class for the InsertPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
@@ -13,8 +14,10 @@ import { BudgetPage } from '../budget/budget';
 @Component({
   selector: 'page-insert',
   templateUrl: 'insert.html',
+
 })
 export class InsertPage {
+  @ViewChild('slides') slides: Slides;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -25,6 +28,16 @@ export class InsertPage {
 
 
   gotobudget(){
-    this.navCtrl.push(BudgetPage)
+    this.navCtrl.push(BudgetPage);
+    
   }
+
+​
+
+​
+​
+nextslides(){
+  this.slides.slideNext();
+}
+
 }
