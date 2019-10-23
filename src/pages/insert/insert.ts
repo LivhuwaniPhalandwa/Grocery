@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BudgetPage } from '../budget/budget';
 
 /**
  * Generated class for the InsertPage page.
@@ -22,4 +23,8 @@ export class InsertPage {
     console.log('ionViewDidLoad InsertPage');
   }
 
+
+  gotobudget(){
+    this.navCtrl.push(BudgetPage)
+  }
 }

@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import {OnboardingPage} from '../pages/onboarding/onboarding'
 import { Storage } from '@ionic/storage';
 import { BudgetPage } from '../pages/budget/budget';
+import {InsertPage} from '../pages/insert/insert';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,11 +24,11 @@ export class MyApp {
     this.storage.get('my-hotel').then(val => {
       if(val == true)  {
         console.log(val);
-      this.rootPage = BudgetPage
+      this.rootPage = InsertPage;
         
       }else {
         console.log('on-boarding now');
-        this.rootPage = BudgetPage
+        this.rootPage = BudgetPage;
         
       }
       

@@ -1,0 +1,79 @@
+
+ 
+<ion-content forceOverscroll="false">
+    <ion-fab top right>
+        <button ion-fab mini (click)="close()"><ion-icon name="close"></ion-icon></button>
+        </ion-fab>
+  <ion-grid>
+ 
+    <ion-row align-items-center>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="fixed">New Todo:</ion-label>
+          <ion-input [(ngModel)]="todo.value"></ion-input>
+        </ion-item>
+ 
+      </ion-col>
+ 
+      <ion-col size="12">
+         <ion-item>
+          <ion-label>Quadrant:</ion-label>
+          <ion-select [(ngModel)]="selectedQuadrant">
+            <ion-option value="q1">Do</ion-option>
+            <ion-option value="q2">Schedule</ion-option>
+            <ion-option value="q3">Delegate</ion-option>
+            <ion-option value="q4">Dont do</ion-option>
+          </ion-select>
+        </ion-item> 
+      </ion-col>
+ 
+    </ion-row>
+ 
+    <button expand="block" fill="outline" (click)="addTodo()">
+      <ion-icon name="add" slot="start"></ion-icon>
+      Add Todo
+    </button>
+ 
+    <ion-row no-padding class="matrix">
+      <ion-col size="6" class="q1">
+        <div class="q-header">Shopping list</div>
+        <ion-list dragula="bag" [(dragulaModel)]="q1" >
+          <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
+            
+            <ion-avatar slot="start">
+              <img src="{{item.image}}">
+            </ion-avatar> 
+            
+            {{ item.name }}
+            {{ item.price }}
+            {{ item.quantity}}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+ 
+      <ion-col size="6" class="q2">
+        <div class="q-header">Saved</div>
+        <ion-list dragula="bag" [(dragulaModel)]="q2" >
+          <ion-item *ngFor="let item of q2" [color]="item.color" expand="block" text-wrap>
+                      <ion-avatar slot="start">
+              <img src="{{item.doc.image}}">
+            </ion-avatar> 
+            
+            {{ item.doc.name }}
+            {{ item.doc.price }}
+            {{ item.doc.quantity}}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+ 
+     
+ 
+     
+    </ion-row>
+  </ion-grid>
+ 
+  <ion-row class="delete-area" align-items-center justify-content-center>
+    <ion-icon name="trash" color="medium"></ion-icon>
+  </ion-row>
+ 
+</ion-content>

@@ -13,6 +13,8 @@ import {Observable} from  'rxjs';
 export class ItemsProvider {
 
 usernumber;
+supermarket;
+budget;
   constructor() {
     console.log('Hello ItemsProvider Provider');
   }

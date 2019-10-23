@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, NavParams, ToastController, Popover, PopoverController } from 'ionic-angular';
+import { NavController, AlertController, NavParams, ToastController, Popover, PopoverController, ModalController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import { LoadingController, MenuController } from 'ionic-angular';
 import * as firebase from 'firebase';
@@ -11,6 +11,10 @@ import {StatusBar} from '@ionic-native/status-bar';
 import { HistoryPage } from '../history/history';
 import { SuccessPage } from '../success/success';
 import { ItemsProvider } from '../../providers/items/items';
+import { DragulaService } from 'ng2-dragula';
+import { DreggerPage } from '../dregger/dregger';
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -22,9 +26,11 @@ itemForm: FormGroup;
 database=firebase.firestore();
 Items=[];
 MyItems = [];
-total=0
-amt:number
-checked:boolean
+total=0;
+amt:number;
+checked:boolean;
+q1 = [];
+  q2 = [];
 
 ////////////////////////////////////////////////////////////
 
@@ -32,7 +38,7 @@ checked:boolean
 
 
 Item = [
-  { "itemname": "Milk",  "image":"../../assets/imgs/clover-milk-full-cream-1-litre.jpg"},
+  { "itemname": "Fresh Milk",  "image":"../../assets/imgs/clover-milk-full-cream-1-litre.jpg"},
   { "itemname": "Maize meal",  "image":"../../assets/imgs/maize meal.jpg"},
   { "itemname": "Brown bread", "image": "../../assets/imgs/brown bread.jpg"},
   { "itemname": "Sunlight-Liquid", "image": "../../assets/imgs/Sunlight-Liquid.png"},
@@ -53,7 +59,39 @@ Item = [
   { "itemname": "Goldi braaipack", "image": "../../assets/imgs/goldi braaipack.jpg"},
   { "itemname": "washing powder", "image": "../../assets/imgs/washing powder.jpg"},
   { "itemname": "Beef meat", "image": "../../assets/imgs/beef meat.jpeg"},
-  { "itemname": "Nola mayonaise", "image": "../../assets/imgs/nola mayonaise.jpg"}
+  { "itemname": "Nola mayonaise", "image": "../../assets/imgs/nola mayonaise.jpg"},
+  { "itemname": "Six clover milk",  "image": "../../assets/imgs/6clover.jpg"},
+  { "itemname": "CrystalValley",  "image": "../../assets/imgs/crystalvalley.png"},
+  { "itemname": "Excella cookingoil",  "image": "../..assets/imgs/excell.jpg"},
+  { "itemname": "Frisco",  "image": "../../assets/imgs/frisco.jpg"}, 
+  { "itemname": "HandyAndy",  "image": "../../assets/imgs/handyandy.jpg"},
+  { "itemname": "Nutriday Yoghurt",  "image": "../../assets/imgs/nutriday yoghurt.jpg"},
+  { "itemname": "Nan2",  "image": "../../assets/imgs/nan2.jpg"},
+  { "itemname": "Numel",  "image": "../../assets/imgs/Numel.png"},
+  { "itemname": "Oros",  "image": "../../assets/imgs/oros-2l.jpg"},
+  { "itemname": "Pampers",  "image": "../../assets/imgs/pampers.jpg"},
+  { "itemname": "Rajah",  "image": "../../assets/imgs/rajah.jpg"},
+  { "itemname": "Ricofy",  "image": "../../assets/imgs/ricofy.jpg"},
+  { "itemname": "Vaseline",  "image": "../../assets/imgs/vaseline.jpg"},
+  { "itemname": "7up",  "image": "../../assets/imgs/7up.png"},
+  { "itemname": "Amasi",  "image": "../../assets/imgs/amasi.jpg"},
+  { "itemname": "Coke 2l",  "image": "../../assets/imgs/Coke_2L_final__18488.1525935011.jpg"},
+  { "itemname": "Golden cloud flour",  "image": "../../assets/imgs/golden cloud flour.jpg"},
+  { "itemname": "Halls",  "image": "../../assets/imgs/halls.jpg"},
+  { "itemname": "Liqui fruit",  "image": "../../assets/imgs/Liqui-Fruit-100-Fruit-Juice-Blend-Asstd.-1-Litre-EACH.jpg"},
+  { "itemname": "Ponds",  "image": "../../assets/imgs/ponds.jpg"},
+  { "itemname": "Pentyliners",  "image": "../../assets/imgs/pentiliners.jpg"},
+  { "itemname": "Cremora",  "image": "../../assets/imgs/Cremora Original Coffee Creamer 800g.png"},
+  { "itemname": "Aromat",  "image": "../../assets/imgs/Aromat Chilli Beef Seasoning 75g.png"},
+  { "itemname": "Fatti's & Moni's",  "image": "../../assets/imgs/Fatti's & Moni's Large Pasta Shells 500g.png"},
+  { "itemname": "Jacobs",  "image": "../../assets/imgs/Jacobs Krönung Instant Coffee 200g.png"},
+  { "itemname": "Lucky star",  "image": "../../assets/imgs/Lucky Star Pilchards In Tomato Sauce 215g.png"},
+  { "itemname": "Nescafe gold",  "image": "../../assets/imgs/Nescafé Gold Instant Coffee 200g.png"},
+  { "itemname": "Weetbix",  "image": "../../assets/imgs/weetbix.jpg"},
+  { "itemname": "Sunlight soap",  "image": "../../assets/imgs/sunlight-soap.jpg"},
+  { "itemname": "Knorr Tomato",  "image": "../../assets/imgs/Knorr Tomato Base Cook-In-Sauce 48g.png"},
+  { "itemname": "Boerewors",  "image": "../../assets/imgs/Bushveld's Finest Venison Boerewors Per kg.png"}
+
 
 ]
 
@@ -63,12 +101,14 @@ Item = [
 loaderAnimate = true
 item = {
  name:'',
- price:null,
+ price:undefined,
  quantity: 1,
  image: '',
  totalPrice:0,
  saved: false
 }
+
+budget =this.items.budget;
 docId:string;
   validation_messages = {
     'name': [
@@ -92,9 +132,57 @@ docId:string;
   update = false;
   MyArray= [];
   MyItem="Milk";
- constructor(public items:ItemsProvider,public toastController: ToastController,public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
+
+
+
+
+
+  ionViewWillLoad()
+{
+  
+  }
+
+ 
+
+
+
+
+ constructor(public modalCtrl: ModalController,private dragulaService: DragulaService,public items:ItemsProvider,public toastController: ToastController,public navCtrl: NavController, public menuCtrl: MenuController,private toastCtrl: ToastController,formBuilder: FormBuilder,public forms: FormBuilder,public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,private statusbar: StatusBar)
  
   {
+
+////////////////////////////////////////////
+
+
+for (var i = 0; i < 6; i++) {
+  this.q1.push("1. <" + i + ">");
+  this.q2.push("2. <" + i + ">");
+}
+dragulaService.drop;
+console.log("Item moved",dragulaService.drop)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////
 
 setTimeout(()=>{
 this.loaderAnimate = false;
@@ -109,7 +197,7 @@ this.loaderAnimate = false;
    price: new FormControl('', Validators.compose([Validators.required])),
     });
 
-    this.database.collection("Item").onSnapshot(data => {
+    this.database.collection(this.items.usernumber).onSnapshot(data => {
       data.forEach(item => {
         console.log("This is your data", item.data());
         this.MyItems.push(item.data())
@@ -122,7 +210,7 @@ this.loaderAnimate = false;
 
   expandDiv(){
     this.item.name = ''
-    this.item.price = ''
+    this.item.price = 0
     this.item.quantity = 1
     this.item.image = ''
     this.CheckData();
@@ -139,8 +227,9 @@ this.loaderAnimate = false;
 
 
 
-
  CheckData(){
+
+  this.num =0;
   if(this.item.name === ''){
     console.log("Data is empty");
     this.MyValue = true;
@@ -197,9 +286,9 @@ expandDiv1(i){
   this.total=0
   this.Items = [] 
   this.item.totalPrice =this.item.price*this.item.quantity,
-  this.database.collection(this.items.usernumber).doc().set(this.item).then(res => {
+  this.database.collection(this.items.usernumber+this.items.supermarket).doc().set(this.item).then(res => {
     this.item={name:'',
-    price:null,
+    price:0,
     quantity: 1,
     saved: false,
     image: '',
@@ -253,7 +342,7 @@ addData1(data){
   console.log(data, 'Update data');
   
   if (data.name !== undefined && data.name !== null) {
-              this.database.collection('Item').doc(this.docId).update({
+              this.database.collection(this.items.usernumber+this.items.supermarket).doc(this.docId).update({
                  name:data.name ,
                  price:data.price ,
                  quantity:data.quantity,
@@ -267,13 +356,22 @@ addData1(data){
             }
 }
 
-  incrementQ(){
-    this.item.quantity = this.item.quantity + 1
+num:number =0;
+val:number =0;
+  incrementQ(x){
+    this.num =this.num+1;
+  console.log(this.num);
+  this.item.quantity =this.num
+
   }
-  decrementQ() {
-    if (this.item.quantity > 1) {
-      this.item.quantity--;
-    }
+  decrementQ(x) {
+    if(this.num>0)
+    {
+    this.num = this.num -1;
+    console.log(this.num)
+  this.item.quantity =this.num; 
+  }
+
   }
   takePicture(sourcetype: number) {
     
@@ -328,7 +426,7 @@ addData1(data){
     }
 
     
-   this.database.collection(this.items.usernumber).get().then(doc => {
+   this.database.collection(this.items.usernumber+this.items.supermarket).get().then(doc => {
       this.Items = []
          doc.forEach(item => {
            data.docid = item.id
@@ -345,7 +443,104 @@ addData1(data){
          
          console.log('Final' ,this.total)
   })
+
+
+  firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).get().then(val=>{
+    console.log("Budget = ",val.data().budget)
+    this.items.budget = val.data().budget;
+console.log(parseFloat(val.data().budget)<parseFloat(this.total.toString()))
+
+
+    if(parseFloat(val.data().budget)<parseFloat(this.total.toString()))
+    {
+      let alert = this.alertCtrl.create({
+        title: 'Budget Exceeded!',
+        subTitle: 'The current budget you entered has been exceeded. Would you like to increase your budget? ',
+        buttons: [
+          {
+            text: 'No',
+            role: 'cancel',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Yes',
+            handler: data => {
+          
+
+             this.newbudgettoast();
+
+            }
+          }
+        ]
+      });
+   alert.present();
+
+    }
+  }
+  
+    )
+   
+
+
 }
+
+
+newbudgettoast()
+{
+
+  let alert = this.alertCtrl.create({
+    title: 'Customer Budget',
+    inputs: [
+      {
+        name: 'title',
+        placeholder: 'Enter your new budget? ',
+        type:"string"
+      }],
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+
+      {
+        text: 'Save',
+        handler: (name) => {
+          console.log('Buy clicked = ',name.title );
+    
+          firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).set({budget:name.title});
+
+          firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).get().then(val=>{
+            console.log("Budget = ",val.data().budget)
+            this.items.budget = val.data().budget;
+            this.budget = this.items.budget ;
+        console.log(parseFloat(val.data().budget)<parseFloat(this.total.toString()))
+      
+          })
+      
+        }
+      }
+    ]
+  });
+  alert.present(); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 togohistory(){
   this.navCtrl.push(HistoryPage)
@@ -369,7 +564,7 @@ deleteData(docid ,item){
         text: 'Delete',
         handler: data => {
           console.log('Saved clicked' ,item.doc.price);
-          this.database.collection(this.items.usernumber).doc(docid).delete();
+          this.database.collection(this.items.usernumber+this.items.supermarket).doc(docid).delete();
           this.total=this.total - item.doc.price
           this.Items = []
           // this.pullData();
@@ -422,17 +617,20 @@ console.log(obj)
 
 
 
+this.database.collection("Saved").add({...{phone:this.items.usernumber},...obj}).then(res=>{
+  console.log("ADDED")
+})
 
-  this.database.collection(this.items.usernumber).doc(obj.docid).update(
-    {saved: true}
-    ).then(res => {
-      console.log('Document updated');
+  // this.database.collection(this.items.usernumber+this.items.supermarket).doc(obj.docid).update(
+  //   {saved: true}
+  //   ).then(res => {
+  //     console.log('Document updated');
       
-    }).catch(err =>{
-      console.log('An error occuerd', err);
+  //   }).catch(err =>{
+  //     console.log('An error occuerd', err);
       
-    })
-  console.log(obj);
+  //   })
+  // console.log(obj);
   
   const prompt = this.alertCtrl.create({
     title: 'Item saved!',
@@ -448,7 +646,7 @@ console.log(obj)
         text: 'Yes',
         handler: data => {
           console.log('Saved clicked');
-          this.navCtrl.push(HistoryPage);
+          this.DropModal();
         }
       }
     ]
@@ -468,6 +666,117 @@ check(item){
     console.log("Am not checked")
   }
 }
+
+
+
+options()
+{
+  console.log("options");
+  let alert = this.alertCtrl.create({
+    title: 'Select Supermarket',
+    inputs: [
+      {
+        name: 'Shoprite',
+        type: 'radio',
+        value:'Shoprite',
+        label: 'Shoprite',
+      },
+      {
+        name: 'Pick n Pay',
+        type: 'radio',
+        value:'Pick n Pay',
+        label: 'Pick n Pay',
+      },
+      {
+        name: 'Checkers',
+        type: 'radio',
+        value:'Checkers',
+        label:'Checkers'
+      },
+      {
+        name: 'Game',
+        type: 'radio',
+        value:'Game',
+        label:'Game'
+      },
+      {
+        name: 'Spar',
+        type: 'radio',
+        value:'Spar',
+        label:'Spar'
+      },
+      {
+        name: 'Cambridge',
+        type: 'radio',
+        value:'Cambridge',
+        label:'Cambridge'
+      },
+      {
+        name: 'Boxer',
+        type: 'radio',
+        value:'Boxer',
+        label:'Boxer'
+      }
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+      
+        handler: data => {
+  
+  
+          console.log('Cancel clicked',data);
+          if(data ==undefined)
+          {
+  
+          }
+        }
+      },
+      {
+        text: 'OK',
+        handler: data => {
+       
+  console.log(data);
+  
+  
+  this.items.supermarket =data;
+  console.log(this.items.supermarket+this.items.usernumber)
+  
+  
+  // this.navCtrl.setRoot(HomePage, this.navParams.data);
+  this.DropModal();
+  
+        }
+      }
+    ]
+  });
+  alert.present();
+}
+
+
+
+DropModal() {
+
+  console.log('Modal clicked');
+  let profileModal = this.modalCtrl.create(DreggerPage);
+  profileModal.onDidDismiss(res=>{
+
+    console.log("We Dismissed")
+  })
+  profileModal.present();
+
+
+
+}
+
+
+
+
+
+
+
+
 
 
 

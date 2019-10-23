@@ -16,24 +16,29 @@ import { SuccessPage } from '../pages/success/success';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 import { BudgetPage } from '../pages/budget/budget';
 import {ItemsProvider} from '../providers/items/items'
-
+import { InsertPage } from '../pages/insert/insert';
+import { DragulaModule } from 'ng2-dragula';
+import {DreggerPage} from '../pages/dregger/dregger';
 
 @NgModule({
   declarations: [
     MyApp,
   HomePage,
+  
   Profile1Component,
   ProfileComponent,
   HistoryPage,
   SuccessPage,
   OnboardingPage,
-  BudgetPage
+  BudgetPage,
+  InsertPage,
+  DreggerPage
   
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    
+    DragulaModule.forRoot(),
 
     IonicModule.forRoot(MyApp, {
       scrollPadding: false,
@@ -54,7 +59,9 @@ import {ItemsProvider} from '../providers/items/items'
     HistoryPage,
     SuccessPage,
     OnboardingPage,
-    BudgetPage
+    BudgetPage,
+    InsertPage,
+    DreggerPage
 
   
   ],

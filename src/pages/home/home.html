@@ -1,201 +1,195 @@
-
-<ion-content >
-  <div [ngClass]="{'load': loaderAnimate}">
+<ion-header style="height: 50px;" >
+  <h1>
+      MY LIST
+      <button clear class="menu" ion-button icon-only (click) ="options()" >
+          <ion-icon class="iconcolor" name="menu"></ion-icon>
+        </button>
      
-          <div class="load2">
-              <div>
-                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> 
-                <!-- <p>Loading</p> -->
-              </div>
-              
-          </div>
      
-    
-  </div>
-   
-   
-    <div class="parent">
-        <h2>
-            MY LIST
-          </h2>
-      <div class="box1">
-  <br><br><br><br><br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <p>TOTAL</p>
-      <p class="totalfigure">
-        
-       <strong>{{total | currency: '&#82;'}}</strong><br><BR>
-       <button (click)="togohistory()" ion-button round clear>View</button>
-       <!-- <ion-icon name="ios-arrow-down-outline"></ion-icon>  -->
-      <!-- </h3> -->
-      <!-- <button (click)="saveData(docid)">Save</button> -->
       
-      </div>
-    </div>
+          <button clear class="options" ion-button icon-only (click)="togohistory()">
+            <ion-icon name="options"></ion-icon>
+          </button>
     
-  
-    
-      
-     <div  [ngClass]="{'minimized': toggle, 'expand': !toggle}">
-            <p class="itemms" (click)="expandDiv()" >   
-             
-              <!-- <br><h4 *ngIf="toggle">Add new item</h4></p> -->
-             
-            <!--   <ion-fab right top>
-                <button ion-fab *ngIf="toggle" class="fab"><ion-icon name="add"></ion-icon></button>
+  </h1>
 
-              </ion-fab> -->
-              <ion-fab right bottom>
-                <button ion-fab *ngIf="toggle" class="fab"><ion-icon name="add"></ion-icon></button>
-              </ion-fab>
-
-              
-            
-              <p class="itemms" (click)="expandDiv()" ><br><h4 *ngIf="!toggle">
  
-                Item details  <br>               <ion-icon name="ios-arrow-down-outline"></ion-icon> </h4></p>
-        <div class="additem" *ngIf="!toggle">
 
-            
-         
-            
-            <div class="inputts">
-              <button (click)="takePicture(0)"class="myImage" ion-button round   ><p>Upload Image</p></button>
-              <img  *ngIf="item.image" src="{{item.image}}" alt="" style="width:100%;  height: 160px; border-radius: 20PX;" >
-              <img  *ngIf="!item.image" src="assets\imgs\grocery package 3-700x700_0.jpg"  alt="" style="width:300px;  height: 250px;" >
-          </div>
-         
-          <form  [formGroup]="itemForm"  >
-
-              <div [ngClass]="{'load': loaderAnimate}">
-     
-                  <div class="load2">
-                      <div>
-                        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> 
-                        <!-- <p>Loading</p> -->
-                      </div>
-                      
-                  </div>
-             
-            
-          </div>
-
-          <br>
-    
-              <ion-input class="inputts"  type="text"  formControlName="name"  placeholder="Item name" [(ngModel)]="item.name" ></ion-input>
-              <div class="error" *ngFor="let validate of validation_messages.name">
-                <div class="messages" *ngIf="itemForm.get('name').hasError(validate.type) && (itemForm.get('name').dirty || itemForm.get('name').touched)">
-                  {{validate.message}}
-              </div> 
+</ion-header>
+<ion-content fullscreen >
+<div [ngClass]="{'load': loaderAnimate}">
+   
+        <div class="load2">
+            <div>
+              <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> 
+              <!-- <p>Loading</p> -->
             </div>
+            
+        </div>
+   
+  
+</div>
+ 
+ 
+  <div class="parent">
+      <h1 class="topprice">
+          R{{budget}}.00
+        </h1>
+    <div class="box1">
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <p>TOTAL</p>
+    <p class="totalfigure">
+     
+     <strong>{{total | currency: '&#82;'}}</strong><br><BR>
+
+     <!-- <ion-icon name="ios-arrow-down-outline"></ion-icon>  -->
+    <!-- </h3> -->
+    <!-- <button (click)="saveData(docid)">Save</button> -->
+    
+    </div>
+  </div>
   
 
-        
-     
- 
+  
     
-    <div class="flex-container">
-        <div class="amount">
-            <ion-input class="input1" type="number" formControlName="price"  placeholder="Item price" [(ngModel)]="item.price" ></ion-input>
-            <div class="error" *ngFor="let validate of validation_messages.price">
-              <div class="messages" *ngIf="itemForm.get('price').hasError(validate.type) && (itemForm.get('price').dirty || itemForm.get('price').touched)">
+   <div  [ngClass]="{'minimized': toggle, 'expand': !toggle}">
+          <p class="itemms" (click)="expandDiv()" >   
+           
+            <!-- <br><h4 *ngIf="toggle">Add new item</h4></p> -->
+           
+          <!--   <ion-fab right top>
+              <button ion-fab *ngIf="toggle" class="fab"><ion-icon name="add"></ion-icon></button>
+            </ion-fab> -->
+            <ion-fab right bottom>
+              <button ion-fab *ngIf="toggle" class="fab"><ion-icon name="add"></ion-icon></button>
+            </ion-fab>
+            
+          
+            <p class="itemms" (click)="expandDiv()" ><br><h4 *ngIf="!toggle">
+
+              Item details  <br>               <ion-icon name="ios-arrow-down-outline"></ion-icon> </h4></p>
+      <div class="additem" *ngIf="!toggle">
+          
+       
+          
+          <div class="inputts">
+            <button (click)="takePicture(0)"class="myImage" ion-button round   ><p>Upload Image</p></button>
+            <img  *ngIf="item.image" src="{{item.image}}" alt="" style="width:100%;  height: 160px; border-radius: 20PX;" >
+            <img  *ngIf="!item.image" src="assets\imgs\grocery package 3-700x700_0.jpg"  alt="" style="width:300px;  height: 250px;" >
+        </div>
+       
+        <form  [formGroup]="itemForm"  >
+            <div [ngClass]="{'load': loaderAnimate}">
+   
+                <div class="load2">
+                    <div>
+                      <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div> 
+                      <!-- <p>Loading</p> -->
+                    </div>
+                    
+                </div>
+           
+          
+        </div>
+        <br>
+  
+            <ion-input class="inputts"  type="text"  formControlName="name"  placeholder="Item name" [(ngModel)]="item.name" ></ion-input>
+            <div class="error" *ngFor="let validate of validation_messages.name">
+              <div class="messages" *ngIf="itemForm.get('name').hasError(validate.type) && (itemForm.get('name').dirty || itemForm.get('name').touched)">
                 {{validate.message}}
             </div> 
           </div>
 
-        </div>
-        <div class="quantity">  
-            <button (click)="decrementQ()" class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
-            <p   style="color:white">{{item.quantity}}</p>
-            <button (click)="incrementQ()" class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
-
-        </div>
-        
-      </div>
-
-
-<br>    
-            <!-- <button [disabled]="!itemForm.valid" class="submit" ion-button full round>ADD</button> -->
-            <button *ngIf="MyValue" (click)="addData(itemForm)" class="submit" ion-button full round>Add Item</button>
-     <button  *ngIf="!MyValue" (click)="addData1(item)" class="submit" ion-button full round>Update</button>
-          </form>
-          </div> 
-        
-     </div>
-
-     <!-- <ion-fab left bottom>
-        <button ion-fab *ngIf="toggle" class="fab" (click)="history()" ><ion-icon name="add"></ion-icon></button>
-      </ion-fab> -->
-
-     
-     <div class="crab">
-    <ion-list color="dark" padding>
-        <ion-list *ngFor = "let item of Items let i=index; ">
-        <ion-item-sliding style="width: 100%;border-radius: 20px;  ">
-          <ion-item>
-            <div class="main">
-
-              <div class="one">
-                  <ion-avatar item-start>
-                      <img  *ngIf="item.doc.image" src="{{item.doc.image}}"  (click)="viewProfile(item.doc.image)" alt="" style="width:50px;  height: 50px;" >
-                      <img  *ngIf="!item.doc.image"  (click)="viewProfile1(item.doc.image)"  alt="" style="width:50px;  height: 50px;" >
-                  </ion-avatar> 
-              </div>
-              <div class="two">
-            
-                  <h2><strong> {{ item.doc.name}}</strong></h2>
-                  <p class="ttext">
-                    Amount: R{{item.doc.price}}<br>
-                    {{item.doc.quantity}} item(s)
-                    </p>
-                    <button ion-button color="dark" round (click)="saveData(item)">save</button>
-                   </div>
-<!-- 
-                   <div class="three">
-                         <ion-item no-lines>
-                        <ion-checkbox color="dark" [checked]="true" (ionChange)="select(i, $event.checked)"></ion-checkbox>
-                       </ion-item>
-                   </div> -->
-                  
-             
-                  
-              
-
-              <!-- <div class="three">
-                <ion-checkbox color="dark" [checked]="true" (ionChange)="select(i, $event.checked)"></ion-checkbox>
-              </div> -->
-            </div>
-        
-            
-         
-       
-          </ion-item>
-    
-          <ion-item-options side="right">
-              <button  (click)="deleteData(item.docid ,item)"ion-button color="#3657b3" class="btn1234">
-                  <ion-icon color="danger" name="trash" class="icon1234"></ion-icon>
-                </button>
-            
-          </ion-item-options>
-  
-          <ion-item-options side="left">
-              <button (click)="edit(item)" ion-button color="#3657b3" >
-                  <ion-icon color="secondary" name="md-create" class="icon1234"></ion-icon>
-    
-            </button>
-          </ion-item-options>
-        </ion-item-sliding>
- 
-    </ion-list>
-
-    </ion-list> 
-     </div>
- </ion-content> 
-
+      
    
+
   
-    
-    
-    
-    
+  <div class="flex-container">
+      <div class="amount">
+          <ion-input class="input1" type="number" formControlName="price"  placeholder="Item price" [(ngModel)]="item.price" ></ion-input>
+          <div class="error" *ngFor="let validate of validation_messages.price">
+            <div class="messages" *ngIf="itemForm.get('price').hasError(validate.type) && (itemForm.get('price').dirty || itemForm.get('price').touched)">
+              {{validate.message}}
+          </div> 
+        </div>
+      </div>
+      <div class="quantity">  
+          <button (click)="decrementQ(item)" class="Close" ion-fab mini><ion-icon color="danger" name="remove"></ion-icon></button>
+          <p   style="color:white">{{num}}</p>
+          <button (click)="incrementQ(item)" class="Close" ion-fab mini><ion-icon color="primary" name="add"></ion-icon></button>
+      </div>
+      
+    </div>
+<br>    
+          <!-- <button [disabled]="!itemForm.valid" class="submit" ion-button full round>ADD</button> -->
+          <button *ngIf="MyValue" (click)="addData(itemForm)" class="submit" ion-button full round>Add Item</button>
+   <button  *ngIf="!MyValue" (click)="addData1(item)" class="submit" ion-button full round>Update</button>
+        </form>
+        </div> 
+      
+   </div>
+   <!-- <ion-fab left bottom>
+      <button ion-fab *ngIf="toggle" class="fab" (click)="history()" ><ion-icon name="add"></ion-icon></button>
+    </ion-fab> -->
+   
+   <div class="crab">
+  <ion-list color="dark" padding>
+      <ion-list *ngFor = "let item of Items let i=index; ">
+      <ion-item-sliding style="width: 100%;border-radius: 20px;  ">
+        <ion-item>
+          <div class="main">
+            <div class="one">
+                <ion-avatar item-start>
+                    <img  *ngIf="item.doc.image" src="{{item.doc.image}}"  (click)="viewProfile(item.doc.image)" alt="" style="width:50px;  height: 50px;" >
+                    <img  *ngIf="!item.doc.image"  (click)="viewProfile1(item.doc.image)"  alt="" style="width:50px;  height: 50px;" >
+                </ion-avatar> 
+            </div>
+            <div class="two">
+          
+                <h2><strong> {{ item.doc.name}}</strong></h2>
+                <p class="ttext">
+                  Amount: R{{item.doc.price}}<br>
+                  {{item.doc.quantity}} item(s)
+                  </p>
+                  <button ion-button color="dark" round (click)="saveData(item)">save</button>
+                 </div>
+<!-- 
+                 <div class="three">
+                       <ion-item no-lines>
+                      <ion-checkbox color="dark" [checked]="true" (ionChange)="select(i, $event.checked)"></ion-checkbox>
+                     </ion-item>
+                 </div> -->
+                
+           
+                
+            
+            <!-- <div class="three">
+              <ion-checkbox color="dark" [checked]="true" (ionChange)="select(i, $event.checked)"></ion-checkbox>
+            </div> -->
+          </div>
+      
+          
+       
+     
+        </ion-item>
   
+        <ion-item-options side="right">
+            <button  (click)="deleteData(item.docid ,item)"ion-button color="#3657b3" class="btn1234">
+                <ion-icon color="danger" name="trash" class="icon1234"></ion-icon>
+              </button>
+          
+        </ion-item-options>
+
+        <ion-item-options side="left">
+            <button (click)="edit(item)" ion-button color="#3657b3" >
+                <ion-icon color="secondary" name="md-create" class="icon1234"></ion-icon>
+  
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+
+  </ion-list>
+  </ion-list> 
+   </div>
+</ion-content> 
