@@ -16,23 +16,29 @@ import {InsertPage} from '../pages/insert/insert';
 export class MyApp {
 
   
-  rootPage:any = BudgetPage;
+  rootPage:any ='';
  
-   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private storage: Storage) {
+   constructor(public platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private storage: Storage) {
 
 
-    this.storage.get('my-hotel').then(val => {
-      if(val == true)  {
-        console.log(val);
-      this.rootPage = InsertPage;
-        
-      }else {
-        console.log('on-boarding now');
-        this.rootPage = BudgetPage;
-        
-      }
+    this.platform.ready().then(() => {
+
+      this.storage.get('budget').then((result) => {
+console.log(result)
+        if(result){
+          this.rootPage = BudgetPage;
+        } else {
+          this.rootPage = InsertPage;
+          this.storage.set('budget', true);
+        }
+
       
+
+      });
+
     });
+
+
 
       platform.ready().then(() => {
         // Okay, so the platform is ready and our plugins are available.

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ViewController, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import {Storage} from '@ionic/storage'
 import { ItemsProvider } from '../../providers/items/items';
@@ -44,7 +44,62 @@ export class HistoryPage {
  rice : number = 0;
 
   Items: any[];
-  constructor(public vw:ViewController,public items:ItemsProvider,private dragulaService: DragulaService, public navCtrl: NavController, public navParams: NavParams,private toastController: ToastController,public storage:Storage) {
+v1;
+  data(x,v)
+  {
+
+
+this.presentLoadingText(x,v)
+  }
+
+  presentLoadingText(x,v) {
+
+    console.log(x[v]);
+
+    this.q1.push(x[v]);
+    //this.q1.push(x[0]);
+
+    let loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: 'Loading Please Wait...',
+      duration: 1000
+    });
+    loading.present();
+
+    loading.onDidDismiss(val=>{
+
+      firebase.firestore().collection(this.items.usernumber+this.items.supermarket).add(x[v]);
+        
+      console.log("added")
+
+      let toast = this.toastController.create({
+        message: 'Item copied from saved list to your current list.',
+        duration: 3000,
+        position: 'bottom'
+      });
+      toast.present();
+
+
+
+      
+    })
+  }
+
+item1:any;
+
+toast()
+{
+  let toast = this.toastController.create({
+    message: "Long press an item, then release to remove it from the list.",
+    duration: 3000,
+    position: 'bottom'
+  });
+  toast.present();
+}
+
+
+
+  constructor(public loadingCtrl:LoadingController,public vw:ViewController,public items:ItemsProvider,private dragulaService: DragulaService, public navCtrl: NavController, public navParams: NavParams,private toastController: ToastController,public storage:Storage) {
     this.saveDataa()
     
    
@@ -61,7 +116,7 @@ val.forEach(res=>{
 
     })
     
-    
+
     
     this.dragulaService.drag('oop')
     .subscribe(({ name, el, source }) => {
@@ -69,7 +124,7 @@ val.forEach(res=>{
       console.log(name )
       console.log("look here1")
 
-
+      
 
 
       let toast = this.toastController.create({
@@ -83,41 +138,49 @@ val.forEach(res=>{
     
     
     
+    console.log(this.v1)
     
-    
-    // this.dragulaService.drag('bag')
-    // .subscribe(({ name, el, source }) => {
-    //   el.setAttribute('color', 'danger');
-    //   console.log(name )
-    //   console.log("look here1")
+    this.dragulaService.drag('bag')
+    .subscribe(({ name, el, source }) => {
+      el.setAttribute('color', 'danger');
+      console.log(name,source )
+      console.log("look here1")
+
       
-    // });
+      
+      
+    });
  
+  
+
+
+    this.dragulaService.createGroup('bag', {
+      removeOnSpill: true,
+     
+      
+    });
+
+   
+
+
+
+
+    
+
     this.dragulaService.removeModel('bag')
     .subscribe(({ item }) => {
 
       console.log('look',item )
- 
-   firebase.firestore().collection(this.items.usernumber+this.items.supermarket).add(item);
-        
-          console.log("added")
 
-          let toast = this.toastController.create({
-            message: 'Item moved from saved list to your current list.',
-            duration: 3000,
-            position: 'bottom'
-          });
-          toast.present();
+      
+ 
     
+   
      
     });
  
     
-      console.log("look here3")
-    this.dragulaService.createGroup('bag', {
-      removeOnSpill: true
-    });
-
+  
     
 
     this.database.collection(this.items.usernumber+'Shoprite').get().then(doc => {
@@ -268,13 +331,7 @@ this.database.collection(this.items.usernumber+'Cambridge').get().then(doc => {
 
 
   }
- ionViewWillEnter(){
- this.items.loaded(this.items.supermarket,this.items.usernumber)
-  this.q1 =this.items.q1;
- console.log("Q1 =",this.q1 )
-  
- }
-
+ 
  showChart(){
 
 this.MyItems.forEach(data => {
@@ -331,7 +388,16 @@ q1 = [];
  
  
 
-
+ionViewDidEnter()
+{
+  this.q1 =[];
+  firebase.firestore().collection(this.items.usernumber+this.items.supermarket).get().then(val=>{
+    val.forEach(res=>{
+      console.log(res.data());
+      this.q1.push(res.data());
+    })
+  })
+}
 
 
 

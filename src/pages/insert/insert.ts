@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { BudgetPage } from '../budget/budget';
-
+import { Storage } from '@ionic/storage';
 import {  Slides } from 'ionic-angular';
 /*
  * Generated class for the InsertPage page.
@@ -18,8 +18,12 @@ import {  Slides } from 'ionic-angular';
 })
 export class InsertPage {
   @ViewChild('slides') slides: Slides;
+  rootPage: any = InsertPage;
+  constructor(public platform: Platform,public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+    
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+
   }
 
   ionViewDidLoad() {
@@ -33,11 +37,39 @@ export class InsertPage {
   }
 
 ​
+hide:boolean =false;
 
-​
-​
 nextslides(){
   this.slides.slideNext();
+
+  console.log(this.slides._activeIndex)
+  if(this.slides._activeIndex==5)
+  {
+    this.hide =true;
+  }
+    else
+    {
+      this.hide =false;
+    }
+
+}
+
+sliders()
+{
+
+
+console.log(this.slides._activeIndex)
+if(this.slides._activeIndex>=5)
+{
+  this.hide =true;
+}
+else
+{
+  this.hide =false;
+}
+
+
+
 }
 
 }
