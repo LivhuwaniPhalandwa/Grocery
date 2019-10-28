@@ -1,90 +1,97 @@
 page-insert {
-    @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
-    .content{
-        background-image: linear-gradient( rgba(180, 188, 238, 0.664), rgb(1, 55, 204));
-      }
-    //   .h-100 {
-    //     height: 80%;
-    //   }
-     
-    //   *,
-    //   *:before,
-    //   *:after {
-    //     box-sizing: border-box;
-    //   }
-       
-    //   body {
-    //     margin: 0;
-    //   }
-     
-      .container {
-        background: #fafafa;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-     
-    //   .card {
-    //     box-shadow: 2px 4px 30px 0px rgba(0, 0, 0, 0.3);
-    //     display: flex;
-    //     flex-direction: column;
-    //   }
-      .mobile-card {
-        width: 100;
-        height: 90%;
-        background-color: white;
-        border-radius: 5px;
-        font-family: "Roboto", sans-serif;
-      }
-     
-      .mobile-status-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 8px 0;
-        font-size: 12px;
-      }
-     
-      .mobile-status-icons {
-        display: flex;
-        justify-content: flex-end;
-      }
-      .mobile-status-icon {
-        font-size: 13px;
-        padding: 0 2px;
-      }
-     
-    //   .onboarding {
-    //     flex: 1;
-    //     text-align: center;
-    //     padding: 50px 20px 15px;
-    //     display: flex;
-    //     flex-direction: column;
-    //   }
-     
-      .onboarding-slides {
-        flex: 1;
-      }
-     
-      .onboarding-illustration {
-        width: 30%;
-        // height: auto;
-      }
-     
-      .onboarding-title {
-        margin: 40px 0 25px;
-        font-size: 20px;
-        color: #ffffff;
-        font-family: 'Josefin Sans', sans-serif;
-      }
-      .onboarding-subtitle {
-        padding: 0 5px;
-      font-size: 14px;
-      color: rgb(255, 255, 255);
-      line-height: 12px;
-      font-family: 'Josefin Sans', sans-serif;
+  @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+  .content {
+    background-image: linear-gradient(rgba(180, 188, 238, 0.664), rgb(1, 55, 204));
+
   }
- 
+
+  
+  .toolbar {
+    .toolbar-background {
+      background: transparent;
+    }
+  }
+
+  .back-button-md,
+  .back-button-ios {
+    color: white;
+  }
+
+
+  .container {
+    background: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  //   .card {
+  //     box-shadow: 2px 4px 30px 0px rgba(0, 0, 0, 0.3);
+  //     display: flex;
+  //     flex-direction: column;
+  //   }
+
+
+  .mobile-card {
+    width: 100;
+    height: 90%;
+    background-color: white;
+    border-radius: 5px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .mobile-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 8px 0;
+    font-size: 12px;
+  }
+
+  .mobile-status-icons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mobile-status-icon {
+    font-size: 13px;
+    padding: 0 2px;
+  }
+
+  //   .onboarding {
+  //     flex: 1;
+  //     text-align: center;
+  //     padding: 50px 20px 15px;
+  //     display: flex;
+  //     flex-direction: column;
+  //   }
+
+  .onboarding-slides {
+    flex: 1;
+  }
+
+  .onboarding-illustration {
+    width: 30%;
+    // height: auto;
+  }
+
+  .onboarding-title {
+    margin: 40px 0 25px;
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
+  .onboarding-subtitle {
+    padding: 0 5px;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    line-height: 12px;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
   .onboarding-action-bar {
     height: 10px;
     display: flex;
@@ -92,18 +99,20 @@ page-insert {
     align-items: center;
     justify-items: center;
   }
-  .btn{
+
+  .btn {
     display: flex;
     justify-content: center;
     justify-items: center;
   }
- 
+
   .onboarding-button {
     background-color: transparent;
     border: none;
     outline: 0;
   }
-  .skip{
+
+  .skip {
     display: flex;
     color: #ffffff;
     justify-items: flex-end;
@@ -113,20 +122,21 @@ page-insert {
     justify-content: center;
     width: 40%;
     margin-left: 60px;
-    font-family: 'Josefin Sans', sans-serif;   
+    font-family: 'Josefin Sans', sans-serif;
     // margin-top: 40px;
     height: 20px;
   }
- 
+
   .onboarding-button {
     padding: 10px 15px;
     border-radius: 3px;
     transition: all 0.3s ease-in;
   }
- 
-  .onboarding-button[disabled]{
+
+  .onboarding-button[disabled] {
     color: rgb(94, 38, 38);
   }
+
   .onboarding-button-next {
     display: flex;
     color: #ffffff;
@@ -138,34 +148,45 @@ page-insert {
     width: 40%;
     // margin-left: 20px;
     font-family: 'Josefin Sans', sans-serif;
- 
+
     align-items: center;
-    
+
   }
-  .next{
+
+  .next {
     float: right;
     margin: 10px;
     color: white;
     background: none;
     font-size: 20px;
-    font-family: 'Josefin Sans', sans-serif;   
+    font-family: 'Josefin Sans', sans-serif;
   }
- 
+
+
+  ion-slides{
+    height: 96vh;
+    // margin: -1px !important;
+    padding: 0 !important;
+    width: 100%;
+  }
+
   .onboarding-button-next:hover,
   .onboarding-button-next:focus {
     color: #fff;
     background-color: #6c63ff;
   }
- 
+
+
   .onboarding-slides-indicators {
     display: flex;
     align-items: center;
   }
+
   .onboarding-slides-indicators {
     display: flex;
     align-items: center;
   }
- 
+
   .onboarding-slides-indicator {
     border-radius: 20px;
     font-size: 0;
@@ -173,7 +194,8 @@ page-insert {
     background-color: #6c63ff33;
     margin: 0 2px;
   }
-  .skip.text{
+
+  .skip.text {
     float: left;
   }
 
@@ -181,12 +203,16 @@ page-insert {
     background-color: #6c63ff7d;
   }
 
- .btn.next{
-     background: cyan;
- }
+  .btn.next {
+    background: cyan;
+  }
 
- .iconcolor{
-     color: white;
+  .iconcolor {
+    color: white;
 
- }
+  }
+
+  .onboarding-slides{
+    height: 100%;
+  }
 }

@@ -1,217 +1,226 @@
-<!--
-  Generated template for the InsertPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
+<ion-header no-border>
+  <ion-toolbar >
 
 
+    <ion-buttons end (click)="gotobudget()">
+      <button ion-button icon-only>
+        SKIP
+      </button>
+    </ion-buttons>
 
-<ion-content >
-   <ion-fab top right>
-  <button ion-fab  clear (click)="gotobudget()" class="next" [hidden] ="hide">
-    skip
-  </button>
-</ion-fab>
-    <ion-slides #slides pager (ionSlideDidChange)="sliders()">
-  ​
-        <ion-slide style="">
-            <section class="onboarding">
-              <main class="onboarding-slides">
-                <div class="onboarding-slide">
-                  <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1098/1098707.svg" alt="" />
-                  <h1 class="onboarding-title">
-                    Enter cellphone number
-                  </h1>
-                  <p class="onboarding-subtitle">
-                    To begin insert cell phone numbers .
-                  </p>
+  </ion-toolbar>
+</ion-header>
 
-                  <button class="onboarding-button onboarding-button-next"  (click)="nextslides()">
-                    next
-                  </button>
-                  
-            
-                  
-                 
 
-                </div>
-              </main>
-              <nav class="onboarding-action-bar">
-                <button  (click)="nextslides()" class="onboarding-button onboarding-button-prev" disabled>
-                 
-                </button>
-      
-              
-              </nav>
-            </section>
-      
-          </ion-slide>
-  ​
-          
-        <ion-slide style="">
-          <section class="onboarding">
-            <main class="onboarding-slides">
-              <div class="onboarding-slide">
-                <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1518/1518795.svg" alt="" />
-                <h1 class="onboarding-title">
-                  Enter your budget
-                </h1>
-                <p class="onboarding-subtitle">
-                  Input your desired budget for your list.
-                </p>
-  ​
-           
-  <button class="onboarding-button onboarding-button-next"  (click)="nextslides()">
-    next
-  </button>
-  
-  <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
-    skip
-  </button> -->
-              </div>
-            </main>
-            <nav class="onboarding-action-bar">
-              <button  (click)="nextslides()" class="onboarding-button onboarding-button-prev" disabled>
-               
-              </button>
-  ​
-            </nav>
-          </section>
-    
-        </ion-slide>
-  ​
-        
-        <ion-slide style="">
-          <section class="onboarding">
-            <main class="onboarding-slides">
-              <div class="onboarding-slide">
-                <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1098/1098728.svg" alt="" />
-                <h1 class="onboarding-title">
-                  Select retail store
-                </h1>
-                <p class="onboarding-subtitle">
-                  Choose your favourite shopping retailer.
-                </p>
-  ​
-  <button class="onboarding-button onboarding-button-next"  (click)="nextslides()">
-    next
-  </button>
-  
-  <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
-    skip
-  </button> -->
-              </div>
-            </main>
-            <nav class="onboarding-action-bar">
-              <button class="onboarding-button onboarding-button-prev" disabled>
-               
-              </button>
-    
+<ion-content fullscreeen>
+  <!-- <ion-fab top right>
+    <button ion-fab clear (click)="gotobudget()" class="next" [hidden]="hide">
+      Skip
+    </button>
+  </ion-fab> -->
+  <ion-slides #slides pager (ionSlideDidChange)="sliders()">
+    ​
+    <ion-slide>
      
-            </nav>
-          </section>
-    
-        </ion-slide>
-  ​
-        
-        
-        <ion-slide style="">
-          <section class="onboarding">
-            <main class="onboarding-slides">
-              <div class="onboarding-slide">
-                <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/940/940682.svg" alt="" />
-                <h1 class="onboarding-title">
-                  Add item to list
-                </h1>
-                <p class="onboarding-subtitle">
-                  To add your item please click plus icon on the landing screen.
-                </p>
-  ​
-              
-  <button class="onboarding-button onboarding-button-next"  (click)="nextslides()">
-    next
-  </button>
-  
-  <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
-    skip
-  </button> -->
-              </div>
-            </main>
-            <nav class="onboarding-action-bar">
-              <button class="onboarding-button onboarding-button-prev" disabled>
-               
-              </button>
-    
-     
-            </nav>
-          </section>
-    
-        </ion-slide>
-  ​
-    
-      <ion-slide style="">
-        <section class="onboarding">
-          <main class="onboarding-slides">
-            <div class="onboarding-slide">
-              <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1680/1680070.svg" alt="" />
-              <h2 class="onboarding-title">
-                Update item
-              </h2>
-              <p class="onboarding-subtitle">
-                Swipe right to delete your item.
-              </p>
-  ​
-  <button class="onboarding-button onboarding-button-next"  (click)="nextslides()">
-    next
-  </button>
-  
-  <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
-    skip
-  </button> -->
-            </div>
-          </main>
-          <nav class="onboarding-action-bar">
-            <button class="onboarding-button onboarding-button-prev" disabled>
-            
+       
+          <div class="onboarding-slide">
+            <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1098/1098707.svg" alt="" />
+            <h1 class="onboarding-title">
+              Enter cellphone number
+            </h1>
+            <p class="onboarding-subtitle">
+              To begin insert cell phone numbers .
+            </p>
+
+            <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
+              Next
             </button>
-  ​
-           
-          </nav>
-        </section>
-  ​
-      </ion-slide>
-    
-      <ion-slide style="">
-        <section class="onboarding">
-          <main class="onboarding-slides">
-            <div class="onboarding-slide">
-              <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/2165/2165176.svg"alt="" />
-              <h2 class="onboarding-title">
-                Delete item
-              </h2>
-              <p class="onboarding-subtitle">
-                Swipe left to delete your item.
-              </p>
-  ​
-  ​
-           
-                  <!-- <button class="onboarding-button onboarding-button-next">
+            <br>
+
+          </div>
+      
+        <!-- <nav class="onboarding-action-bar">
+          <button class="onboarding-button onboarding-button-prev" disabled>
+
+          </button>
+
+
+        </nav> -->
+   
+
+    </ion-slide>
+    ​
+
+    <ion-slide>
+      <section class="onboarding">
+        <main class="onboarding-slides">
+          <div class="onboarding-slide">
+            <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1518/1518795.svg" alt="" />
+            <h1 class="onboarding-title">
+              Enter your budget
+            </h1>
+            <p class="onboarding-subtitle">
+              Input your desired budget for your list.
+            </p>
+            ​
+
+            <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
+              Next
+            </button>
+            <br>
+            <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
+    skip
+  </button> -->
+          </div>
+        </main>
+        <nav class="onboarding-action-bar">
+          <button class="onboarding-button onboarding-button-prev" disabled>
+
+          </button>
+          ​
+        </nav>
+      </section>
+
+    </ion-slide>
+    ​
+
+    <ion-slide >
+      <section class="onboarding">
+        <main class="onboarding-slides">
+          <div class="onboarding-slide">
+            <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1098/1098728.svg" alt="" />
+            <h1 class="onboarding-title">
+              Select retail store
+            </h1>
+            <p class="onboarding-subtitle">
+              Choose your favourite shopping retailer.
+            </p>
+            ​
+            <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
+              Next
+            </button>
+            <br>
+            <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
+    skip
+  </button> -->
+          </div>
+        </main>
+        <nav class="onboarding-action-bar">
+          <button class="onboarding-button onboarding-button-prev" disabled>
+
+          </button>
+
+
+        </nav>
+      </section>
+
+    </ion-slide>
+    ​
+
+
+    <ion-slide >
+      <section class="onboarding">
+        <main class="onboarding-slides">
+          <div class="onboarding-slide">
+            <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/940/940682.svg" alt="" />
+            <h1 class="onboarding-title">
+              Add item to list
+            </h1>
+            <p class="onboarding-subtitle">
+              To add your item please click plus icon on the landing screen.
+            </p>
+            ​
+
+            <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
+              Next
+            </button>
+            <br>
+            <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
+    skip
+  </button> -->
+          </div>
+        </main>
+        <nav class="onboarding-action-bar">
+          <button class="onboarding-button onboarding-button-prev" disabled>
+
+          </button>
+
+
+        </nav>
+      </section>
+
+    </ion-slide>
+    ​
+
+    <ion-slide>
+      <section class="onboarding">
+        <main class="onboarding-slides">
+          <div class="onboarding-slide">
+            <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1680/1680070.svg" alt="" />
+            <h2 class="onboarding-title">
+              Update item
+            </h2>
+            <p class="onboarding-subtitle">
+              Swipe right to delete your item.
+            </p>
+            ​
+            <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
+              Next
+            </button>
+            <br>
+            <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
+    skip
+  </button> -->
+          </div>
+        </main>
+        <nav class="onboarding-action-bar">
+          <button class="onboarding-button onboarding-button-prev" disabled>
+
+          </button>
+          ​
+
+        </nav>
+      </section>
+      ​
+    </ion-slide>
+
+    <ion-slide >
+      <section class="onboarding">
+        <main class="onboarding-slides">
+          <div class="onboarding-slide">
+            <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/2165/2165176.svg" alt="" />
+            <h2 class="onboarding-title">
+              Delete item
+            </h2>
+            <p class="onboarding-subtitle">
+              Swipe left to delete your item.
+            </p>
+            ​
+            ​
+
+            <!-- <button class="onboarding-button onboarding-button-next">
                     next
                   </button> -->
-                  <br>
-                  <button (click)="gotobudget()" class="onboarding-button onboarding-button-next" >
-                    Get started
-                  </button>
-            </div>
-          </main>
-     
-        </section>
+            <br>
+            <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
+              Get started
+            </button>
+          </div>
+        </main>
+        <nav class="onboarding-action-bar">
+          <button class="onboarding-button onboarding-button-prev">
+
+          </button>
+
+          ​
+          ​
+          ​
+        </nav>
+      </section>
+      ​
+    </ion-slide>
+
+  </ion-slides>
   ​
-      </ion-slide>
-    
-    </ion-slides>
-  ​
-    
-  </ion-content>
-  
+
+</ion-content>
