@@ -4,6 +4,8 @@ import * as firebase from 'firebase';
 import {Storage} from '@ionic/storage'
 import { ItemsProvider } from '../../providers/items/items';
 import { DragulaModule, DragulaService } from 'ng2-dragula';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 declare var google;
 
@@ -97,9 +99,10 @@ toast()
   toast.present();
 }
 
+text:"";
+Message:"";
 
-
-  constructor(public loadingCtrl:LoadingController,public vw:ViewController,public items:ItemsProvider,private dragulaService: DragulaService, public navCtrl: NavController, public navParams: NavParams,private toastController: ToastController,public storage:Storage) {
+  constructor(private file:File ,private socialSharing: SocialSharing,public loadingCtrl:LoadingController,public vw:ViewController,public items:ItemsProvider,private dragulaService: DragulaService, public navCtrl: NavController, public navParams: NavParams,private toastController: ToastController,public storage:Storage) {
     this.saveDataa()
     
    
@@ -412,31 +415,48 @@ close()
 {
   this.vw.dismiss();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+emailshare(){
+  // this.socialSharing.canShareViaEmail().then(() => {
+  //   // Sharing via email is possible
+  // }).catch(() => {
+  //   // Sharing via email is not possible
+  // });
+  
+  // Share via email
+  this.socialSharing.shareViaEmail('Body', 'Subject', ['recipient@example.org']).then(() => {
+    // Success!
+  }).catch(() => {
+    // Error!
+  });
+}
+shareViaSMS(){
 
 }
+  whatsappShare(){
+     this.socialSharing.shareViaWhatsApp(this.Message, null, null);
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
