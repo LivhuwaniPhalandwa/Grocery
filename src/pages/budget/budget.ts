@@ -109,49 +109,76 @@ toast.present();
 
   prompt.present();
   prompt.onDidDismiss(() => {
-    console.log('Dismissed toast');
-    if(this.num.length<10)
+    
+  
+    if(this.num.length!=10)
     {
-     
+      const toast = this.toastCtrl.create({
+        message: 'Your phone number must be 10 digits long.',
+        duration: 3000
+      });
+      toast.present();
     }
-
     else
-{
-  let alert = this.alertCtrl.create({
-    title: 'Customer Budget',
-    inputs: [
-      {
-        name: 'title',
-        placeholder: 'What is your current budget? ',
-        type:"string"
-      }],
-    buttons: [
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      },
+    {
 
-      {
-        text: 'Save',
-        handler: (name) => {
-          console.log('Buy clicked = ',name.title );
-          this.items.budget =name.title ;
-          this.storage.set('my-hotel', true);
-          firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).set({budget:name.title});
-          
-        }
-      }
-    ]
-  });
-  alert.present(); 
+    firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).get().then(val=>{
+      console.log("Budget = ",val.data())
+      this.items.budget=val.data().budget;
+  
+       if(val.data()==undefined)
+       {
 
+        let alert = this.alertCtrl.create({
+          title: 'Customer Budget',
+          inputs: [
+            {
+              name: 'title',
+              placeholder: 'What is your current budget? ',
+              type:"string"
+            }],
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            },
+      
+            {
+              text: 'Save',
+              handler: (name) => {
+                console.log('Buy clicked = ',name.title );
+                this.items.budget =name.title ;
+                this.storage.set('my-hotel', true);
+                firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).set({budget:name.title});
+                this.shopalert();
+              }
+            }
+          ]
+        });
+        alert.present(); 
+        
+       }
+       else{
+        this.shopalert();
+       }
+      
+  console.log()
+  
+    })
+  }
+    
 
-  alert.onDidDismiss(()=>{
+  })
+}
+//////////////////////////////
 
+shopalert()
+  {
     let alert = this.alertCtrl.create({
+      message:"Budget: R"+this.items.budget,
       title: 'Select Supermarket',
       inputs: [
         {
@@ -233,27 +260,15 @@ toast.present();
     alert.present();
     
 
-  })
-}
-  });
+
+  }
 
 
 
 
-
- 
-}
-
-
-
-// if(this.total==this.totalBudget) {
-//   console.log('You have reached your limit');
-
-}
+  }
 
 
 
 
-
-
-
+  

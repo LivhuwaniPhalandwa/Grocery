@@ -89,7 +89,7 @@ Item = [
   { "itemname": "Nescafe gold",  "image": "../../assets/imgs/Nescafé Gold Instant Coffee 200g.png"},
   { "itemname": "Weetbix",  "image": "../../assets/imgs/weetbix.jpg"},
   { "itemname": "Sunlight soap",  "image": "../../assets/imgs/sunlight-soap.jpg"},
-  { "itemname": "Knorr Tomato",  "image": "../../assets/imgs/Knorr Tomato Base Cook-In-Sauce 48g.png"},
+  { "itemname": "Knorr soup",  "image": "../../assets/imgs/Knorr Tomato Base Cook-In-Sauce 48g.png"},
   { "itemname": "Boerewors",  "image": "../../assets/imgs/Bushveld's Finest Venison Boerewors Per kg.png"},
   { "itemname": "Apples",  "image": "../../assets/imgs/Apples.webp"},
   { "itemname": "Beetroot",  "image": "../../assets/imgs/beetroot.jpg"},
@@ -125,7 +125,7 @@ Item = [
 loaderAnimate = true
 item = {
  name:'',
- price:undefined,
+ price:null,
  quantity: 1,
  image: '',
  totalPrice:0,
@@ -237,7 +237,7 @@ ionViewWillEnter()
 
   expandDiv(){
     this.item.name = ''
-    this.item.price = 0
+    this.item.price = ''
     this.item.quantity = 1
     this.item.image = ''
     this.CheckData();
@@ -256,7 +256,7 @@ ionViewWillEnter()
 
  CheckData(){
 
-  this.num =0;
+  this.num =1;
   if(this.item.name === ''){
     console.log("Data is empty");
     this.MyValue = true;
@@ -315,7 +315,7 @@ expandDiv1(i){
   this.item.totalPrice =this.item.price*this.item.quantity,
   this.database.collection(this.items.usernumber+this.items.supermarket).doc().set(this.item).then(res => {
     this.item={name:'',
-    price:0,
+    price:'',
     quantity: 1,
     saved: false,
     image: '',
@@ -392,7 +392,7 @@ val:number =0;
 
   }
   decrementQ(x) {
-    if(this.num>0)
+    if(this.num>1)
     {
     this.num = this.num -1;
     console.log(this.num)
@@ -685,8 +685,8 @@ console.log(this.object[0])
   // console.log(obj);
   
   const prompt = this.alertCtrl.create({
-    title: 'Item saved!',
-    message: "Would you like to view the saved items list?",
+    title: 'Save Item!',
+    message: "Would you like to save item on the list?",
     buttons: [
       {
         text: 'No',
@@ -725,6 +725,7 @@ options()
 {
   console.log("options");
   let alert = this.alertCtrl.create({
+    message:"Budget: R"+this.items.budget,
     title: 'Select Supermarket',
     inputs: [
       {

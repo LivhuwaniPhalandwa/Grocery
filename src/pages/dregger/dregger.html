@@ -56,12 +56,12 @@
         <ion-list dragula="bag" [(dragulaModel)]="q2" >
           <ion-item *ngFor="let item of q2" [color]="item.color" expand="block" text-wrap>
                       <ion-avatar slot="start">
-              <img src="{{item.doc.image}}">
+              <img src="{{item.image}}">
             </ion-avatar> 
             
-            {{ item.doc.name }}
-            {{ item.doc.price }}
-            {{ item.doc.quantity}}
+            {{ item.name }}
+            {{ item.price }}
+            {{ item.quantity}}
           </ion-item>
         </ion-list>
       </ion-col>

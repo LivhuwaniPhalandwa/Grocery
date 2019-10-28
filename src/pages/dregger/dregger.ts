@@ -22,7 +22,7 @@ export class DreggerPage {
  
  
 disable = true;
-
+stitem ={};
   todo = { value: '', color: '' };
   selectedQuadrant = 'q1';
   constructor(public vw:ViewController,public items:ItemsProvider,private dragulaService: DragulaService, public navCtrl: NavController, public navParams: NavParams,private toastController: ToastController) {
@@ -57,7 +57,25 @@ val.forEach(res=>{
 
     })
     
-    
+    this.dragulaService.removeModel('bag')
+    .subscribe(({ item }) => {
+
+      console.log(item )
+
+      this.stitem =item;
+
+      if(item==undefined)
+      {
+       console.log("Got It") 
+      }
+
+      else{
+
+      this.q1.push(item)
+
+      }   
+     
+    });
     
     
     
@@ -71,25 +89,9 @@ val.forEach(res=>{
       console.log(name )
       
       console.log("look here1")
-    });
- 
-    this.dragulaService.removeModel('bag')
-    .subscribe(({ item }) => {
-
-      console.log(item )
 
 
-
-      if(item==undefined)
-      {
-       console.log("Got It") 
-      }
-
-      else{
-
-      this.q1.push(item)
-
-   firebase.firestore().collection('1234567890Shoprite').add(item).then(val=>
+      firebase.firestore().collection('1234567890Shoprite').add(this.stitem).then(val=>
         {
           console.log("added")
 
@@ -99,10 +101,11 @@ val.forEach(res=>{
             position: 'bottom'
           });
           toast.present();
-        })
-      }   
-     
+        });
+
     });
+ 
+    
   
     this.dragulaService.dropModel('bag')
       .subscribe(({ item }) => {
