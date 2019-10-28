@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Barlow');
 page-budget {
+	.popOver {
+		background: red;
+		color: red;
+	}
     .content{
         height: 100%;
         background-image: linear-gradient( rgba(5, 18, 199, 0.664), #3657b3);
@@ -124,6 +128,7 @@ h1.main, p.demos {
 	-ms-animation-delay: 5s;
 	animation-delay: 5s;
 }
+
 .sp-globe {
 	position: absolute;
 	width: 300px;
@@ -146,9 +151,11 @@ h1.main, p.demos {
 	transform: scale(5);
 }
 .sp-circle-link {
-	position: absolute;
+	position: fixed;
 	left: 50%;
-	top: 200px;
+	justify-items: center;
+	text-align: center;
+	top: 258px;
 	margin-left: -50px;
 	text-align: center;
 	line-height: 100px;
@@ -172,7 +179,7 @@ h1.main, p.demos {
 }
 .sp-circle-link:hover {
 	background: #3657b3;
-	color: pink;
+	color: rgb(236, 236, 236);
 }
 /**/
 
@@ -376,7 +383,12 @@ h1.main, p.demos {
      text-align: center;
 
  }
+.flexxx{
+	display: grid;
+	align-items: center;
+	position: absolute;
 
+}
   // .input{
   //     display: flex;
   //     justify-content: center;

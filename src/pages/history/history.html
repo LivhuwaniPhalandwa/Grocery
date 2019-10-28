@@ -1,10 +1,12 @@
 
 <ion-header>
-   <button (click) ="close()">Close</button>
+   <!-- <button (click) ="close()">Close</button> -->
    </ion-header>
-   
+   <ion-fab class="fabb" top left>
+    <button class="fabb" ion-fab mini (click)="close()">  <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon></button>
+    </ion-fab>
    <ion-content>
-
+<br><br><br><br>
       
     
 
@@ -13,14 +15,12 @@
  
 
           <ion-segment-button value="drags">
-              Drag items from saved list
+              My lists
              </ion-segment-button>
        
-        <ion-segment-button value="list">
-         Saved list
-        </ion-segment-button>
+     
         <ion-segment-button value="puppies" >
-            Supermarket Totals
+            Supermarkets
             </ion-segment-button>
         
       </ion-segment>
@@ -123,31 +123,39 @@
          <ion-row no-padding class="matrix">
                   <ion-col size="6" class="q1">
                     <div class="q-header">Shopping list</div>
-                    <ion-list dragula="oop" [(dragulaModel)]="q1" >
+                    <ion-list class="info" dragula="oop" [(dragulaModel)]="q1" >
                       <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
+                        
                         
                         <ion-avatar slot="start">
                           <img src="{{item.image}}">
                         </ion-avatar> 
-                        
-                        {{ item.name }}
-                        {{ item.price }}
-                        {{ item.quantity}}
+                        <div class="info">
+
+                       
+                        {{ item.name }}<br>
+                        R{{ item.price }}<br>
+                        Item * {{ item.quantity}}
+                      </div>
                       </ion-item>
                     </ion-list>
                   </ion-col>
              
                   <ion-col size="6" class="q2">
                     <div class="q-header">Saved</div>
-                    <ion-list dragula="bag" [(dragulaModel)]="q2" >
+                    <ion-list class="info" dragula="bag" [(dragulaModel)]="q2" >
                       <ion-item *ngFor="let item of q2" [color]="item.color" expand="block" text-wrap>
                                   <ion-avatar slot="start">
                           <img src="{{item.image}}">
                         </ion-avatar> 
                         
-                        {{ item.name }}
-                        {{ item.price }}
-                        {{ item.quantity}}
+                        <div class="info">
+
+                       
+                          {{ item.name }}<br>
+                          R{{ item.price }}<br>
+                          Item{{ item.quantity}}
+                        </div>
                       </ion-item>
                     </ion-list>
                   </ion-col>

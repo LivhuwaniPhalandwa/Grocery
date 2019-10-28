@@ -9,7 +9,8 @@
         skip
       </button>
 
-    <ion-slides pager>
+    <ion-slides #slides pager>
+      
   ​
         <ion-slide style="">
             <section class="onboarding">
@@ -23,10 +24,10 @@
                     To begin insert cell phone numbers .
                   </p>
 
-                  <button class="onboarding-button onboarding-button-next">
+                  <button  (click)="nextslides()" class="onboarding-button onboarding-button-next">
                     next
                   </button>
-                  <br>
+                  
             
                   
                  
@@ -34,7 +35,7 @@
                 </div>
               </main>
               <nav class="onboarding-action-bar">
-                <button class="onboarding-button onboarding-button-prev" disabled>
+                <button  (click)="nextslides()" class="onboarding-button onboarding-button-prev" disabled>
                  
                 </button>
       
@@ -58,17 +59,17 @@
                 </p>
   ​
            
-  <button class="onboarding-button onboarding-button-next">
+  <button (click)="nextslides()" class="onboarding-button onboarding-button-next">
     next
   </button>
-  <br>
+  
   <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
     skip
   </button> -->
               </div>
             </main>
             <nav class="onboarding-action-bar">
-              <button class="onboarding-button onboarding-button-prev" disabled>
+              <button  (click)="nextslides()" class="onboarding-button onboarding-button-prev" disabled>
                
               </button>
   ​
@@ -90,10 +91,10 @@
                   Choose your favourite shopping retailer.
                 </p>
   ​
-  <button class="onboarding-button onboarding-button-next">
+  <button  (click)="nextslides()" class="onboarding-button onboarding-button-next">
     next
   </button>
-  <br>
+  
   <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
     skip
   </button> -->
@@ -125,10 +126,10 @@
                 </p>
   ​
               
-  <button class="onboarding-button onboarding-button-next">
+  <button  (click)="nextslides()" class="onboarding-button onboarding-button-next">
     next
   </button>
-  <br>
+  
   <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
     skip
   </button> -->
@@ -158,10 +159,10 @@
                 Swipe right to delete your item.
               </p>
   ​
-  <button class="onboarding-button onboarding-button-next">
+  <button  (click)="nextslides()" class="onboarding-button onboarding-button-next">
     next
   </button>
-  <br>
+  
   <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
     skip
   </button> -->

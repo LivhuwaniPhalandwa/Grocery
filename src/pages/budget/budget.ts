@@ -55,6 +55,7 @@ num;
 showPrompt() {
   const prompt = this.alertCtrl.create({
     title: 'Login',
+    cssClass: 'popOver',
     message: "Enter your phone number before you proceed.",
     inputs: [
       {

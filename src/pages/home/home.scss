@@ -6,7 +6,7 @@ page-home {
   }
   
   .parent{
-      height: 26%;
+      height: 24%;
       font-family: 'Josefin Sans', sans-serif;
       background: white;
       // margin-bottom: 1%;
@@ -64,7 +64,7 @@ page-home {
   //   background: red;;
   // }
   .box1{
-      height: 50%;
+      height: 60%;
       width: 80%;
       display: flex;
       flex-direction: row;
@@ -171,7 +171,7 @@ page-home {
       z-index: 6;
       height: 94%;
       background-image: linear-gradient( rgb(232, 242, 250), rgb(118, 152, 247));
-      transition: 3s;
+      transition: 2s;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
    }
@@ -183,17 +183,19 @@ page-home {
     // z-index: 6;
     height: 0%;
     background-image: linear-gradient( rgb(232, 242, 250), rgb(118, 152, 247));
-    transition: 3s;
+    transition: 2s;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
    }
    .inputts{
       background: rgba(255, 255, 255, 0.973);
       color: black;
+      
       box-shadow: 2px 2px 2px  rgba(150, 150, 150, 0.822);
       font-size: 16px;
       border-radius: 30px;
       font-family: 'Josefin Sans', sans-serif;
+   
    }
    .myImage{
        background-color: #ffffff;
