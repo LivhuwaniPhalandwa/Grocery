@@ -20,9 +20,6 @@ export class InsertPage {
   @ViewChild('slides') slides: Slides;
   rootPage: any = InsertPage;
   constructor(public platform: Platform,public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
-    
-
-
 
   }
 
