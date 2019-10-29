@@ -19,6 +19,8 @@ import {ItemsProvider} from '../providers/items/items'
 import { InsertPage } from '../pages/insert/insert';
 import { DragulaModule } from 'ng2-dragula';
 import {DreggerPage} from '../pages/dregger/dregger';
+import { LoginPage } from '../pages/login/login';
+import { from } from 'rxjs/observable/from';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {DreggerPage} from '../pages/dregger/dregger';
   OnboardingPage,
   BudgetPage,
   InsertPage,
-  DreggerPage
+  DreggerPage,
+  LoginPage
   
   ],
   imports: [
@@ -61,7 +64,8 @@ import {DreggerPage} from '../pages/dregger/dregger';
     OnboardingPage,
     BudgetPage,
     InsertPage,
-    DreggerPage
+    DreggerPage,
+    LoginPage
 
   
   ],
