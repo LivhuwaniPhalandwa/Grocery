@@ -25,7 +25,7 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  signIn(phoneNumber: number){
+  signIn(phoneNumber){
     const appVerifier = this.recaptchaVerifier;
     const phoneNumberString = "+" + phoneNumber;
     firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)

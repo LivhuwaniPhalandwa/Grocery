@@ -1,42 +1,43 @@
+
 <ion-header>
   <ion-buttons end>
-    <button ion-button clear (click)="close()" style="color:white">CLOSE</button>
+   <button ion-button clear (click) ="close()" style ="color:white">CLOSE</button>
   </ion-buttons>
-</ion-header>
-<br><br><br>
-<ion-content>
+   </ion-header>
+   
+   <ion-content>
 
+      
+    
 
+   <div >
+      <ion-segment [(ngModel)]="pet">
+ 
 
-
-  <div>
-    <ion-segment [(ngModel)]="pet">
-
-
-      <ion-segment-button value="drags" (click)="toast()">
-        Fill Up
-      </ion-segment-button>
-
-      <!-- <ion-segment-button value="list">
+          <ion-segment-button value="drags" (click)="toast()">
+              Fill Up
+             </ion-segment-button>
+       
+        <!-- <ion-segment-button value="list">
          Saved list
         </ion-segment-button> -->
-      <ion-segment-button value="puppies">
-        Supermarket Totals
-      </ion-segment-button>
+        <ion-segment-button value="puppies" >
+            Supermarket Totals
+            </ion-segment-button>
+        
+      </ion-segment>
+    </div> 
 
-    </ion-segment>
-  </div>
-
-  <div [ngSwitch]="pet">
-    <ion-list *ngSwitchCase="'puppies'">
-      <!-- <ion-item>
+    <div [ngSwitch]="pet">
+      <ion-list *ngSwitchCase="'puppies'">
+        <!-- <ion-item>
             <button ion-button (click)="showChart()" clear >View item Overview</button>
    
             <div id="chart_div">
             
             </div>
         </ion-item> -->
-      <!-- <ion-item>
+        <!-- <ion-item>
           Shoprite:R {{totals}}.00
         </ion-item>
         <ion-item>
@@ -57,191 +58,190 @@
         <ion-item>
           Boxer:R{{totals6}}.00
         </ion-item> -->
-      <ion-col col-3>
+        <ion-col col-3>
+           
+            <ion-list  dragula="bag" [(dragulaModel)]="oo" >
+                  <div class="two">
+                      <h1><strong>     Shoprite</strong></h1>
+                        <p>R {{totals}}.00</p>
+                     
+                </div>
+                
+            </ion-list>
+       
+          </ion-col>
+          <ion-col col-3>
+         
+              <ion-list  dragula="bag" [(dragulaModel)]="oo" >
+               
+                   
+               
+                    <div class="two">
+                        <h1><strong>      Pick n Pay</strong></h1>
+                          <p>R{{totals1}}.00</p>
+                  </div>
+                 
+                    </ion-list>
+            
+            </ion-col>
+            <ion-col col-3>
+           
+                <ion-list  dragula="bag" [(dragulaModel)]="oo" >
+        
+          
+                   
+                      <div class="two">
+                          <h1><strong>     Checkers</strong></h1>
+                            <p>R {{totals2}}.00</p>
+                         
+         
+                        </div>
+                      </ion-list>
+              
+              </ion-col>
+              <ion-col col-3>
+            
+                  <ion-list  dragula="bag" [(dragulaModel)]="oo" >
+                   
+     
+                        
+                     
+                        <div class="two">
+                            <h1><strong>      Game</strong></h1>
+                              <p>R{{totals3}}.00</p>
+                           
+                    
+                          </div>
+                        </ion-list>
+               
+                </ion-col>
+                <ion-col col-3>
+             
+                    <ion-list  dragula="bag" [(dragulaModel)]="oo" >
+                  
+         
+                             
+                      
+                          <div class="two">
+                              <h1><strong>     Spar</strong></h1>
+                                <p>R{{totals4}}.00</p>
+                             
+                
+                            </div>
+                          </ion-list>
+                   
+                  </ion-col>
+                  <ion-col col-3>
+                   
+                      <ion-list  dragula="bag" [(dragulaModel)]="oo" >
+                 
+                     
+                            
+                            <div class="two">
+                                <h1><strong> Cambridge</strong></h1>
+                                  <p> R{{totals5}}.00</p>
+                               
+                 
+                              </div>
+                            </ion-list>
+                    
+                    </ion-col>
 
-        <ion-list dragula="bag" [(dragulaModel)]="oo">
-          <div class="two">
-            <h1><strong> Shoprite</strong></h1>
-            <p>R {{totals}}.00</p>
-
-          </div>
-
-        </ion-list>
-
-      </ion-col>
-      <ion-col col-3>
-
-        <ion-list dragula="bag" [(dragulaModel)]="oo">
-
-
-
-          <div class="two">
-            <h1><strong> Pick n Pay</strong></h1>
-            <p>R{{totals1}}.00</p>
-          </div>
-
-        </ion-list>
-
-      </ion-col>
-      <ion-col col-3>
-
-        <ion-list dragula="bag" [(dragulaModel)]="oo">
-
-
-
-          <div class="two">
-            <h1><strong> Checkers</strong></h1>
-            <p>R {{totals2}}.00</p>
-
-
-          </div>
-        </ion-list>
-
-      </ion-col>
-      <ion-col col-3>
-
-        <ion-list dragula="bag" [(dragulaModel)]="oo">
-
-
-
-
-          <div class="two">
-            <h1><strong> Game</strong></h1>
-            <p>R{{totals3}}.00</p>
-
-
-          </div>
-        </ion-list>
-
-      </ion-col>
-      <ion-col col-3>
-
-        <ion-list dragula="bag" [(dragulaModel)]="oo">
-
-
-
-
-          <div class="two">
-            <h1><strong> Spar</strong></h1>
-            <p>R{{totals4}}.00</p>
-
-
-          </div>
-        </ion-list>
-
-      </ion-col>
-      <ion-col col-3>
-
-        <ion-list dragula="bag" [(dragulaModel)]="oo">
-
-
-
-          <div class="two">
-            <h1><strong> Cambridge</strong></h1>
-            <p> R{{totals5}}.00</p>
-
-
-          </div>
-        </ion-list>
-
-      </ion-col>
-
-      <ion-col col-3>
-
-        <ion-list dragula="bag" [(dragulaModel)]="oo">
-
-
-
-          <div class="two">
-            <h1><strong> Boxer</strong></h1>
-            <p> R{{totals6}}.00</p>
-
-
-          </div>
-        </ion-list>
-
-      </ion-col>
-
-
-    </ion-list>
-
-
-  </div>
+                    <ion-col col-3>
+                     
+                        <ion-list  dragula="bag" [(dragulaModel)]="oo" >
+                       
+                  
+                           
+                              <div class="two">
+                                  <h1><strong>    Boxer</strong></h1>
+                                    <p> R{{totals6}}.00</p>
+                                 
+                   
+                                </div>
+                              </ion-list>
+                 
+                      </ion-col>
+                                      
+        
+      </ion-list>
 
 
-  <div [ngSwitch]="pet">
-    <ion-list *ngSwitchCase="'list'">
-      <!-- <div class="box1">
+    </div> 
+
+
+    <div [ngSwitch]="pet">
+      <ion-list *ngSwitchCase="'list'">
+        <!-- <div class="box1">
           <p>TOTAL</p>
           <h3 class="">
            <strong>{{total | currency: '&#82;'}}</strong><br>
       
           </h3> -->
 
-    </ion-list>
-
-
-    <div [ngSwitch]="pet">
-
-      <ion-grid padding *ngSwitchCase="'drags'">
-
-
-
-
-        <ion-row>
-          <ion-col col-6>
-            <div class="q-header">Shopping list</div>
-            <ion-list dragula="oop" [(dragulaModel)]="o1">
-              <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
-
-                <div class="main">
-                  <div class="one">
-                    <ion-avatar slot="start">
-                      <img src="{{item.image}}">
-                    </ion-avatar>
-                  </div>
-                  <div class="two">
-                    <p><strong>{{ item.name }}</strong><br>
-                      R{{ item.price }}<br>
-                      Item:{{ item.quantity}}</p>
-                  </div>
-                </div>
-
-              </ion-item>
-            </ion-list>
-          </ion-col>
-
-          <ion-col col-6>
-            <div class="q-header">Saved</div>
-            <ion-list dragula="bag" [(dragulaModel)]="oo">
-              <ion-item *ngFor="let item of q2 let v =index" [color]="item.color" expand="block" text-wrap
-                (press)="data(q2,v)">
-                <div class="main">
-                  <div class="one">
-                    <ion-avatar slot="start">
-                      <img src="{{item.image}}">
-                    </ion-avatar>
-                  </div>
-                  <div class="two">
-                    <p><strong>{{ item.name }}</strong><br>
-                      R{{ item.price }}<br>
-                      Item:{{ item.quantity}}</p>
-                  </div>
-                </div>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-
-
-
-
-        </ion-row>
-
-
-
-      </ion-grid>
-
-
-
-
-    </div>
+        </ion-list>
+   
+  
+        <div [ngSwitch]="pet">
+           
+            <ion-grid padding *ngSwitchCase="'drags'">
+           
+               
+             
+             
+         <ion-row  >
+                  <ion-col col-6>
+                    <div class="q-header">Shopping list</div>
+                    <ion-list   dragula="oop" [(dragulaModel)]="o1" >
+                      <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
+                    
+                      <div class="main">
+                        <div class="one">
+                        <ion-avatar slot="start">
+                          <img src="{{item.image}}">
+                        </ion-avatar> 
+                      </div>
+                      <div class="two">
+                            <p><strong>{{ item.name }}</strong><br>
+                              R{{ item.price }}<br>
+                              Item:{{ item.quantity}}</p>
+                        </div>
+                      </div>
+                      
+                      </ion-item>
+                    </ion-list>
+                  </ion-col>
+             
+                  <ion-col col-6>
+                    <div class="q-header">Saved</div>
+                    <ion-list  dragula="bag" [(dragulaModel)]="oo" >
+                      <ion-item *ngFor="let item of q2 let v =index" [color]="item.color" expand="block" text-wrap (press)="data(q2,v)">
+                            <div class="main">
+                           <div class="one">   
+                        <ion-avatar slot="start"  >
+                          <img  src="{{item.image}}">
+                        </ion-avatar> 
+                          </div>
+                          <div class="two">
+                              <p><strong>{{ item.name }}</strong><br>
+                              R{{ item.price }}<br>
+                              Item:{{ item.quantity}}</p>
+                        </div>
+                            </div>
+                      </ion-item>
+                    </ion-list>
+                  </ion-col>
+             
+                 
+             
+                 
+                </ion-row>
+            
+             
+             
+            </ion-grid>
+           
+            
+                    
+                
+                </div> 
