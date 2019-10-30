@@ -21,7 +21,8 @@ import { DragulaModule } from 'ng2-dragula';
 import {DreggerPage} from '../pages/dregger/dregger';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { File } from '@ionic-native/file/ngx';
-import {SharePage} from '../pages/share/share';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,7 +35,7 @@ import {SharePage} from '../pages/share/share';
   OnboardingPage,
   BudgetPage,
   InsertPage,
-  SharePage,
+
   DreggerPage
   
   ],
@@ -64,7 +65,7 @@ import {SharePage} from '../pages/share/share';
     OnboardingPage,
     BudgetPage,
     InsertPage,
-    SharePage,
+
     DreggerPage
 
   
@@ -75,7 +76,8 @@ import {SharePage} from '../pages/share/share';
     SocialSharing,
     File,
     {provide: ErrorHandler, useClass: IonicErrorHandler,},
-    ItemsProvider
+    ItemsProvider,
+    
   ]
 })
 export class AppModule {}

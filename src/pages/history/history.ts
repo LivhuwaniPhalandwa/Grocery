@@ -415,26 +415,8 @@ close()
 {
   this.vw.dismiss();
 }
-emailshare(){
-  // this.socialSharing.canShareViaEmail().then(() => {
-  //   // Sharing via email is possible
-  // }).catch(() => {
-  //   // Sharing via email is not possible
-  // });
-  
-  // Share via email
-  this.socialSharing.shareViaEmail('Body', 'Subject', ['recipient@example.org']).then(() => {
-    // Success!
-  }).catch(() => {
-    // Error!
-  });
-}
-shareViaSMS(){
 
-}
-  whatsappShare(){
-     this.socialSharing.shareViaWhatsApp(this.Message, null, null);
-   }
+
 }
 
 

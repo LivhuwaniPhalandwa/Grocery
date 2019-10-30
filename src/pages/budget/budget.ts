@@ -5,12 +5,6 @@ import { HomePage } from '../home/home';
 import * as firebase from 'firebase';
 import { ItemsProvider } from '../../providers/items/items';
  
-/**
- * Generated class for the BudgetPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -60,7 +54,7 @@ showPrompt() {
       {
         name: 'title',
         placeholder: 'Enter phone number ',
-        type:"string"
+        type:"number"
       },
     ],
     buttons: [
@@ -134,7 +128,7 @@ toast.present();
             {
               name: 'title',
               placeholder: 'What is your current budget? ',
-              type:"string"
+              type:"number"
             }],
           buttons: [
             {
