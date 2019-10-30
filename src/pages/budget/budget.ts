@@ -124,7 +124,7 @@ toast.present();
 
     firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).get().then(val=>{
       console.log("Budget = ",val.data())
-      this.items.budget=val.data().budget;
+      this.items.budget=val.data();
   
        if(val.data()==undefined)
        {
@@ -178,7 +178,7 @@ toast.present();
 shopalert()
   {
     let alert = this.alertCtrl.create({
-      message:"Budget: R"+this.items.budget,
+      // message:"Budget: R"+this.items.budget,
       title: 'Select Supermarket',
       inputs: [
         {

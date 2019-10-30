@@ -405,14 +405,14 @@ val:number =0;
     console.log(';;;;;;;;;');
 
     const options: CameraOptions = {
-      quality: 50,
+      quality: 90,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       sourceType: sourcetype,
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true,
-      targetHeight: 500,
-      targetWidth: 500
+      targetHeight: 600,
+      targetWidth: 600
     }
     this.camera.getPicture(options).then((picture) => {
      this.item.image= 'data:image/jpeg;base64,' + picture;

@@ -26,7 +26,7 @@ export class MyApp {
       this.storage.get('budget').then((result) => {
 console.log(result)
         if(result){
-          this.rootPage = InsertPage;
+          this.rootPage = BudgetPage;
         } else {
           this.rootPage = InsertPage;
           this.storage.set('budget', true);
