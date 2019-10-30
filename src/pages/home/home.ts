@@ -427,20 +427,40 @@ val:number =0;
   let storageRef = firebase.storage().ref();
   const filename = Math.floor(Date.now() / 1000);
   let file = 'my-hotel/'+filename+'.jpg';
-  const imageRef =storageRef.child(file);
-  imageRef.putString(this.item.image, firebase.storage.StringFormat.DATA_URL)
-  .then((snapshot) => {
-    this.item.image = '';
-    console.log('image uploaded');
-    this.item.image = snapshot.downloadURL;
-    let alert = this.alertCtrl.create({
-      title: 'Image Upload',
-      subTitle: 'Image Uploaded to firebase',
-      buttons: ['Ok']
+  const imageRef =storageRef.child(file).putString(this.item.image, firebase.storage.StringFormat.DATA_URL)
+    imageRef.on('state_changed', snap => {
+      this.item.image = 'Uploading '+(snap.bytesTransferred / snap.totalBytes) * 100+'%'
+    }, err=> {
+      switch (err.name) {
+        case 'storage/unauthorized':
+          this.item.image = "User doesn't have permission to access the object"
+          break;
+    
+        case 'storage/canceled':
+          this.item.image = "User canceled the upload"
+          break;
+    
+        case 'storage/unknown':
+          this.item.image = "Unknown error occurred, Please try again"
+          break;
+      }
+    }, () => {
+      imageRef.snapshot.ref.getDownloadURL().then(downUrl => {
+        this.item.image = downUrl;
+      })
+    })
+  // .then((snapshot) => {
+  //   this.item.image = '';
+  //   console.log('image uploaded');
+  //   this.item.image = snapshot.downloadURL;
+  //   let alert = this.alertCtrl.create({
+  //     title: 'Image Upload',
+  //     subTitle: 'Image Uploaded to firebase',
+  //     buttons: ['Ok']
      
-    }).present()
+  //   }).present()
 
-  })
+  // })
   
   this.item.image = '' 
 }
