@@ -4,8 +4,8 @@ import * as firebase from 'firebase';
 import {Storage} from '@ionic/storage'
 import { ItemsProvider } from '../../providers/items/items';
 import { DragulaModule, DragulaService } from 'ng2-dragula';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { File } from '@ionic-native/file/ngx';
+// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+// import { File } from '@ionic-native/file/ngx';
 
 declare var google;
 
@@ -111,7 +111,7 @@ toast()
 text:"";
 Message:"";
 
-  constructor(private alertCtrl:AlertController,private file:File ,private socialSharing: SocialSharing,public loadingCtrl:LoadingController,public vw:ViewController,public items:ItemsProvider,private dragulaService: DragulaService, public navCtrl: NavController, public navParams: NavParams,private toastController: ToastController,public storage:Storage) {
+  constructor(private alertCtrl:AlertController ,public loadingCtrl:LoadingController,public vw:ViewController,public items:ItemsProvider,private dragulaService: DragulaService, public navCtrl: NavController, public navParams: NavParams,private toastController: ToastController,public storage:Storage) {
     this.saveDataa()
     
    
