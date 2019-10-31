@@ -62,8 +62,10 @@ showPrompt() {
     buttons: [
       {
         text: 'Cancel',
+        role: 'cancel',
         handler: data => {
           console.log('Cancel clicked');
+          
         }
       },
       {
@@ -73,34 +75,34 @@ showPrompt() {
          let num = data.title;
          this.num =num;
          console.log(parseFloat(num).toString().length)
-         if(num.length!=10)
-          {
+//          if(num.length!=10)
+//           {
 
-            let toast = this.toastCtrl.create({
-              message: 'Phone number cannot be less than or more than 10 digits',
-              duration: 4000,
-              position: 'bottom'
-            });
+//             let toast = this.toastCtrl.create({
+//               message: 'Phone number cannot be less than or more than 10 digits',
+//               duration: 4000,
+//               position: 'bottom'
+            
+//             });
 
 
-toast.present();
+// toast.present();
 
          
-          }
-          else
-          {
-            this.items.usernumber =data.title;
-            console.log("Usernumber = ", this.items.usernumber)
-            firebase.firestore().collection(data.title);
+//           }
+//           else
+//           {
+//             this.items.usernumber =data.title;
+//             console.log("Usernumber = ", this.items.usernumber)
+//             firebase.firestore().collection(data.title);
           
-          }
+//           }
 
         }
       }
     ]
   });
 
-   
 
   prompt.present();
   prompt.onDidDismiss(() => {

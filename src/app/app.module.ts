@@ -19,8 +19,8 @@ import {ItemsProvider} from '../providers/items/items'
 import { InsertPage } from '../pages/insert/insert';
 import { DragulaModule } from 'ng2-dragula';
 import {DreggerPage} from '../pages/dregger/dregger';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { File } from '@ionic-native/file/ngx';
+// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+// import { File } from '@ionic-native/file/ngx';
 
 
 @NgModule({
@@ -73,8 +73,8 @@ import { File } from '@ionic-native/file/ngx';
   providers: [Camera,
     StatusBar,
     SplashScreen,
-    SocialSharing,
-    File,
+    // SocialSharing,
+    // File,
     {provide: ErrorHandler, useClass: IonicErrorHandler,},
     ItemsProvider,
     
