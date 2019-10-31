@@ -1,14 +1,12 @@
-<ion-header>
-  <ion-buttons end>
-    <button ion-button clear (click)="close()" style="color:rgb(35, 133, 245)">CLOSE</button>
-  </ion-buttons>
-</ion-header>
+
 
 <ion-content>
-  <br><br><br>
+  <br><br>
 
-
-
+<ion-fab top right>
+  <button ion-fab mini (click)="close()" style="color:rgb(19, 18, 18);background:transparent;">X</button>
+</ion-fab>
+<br><br>
   <div>
     <ion-segment [(ngModel)]="pet">
 
@@ -134,6 +132,9 @@
     </ion-list>
 
 
+
+
+
     <div [ngSwitch]="pet">
 
       <ion-grid padding *ngSwitchCase="'drags'">
@@ -144,7 +145,7 @@
         <ion-row>
  
 
-          <ion-col col-6>
+          <ion-col col-14>
             <div class="q-header">Saved</div>
             <ion-list dragula="bag" [(dragulaModel)]="oo">
               <ion-item *ngFor="let item of q2 let v =index" [color]="item.color" expand="block" text-wrap
@@ -155,17 +156,17 @@
                       <img src="{{item.image}}" alt="" >
                     </ion-avatar>
                   </div>
-                  <!-- <div class="two">
+                  <div class="two">
                     <p><strong>{{ item.name }}</strong><br>
                       R{{ item.price }}<br>
                       Item:{{ item.quantity}}</p>
-                  </div> -->
+                  </div>
                 </div>
               </ion-item>
             </ion-list>
           </ion-col>
 
-          <ion-col col-6>
+          <!-- <ion-col col-6>
             <div class="q-header">Shopping list</div>
             <ion-list >
               <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
@@ -176,11 +177,11 @@
                       <img src="{{item.image}}" alt="" >
                     </ion-avatar>
                   </div>
-                  <!-- <div class="two">
+                  <div class="two">
                     <p><strong>{{ item.name }}</strong><br>
                       R{{ item.price }}<br>
                       Item:{{ item.quantity}}</p>
-                  </div> -->
+                  </div>
                 </div>
 
               </ion-item>
@@ -189,12 +190,12 @@
 
 
         </ion-row>
+ -->
+
+
+      <!-- </ion-grid> -->
 
 
 
-      </ion-grid>
 
-
-
-
-    </div>
+    <!-- </div> -->
