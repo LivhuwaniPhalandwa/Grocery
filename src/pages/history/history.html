@@ -99,6 +99,23 @@
             <h1><STRONG>R{{totals6}}.00</STRONG> </h1>
           </div>
       </ion-col>
+      <ion-col col-2>
+
+
+
+
+
+        <div class="two">
+          <h1><strong> Other</strong></h1>
+          <p> R{{totals00}}.00</p>
+
+
+        </div>
+
+
+    </ion-col>
+
+
     </ion-list>
 
 
@@ -133,16 +150,16 @@
               <ion-item *ngFor="let item of q2 let v =index" [color]="item.color" expand="block" text-wrap
                 (press)="data(q2,v)">
                 <div class="main">
-                  <div class="one">
+                  <div class="one1">
                     <ion-avatar slot="start">
-                      <img src="{{item.image}}">
+                      <img src="{{item.image}}" alt="" >
                     </ion-avatar>
                   </div>
-                  <div class="two">
+                  <!-- <div class="two">
                     <p><strong>{{ item.name }}</strong><br>
                       R{{ item.price }}<br>
                       Item:{{ item.quantity}}</p>
-                  </div>
+                  </div> -->
                 </div>
               </ion-item>
             </ion-list>

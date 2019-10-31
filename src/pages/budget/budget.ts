@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import * as firebase from 'firebase';
 import { ItemsProvider } from '../../providers/items/items';
+// import { LoginPage } from '../login/login';
  
 
 @IonicPage()
@@ -29,6 +30,7 @@ num;
   }
   landing(){
 
+    // this.navCtrl.push(LoginPage);
     this.showPrompt();
     
   }
@@ -49,7 +51,6 @@ num;
 showPrompt() {
   const prompt = this.alertCtrl.create({
     title: 'Login',
-    cssClass: 'popOver',
     message: "Enter your phone number before you proceed.",
     inputs: [
       {
@@ -118,7 +119,7 @@ toast.present();
 
     firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).get().then(val=>{
       console.log("Budget = ",val.data())
-      this.items.budget=val.data();
+      this.items.budget=val.data().budget;
   
        if(val.data()==undefined)
        {
@@ -172,7 +173,7 @@ toast.present();
 shopalert()
   {
     let alert = this.alertCtrl.create({
-      // message:"Budget: R"+this.items.budget,
+      message:"Budget: R"+this.items.budget,
       title: 'Select Supermarket',
       inputs: [
         {
@@ -216,6 +217,13 @@ shopalert()
           type: 'radio',
           value:'Boxer',
           label:'Boxer'
+        },
+        {
+          name: 'Other',
+          type: 'radio',
+          value:'Other',
+          label: 'Other',
+          checked: true,
         }
       ],
       buttons: [
