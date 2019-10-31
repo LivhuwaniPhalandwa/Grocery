@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, ViewController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController,ToastController, ViewController, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import {Storage} from '@ionic/storage'
 import { ItemsProvider } from '../../providers/items/items';
@@ -37,6 +37,7 @@ export class HistoryPage {
    totals10=0;
    total=0
    q5;
+  //  pet='drags';
   //  MyItems:[];
    docId
   q3=[];
@@ -91,18 +92,25 @@ item1:any;
 
 toast()
 {
-  let toast = this.toastController.create({
-    message: "Long press an item, then release to remove it from the list.",
-    duration: 3000,
-    position: 'bottom'
+  let alert = this.alertCtrl.create({
+    title: 'To add item ',
+    subTitle: 'Press and hold an item to move it to the shopping list.',
+    buttons: ['Ok']
   });
-  toast.present();
+  alert.present();
 }
+//   let toast = this.toastController.create({
+//     message: "Long press an item, then release to remove it from the list.",
+//     duration: 3000,
+//     position: 'bottom'
+//   });
+//   toast.present();
+// }
 
 text:"";
 Message:"";
 
-  constructor(private file:File ,private socialSharing: SocialSharing,public loadingCtrl:LoadingController,public vw:ViewController,public items:ItemsProvider,private dragulaService: DragulaService, public navCtrl: NavController, public navParams: NavParams,private toastController: ToastController,public storage:Storage) {
+  constructor(private alertCtrl:AlertController,private file:File ,private socialSharing: SocialSharing,public loadingCtrl:LoadingController,public vw:ViewController,public items:ItemsProvider,private dragulaService: DragulaService, public navCtrl: NavController, public navParams: NavParams,private toastController: ToastController,public storage:Storage) {
     this.saveDataa()
     
    

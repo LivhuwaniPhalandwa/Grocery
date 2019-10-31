@@ -77,7 +77,28 @@
       { "itemname": "White sugar",  "image": "../../assets/imgs/white sugar.jpg"},
       { "itemname": "Ultramel custard",  "image": "../../assets/imgs/ultramel custard.jpg"},
       { "itemname": "Trotters jelly",  "image": "../../assets/imgs/trotters jelly.jpg"},
-      { "itemname": "Lasagne",  "image": "../../assets/imgs/lasagne.jpg"}
-    
+      { "itemname": "Lasagne",  "image": "../../assets/imgs/lasagne.jpg"},
+      { "itemname": "dettol",  "image": "../../assets/imgs/dettol.jpg"},
+      { "itemname": "dew fresh",  "image": "../../assets/imgs/dew fresh.jpg"},
+      { "itemname": "dove men care",  "image": "../../assets/imgs/dove men care.jpg"},
+      { "itemname": "everfresh",  "image": "../../assets/imgs/everfresh.jpg"},
+      { "itemname": "hullets",  "image": "../../assets/imgs/hullets.jpg"},
+      { "itemname": "Iwisa",  "image": "../../assets/imgs/iwisa.jpg"},
+      { "itemname": "palony",  "image": "../../assets/imgs/palony.jpg"},
+      { "itemname": "quick cook",  "image": "../../assets/imgs/quick cook.jpg"},
+      { "itemname": "wellington",  "image": "../../assets/imgs/wellington.jpg"},
+      { "itemname": "atchar",  "image": "../../assets/imgs/Atchar.jpg"},
+      { "itemname": "Bokomo Cornflakes",  "image": "../../assets/imgs/Bokomo Corn Flakes.jpg"},
+      { "itemname": "glen tea",  "image": "../../assets/imgs/Glen Tea.png"},
+      { "itemname": "imana soya mince",  "image": "../../assets/imgs/Imana Soya Mince.jpg"},
+      { "itemname": "impala special",  "image": "../../assets/imgs/Impala Special Maize Meal.jpg"},
+      { "itemname": "samp",  "image": "../../assets/imgs/Iwisa Samp 2.5kg.jpg"},
+      { "itemname": "chakalaka",  "image": "../../assets/imgs/Koo Mild Spicy Chakalaka.jpg"},
+      { "itemname": "maq washing powder",  "image": "../../assets/maq washing powder.png"},
+      { "itemname": "morvite",  "image": "../../assets/imgs/Morvite.jpg"},
+      { "itemname": "spaghetti pasta",  "image": "../../assets/imgs/pasta joy spagetti.png"},
+      { "itemname": "ouma rusks",  "image": "../../assets/imgs/ouma rusks.jpg"},
+      { "itemname": "vienna",  "image": "../../assets/imgs/vienna.jpg"},
+      { "itemname": "white bread",  "image": "../../assets/imgs/white bread.jpg"}
     ]
   }

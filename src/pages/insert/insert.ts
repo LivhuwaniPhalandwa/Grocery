@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { BudgetPage } from '../budget/budget';
 import { Storage } from '@ionic/storage';
+import {StatusBar} from '@ionic-native/status-bar';
 import {  Slides } from 'ionic-angular';
 /*
  * Generated class for the InsertPage page.
@@ -19,8 +20,8 @@ import {  Slides } from 'ionic-angular';
 export class InsertPage {
   @ViewChild('slides') slides: Slides;
   rootPage: any = InsertPage;
-  constructor(public platform: Platform,public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
-
+  constructor(public platform: Platform,public navCtrl: NavController, public navParams: NavParams, public storage: Storage,private statusbar: StatusBar) {
+    this.statusbar.backgroundColorByHexString('#3657AF');
   }
 
   ionViewDidLoad() {
