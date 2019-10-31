@@ -473,7 +473,7 @@ val:number =0;
     }
 
     
-   this.database.collection(this.items.usernumber+this.items.supermarket).get().then(doc => {
+   this.database.collection(this.items.usernumber+this.items.supermarket).orderBy('name' ,'asc').get().then(doc => {
       this.Items = []
          doc.forEach(item => {
            data.docid = item.id
