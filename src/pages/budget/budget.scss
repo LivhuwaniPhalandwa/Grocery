@@ -110,10 +110,11 @@ page-budget {
   }
 
   .sp-container h2.frame-5 {
-    -webkit-animation: none;
-    -moz-animation: none;
-    -ms-animation: none;
-    animation: none;
+    font-size: 20px;
+    -webkit-animation-delay: 7s;
+    -moz-animation-delay: 7s;
+    -ms-animation-delay: 7s;
+    animation-delay: 7s;
     color: transparent;
     text-shadow: 0px 0px 1px #fff;
   }
@@ -127,19 +128,19 @@ page-budget {
     text-shadow: 0px 0px 1px #fff;
   }
 
-  .sp-container h2.frame-5 span:nth-child(2) {
-    -webkit-animation-delay: 5s;
-    -moz-animation-delay: 5s;
-    -ms-animation-delay: 5s;
-    animation-delay: 5s;
-  }
+  // .sp-container h2.frame-5 span:nth-child(2) {
+  //   -webkit-animation-delay: 5s;
+  //   -moz-animation-delay: 5s;
+  //   -ms-animation-delay: 5s;
+  //   animation-delay: 5s;
+  // }
 
-  .sp-container h2.frame-5 span:nth-child(3) {
-    -webkit-animation-delay: 5s;
-    -moz-animation-delay: 5s;
-    -ms-animation-delay: 5s;
-    animation-delay: 5s;
-  }
+  // .sp-container h2.frame-5 span:nth-child(3) {
+  //   -webkit-animation-delay: 5s;
+  //   -moz-animation-delay: 5s;
+  //   -ms-animation-delay: 5s;
+  //   animation-delay: 5s;
+  // }
 
   .sp-globe {
     position: absolute;
@@ -172,7 +173,19 @@ page-budget {
     padding: 0 !important;
     margin: 0 !important;
   }
+.flex-content{
+  display: flex;
 
+  h2{
+    display: grid;
+	  align-items: center;
+    width: 100vw;
+    height: 110vh;
+    position: relative;
+    padding: 0 !important;
+    margin: 0 !important; 
+  }
+}
 
   .sp-circle-link {
     position: absolute;

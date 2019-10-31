@@ -33,6 +33,7 @@ export class HistoryPage {
    totals8=0;
    totals9=0
    totals10=0;
+   totals00=0;
    total=0
    q5;
   //  MyItems:[];
@@ -286,6 +287,19 @@ this.database.collection(this.items.usernumber+'Cambridge').get().then(doc => {
      console.log('Finals6' ,this.totals6)
 })
 
+this.database.collection(this.items.usernumber+'Other').get().then(doc => {
+  this.Items = []
+     doc.forEach(item => {
+     var cost =0;
+     cost =parseFloat(item.data().totalPrice);
+
+       this.totals00 = this.totals00 +cost;
+      console.log(this.totals00)
+       
+     })
+     
+     console.log('Finals7' ,this.totals00)
+})
 
 
 

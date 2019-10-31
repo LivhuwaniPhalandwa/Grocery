@@ -769,6 +769,13 @@ options()
         type: 'radio',
         value:'Boxer',
         label:'Boxer'
+      },
+      {
+        name: 'Other',
+        type: 'radio',
+        value:'Other',
+        label:'Other',
+        checked: true
       }
     ],
     buttons: [
