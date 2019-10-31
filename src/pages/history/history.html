@@ -1,11 +1,19 @@
 
-
+<ion-header >
+  <ion-navbar>
+      <ion-buttons left>
+          <button ion-button icon-only (click)="close()" class="my-style-for-modal">
+              <ion-icon name="arrow-back"></ion-icon>
+          </button>
+      </ion-buttons>
+  </ion-navbar>
+  </ion-header>
 <ion-content>
   <br><br>
 
-<ion-fab top right>
+<!-- <ion-fab top right>
   <button ion-fab mini (click)="close()" style="color:rgb(19, 18, 18);background:transparent;">X</button>
-</ion-fab>
+</ion-fab> -->
 <br><br>
   <div>
     <ion-segment [(ngModel)]="pet">

@@ -99,6 +99,7 @@ toast()
     buttons: ['Ok']
   });
   alert.present();
+
 }
 //   let toast = this.toastController.create({
 //     message: "Long press an item, then release to remove it from the list.",
