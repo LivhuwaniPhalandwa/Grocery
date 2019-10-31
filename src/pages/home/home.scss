@@ -76,7 +76,7 @@ page-home {
   //   background: red;;
   // }
   .box1 {
-    height: 52%;
+    height: 55%;
     width: 80%;
     display: flex;
     flex-direction: row;
@@ -96,6 +96,8 @@ page-home {
       color: aliceblue;
       font-family: 'Josefin Sans', sans-serif;
       letter-spacing: 3px;
+      margin: 20px 10px;
+
     }
 
     .money {
@@ -193,8 +195,9 @@ page-home {
   bottom: 0%;
   z-index: 6;
   height: 100%;
+  overflow: auto;
   background-image: linear-gradient(rgb(232, 242, 250), rgb(118, 152, 247));
-  transition: 3s;
+  transition: 2s;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -207,7 +210,7 @@ page-home {
   // z-index: 6;
   height: 0%;
   background-image: linear-gradient(rgb(232, 242, 250), rgb(118, 152, 247));
-  transition: 3s;
+  transition: 2s;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   margin: 0 !important;
@@ -233,13 +236,14 @@ page-home {
     width: 95vw;
     height: 41vh;
     border-radius: 30px;
+    object-fit: cover;
   }
 }
 
 .myImage {
   background-color: #ffffff;
   width: 40%;
-  //  border-radius: 30px;
+   border-radius: 30px;
   height: 34px;
   color: rgb(7, 6, 6);
 }
@@ -439,7 +443,7 @@ page-home {
         box-shadow: 0px 0px 0px 0px rgb(33, 75, 124);
         letter-spacing: 4px;
 
-        border-left: 2px dotted #51a4e7;
+        border-left: 4px dotted #51a4e7;
         flex: 1;
 
         h1,
