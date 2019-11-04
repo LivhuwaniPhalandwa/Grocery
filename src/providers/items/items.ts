@@ -15,6 +15,8 @@ export class ItemsProvider {
 usernumber;
 supermarket;
 budget;
+budgets;
+
   constructor() {
     console.log('Hello ItemsProvider Provider');
   }

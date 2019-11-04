@@ -4,13 +4,8 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import * as firebase from 'firebase';
 import { ItemsProvider } from '../../providers/items/items';
+// import { LoginPage } from '../login/login';
  
-/**
- * Generated class for the BudgetPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -35,6 +30,7 @@ num;
   }
   landing(){
 
+    // this.navCtrl.push(LoginPage);
     this.showPrompt();
     
   }
@@ -60,14 +56,16 @@ showPrompt() {
       {
         name: 'title',
         placeholder: 'Enter phone number ',
-        type:"string"
+        type:"number"
       },
     ],
     buttons: [
       {
         text: 'Cancel',
+        role: 'cancel',
         handler: data => {
           console.log('Cancel clicked');
+          
         }
       },
       {
@@ -77,34 +75,34 @@ showPrompt() {
          let num = data.title;
          this.num =num;
          console.log(parseFloat(num).toString().length)
-         if(num.length!=10)
-          {
+//          if(num.length!=10)
+//           {
 
-            let toast = this.toastCtrl.create({
-              message: 'Phone number cannot be less than or more than 10 digits',
-              duration: 4000,
-              position: 'bottom'
-            });
+//             let toast = this.toastCtrl.create({
+//               message: 'Phone number cannot be less than or more than 10 digits',
+//               duration: 4000,
+//               position: 'bottom'
+            
+//             });
 
 
-toast.present();
+// toast.present();
 
          
-          }
-          else
-          {
-            this.items.usernumber =data.title;
-            console.log("Usernumber = ", this.items.usernumber)
-            firebase.firestore().collection(data.title);
+//           }
+//           else
+//           {
+//             this.items.usernumber =data.title;
+//             console.log("Usernumber = ", this.items.usernumber)
+//             firebase.firestore().collection(data.title);
           
-          }
+//           }
 
         }
       }
     ]
   });
 
-   
 
   prompt.present();
   prompt.onDidDismiss(() => {
@@ -134,7 +132,7 @@ toast.present();
             {
               name: 'title',
               placeholder: 'What is your current budget? ',
-              type:"string"
+              type:"number"
             }],
           buttons: [
             {
@@ -221,6 +219,13 @@ shopalert()
           type: 'radio',
           value:'Boxer',
           label:'Boxer'
+        },
+        {
+          name: 'Other',
+          type: 'radio',
+          value:'Other',
+          label: 'Other',
+          checked: true,
         }
       ],
       buttons: [
