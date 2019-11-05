@@ -591,7 +591,7 @@ export class HomePage {
           text: 'Yes',
           handler: data => {
             
-            this.database.collection('Saved').add(obj.doc).then(res => {
+            this.database.collection('Saved').add(obj.docid).then(res => {
            
               // this.database.collection(this.items.usernumber + this.items.supermarket).doc(obj.docid).delete().then(res => {
                 // this.object.push({ ...{ id: obj.docid, phone: this.items.usernumber }, ...obj.doc });
