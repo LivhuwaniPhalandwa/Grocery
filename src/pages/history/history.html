@@ -1,12 +1,12 @@
 
 <ion-header >
-  <ion-navbar>
+  <!-- <ion-navbar> -->
       <ion-buttons left>
-          <button ion-button icon-only (click)="close()" class="my-style-for-modal">
-              <ion-icon name="arrow-back"></ion-icon>
+          <button ion-button icon-only (click)="close()" style="color: blue ;background-color: transparent;">
+              <ion-icon name="arrow-back" (click)="close()"></ion-icon>
           </button>
       </ion-buttons>
-  </ion-navbar>
+  <!-- </ion-navbar> -->
   </ion-header>
 <ion-content>
   <br><br>
@@ -16,25 +16,25 @@
 </ion-fab> -->
 <br><br>
   <div>
-    <ion-segment [(ngModel)]="pet">
+    <ion-segment [(ngModel)]="segment">
 
 
-      <ion-segment-button value="drags" (click)="toast()">
+      <ion-segment-button value="fill_up">
         Fill Up
       </ion-segment-button>
 
       <!-- <ion-segment-button value="list">
          Saved list
         </ion-segment-button> -->
-      <ion-segment-button value="puppies">
+      <ion-segment-button value="totals">
         Supermarket Totals
       </ion-segment-button>
 
     </ion-segment>
   </div>
 
-  <div [ngSwitch]="pet">
-    <ion-list *ngSwitchCase="'puppies'">
+  <div [ngSwitch]="segment">
+    <ion-list *ngSwitchCase="'totals'">
       <!-- <ion-item>
             <button ion-button (click)="showChart()" clear >View item Overview</button>
    
@@ -128,8 +128,8 @@
   </div>
 
 
-  <div [ngSwitch]="pet">
-    <ion-list *ngSwitchCase="'list'">
+  <div [ngSwitch]="segment">
+    <ion-list *ngSwitchCase="'totals'">
       <!-- <div class="box1">
           <p>TOTAL</p>
           <h3 class="">
@@ -143,9 +143,9 @@
 
 
 
-    <div [ngSwitch]="pet">
+    <div [ngSwitch]="segment">
 
-      <ion-grid padding *ngSwitchCase="'drags'">
+      <ion-grid padding *ngSwitchCase="'fill_up'">
 
 
 
@@ -155,19 +155,18 @@
 
           <ion-col col-14>
             <div class="q-header">Saved</div>
-            <ion-list dragula="bag" [(dragulaModel)]="oo">
-              <ion-item *ngFor="let item of q2 let v =index" [color]="item.color" expand="block" text-wrap
-                (press)="data(q2,v)">
+            <ion-list>
+              <ion-item *ngFor="let item of q2 let i =index" [color]="item.color" expand="block" text-wrap (press)="data(item,i)">
                 <div class="main">
                   <div class="one1">
                     <ion-avatar slot="start">
-                      <img src="{{item.image}}" alt="" >
+                      <img src="{{item.doc.image}}" alt="" >
                     </ion-avatar>
                   </div>
                   <div class="two">
-                    <p><strong>{{ item.name }}</strong><br>
-                      R{{ item.price }}<br>
-                      Item:{{ item.quantity}}</p>
+                    <p><strong>{{ item.doc.name }}</strong><br>
+                      R{{ item.doc.price }}<br>
+                      Item:{{ item.doc.quantity}}</p>
                   </div>
                 </div>
               </ion-item>

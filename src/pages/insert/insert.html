@@ -12,7 +12,7 @@
 </ion-header>
 
 
-<ion-content fullscreeen>
+<ion-content ion-scroll="false" class="container">
   <!-- <ion-fab top right>
     <button ion-fab clear (click)="gotobudget()" class="next" [hidden]="hide">
       Skip
@@ -22,23 +22,31 @@
     ​
     <ion-slide>
      
-       
+    
           <div class="onboarding-slide">
-            <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1098/1098707.svg" alt="" />
-            <h1 class="onboarding-title">
+
+            <div class="image">
+             <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1098/1098707.svg" alt="" /> 
+            </div>
+            <div class="title">
+              <h1 class="onboarding-title">
               Enter cellphone number
             </h1>
-            <p class="onboarding-subtitle">
+            </div>
+            <div class="sub">
+             <p class="onboarding-subtitle">
               To begin insert cell phone numbers .
-            </p>
-            <br>
+            </p> 
+            </div>
+            
+          <div class="but">
             <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
               Next
             </button>
-            <br>
-
           </div>
-      
+            
+          </div>
+   
         <!-- <nav class="onboarding-action-bar">
           <button class="onboarding-button onboarding-button-prev" disabled>
 
@@ -49,11 +57,200 @@
    
 
     </ion-slide>
-    ​
 
     <ion-slide>
-      <section class="onboarding">
-        <main class="onboarding-slides">
+     
+    
+        <div class="onboarding-slide">
+
+          <div class="image">
+              <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1518/1518795.svg" alt="" />
+          </div>
+          <div class="title">
+            <h1 class="onboarding-title">
+                Enter your budget
+          </h1>
+          </div>
+          <div class="sub">
+           <p class="onboarding-subtitle">
+              Input your desired budget for your list.
+          </p> 
+          </div>
+          
+        <div class="but">
+          <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
+            Next
+          </button>
+        </div>
+          
+        </div>
+ 
+      <!-- <nav class="onboarding-action-bar">
+        <button class="onboarding-button onboarding-button-prev" disabled>
+
+        </button>
+
+
+      </nav> -->
+ 
+
+  </ion-slide>
+
+  <ion-slide>
+     
+    
+      <div class="onboarding-slide">
+
+        <div class="image">
+            <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1098/1098728.svg" alt="" />
+        </div>
+        <div class="title">
+          <h1 class="onboarding-title">
+              Select retail store
+        </h1>
+        </div>
+        <div class="sub">
+         <p class="onboarding-subtitle">
+            Choose your favourite shopping retailer.
+        </p> 
+        </div>
+        
+      <div class="but">
+        <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
+          Next
+        </button>
+      </div>
+        
+      </div>
+
+    <!-- <nav class="onboarding-action-bar">
+      <button class="onboarding-button onboarding-button-prev" disabled>
+
+      </button>
+
+
+    </nav> -->
+
+
+</ion-slide>
+
+<ion-slide>
+     
+    
+    <div class="onboarding-slide">
+
+      <div class="image">
+          <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/940/940682.svg" alt="" />
+      </div>
+      <div class="title">
+        <h1 class="onboarding-title">
+            Add item to list
+      </h1>
+      </div>
+      <div class="sub">
+       <p class="onboarding-subtitle">
+          To add your item please click plus icon on the landing screen.
+      </p> 
+      </div>
+      
+    <div class="but">
+      <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
+        Next
+      </button>
+    </div>
+      
+    </div>
+
+  <!-- <nav class="onboarding-action-bar">
+    <button class="onboarding-button onboarding-button-prev" disabled>
+
+    </button>
+
+
+  </nav> -->
+
+
+</ion-slide>
+
+<ion-slide>
+     
+    
+    <div class="onboarding-slide">
+
+      <div class="image">
+          <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1680/1680070.svg" alt="" />
+      </div>
+      <div class="title">
+        <h1 class="onboarding-title">
+            Update item
+      </h1>
+      </div>
+      <div class="sub">
+       <p class="onboarding-subtitle">
+          Swipe right to update your item.
+      </p> 
+      </div>
+      
+    <div class="but">
+      <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
+        Next
+      </button>
+    </div>
+      
+    </div>
+
+  <!-- <nav class="onboarding-action-bar">
+    <button class="onboarding-button onboarding-button-prev" disabled>
+
+    </button>
+
+
+  </nav> -->
+
+
+</ion-slide>
+
+<ion-slide>
+     
+    
+    <div class="onboarding-slide">
+
+      <div class="image">
+          <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/2165/2165176.svg" alt="" />
+      </div>
+      <div class="title">
+        <h1 class="onboarding-title">
+            Delete item
+      </h1>
+      </div>
+      <div class="sub">
+       <p class="onboarding-subtitle">
+          Swipe left to delete your item.
+      </p> 
+      </div>
+      
+    <div class="but">
+        <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
+            Get started
+          </button>
+    </div>
+      
+    </div>
+
+  <!-- <nav class="onboarding-action-bar">
+    <button class="onboarding-button onboarding-button-prev" disabled>
+
+    </button>
+
+
+  </nav> -->
+
+
+</ion-slide>
+    ​
+
+    <!-- <ion-slide>
+    
           <div class="onboarding-slide">
             <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1518/1518795.svg" alt="" />
             <h1 class="onboarding-title">
@@ -67,26 +264,26 @@
             <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
               Next
             </button>
-            <br>
+            <br> -->
             <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
     skip
   </button> -->
-          </div>
-        </main>
+          <!-- </div>
+     
         <nav class="onboarding-action-bar">
           <button class="onboarding-button onboarding-button-prev" disabled>
 
           </button>
           ​
         </nav>
-      </section>
+    
 
     </ion-slide>
     ​
 
     <ion-slide >
-      <section class="onboarding">
-        <main class="onboarding-slides">
+     
+    
           <div class="onboarding-slide">
             <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1098/1098728.svg" alt="" />
             <h1 class="onboarding-title">
@@ -99,12 +296,12 @@
             <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
               Next
             </button>
-            <br>
+            <br> -->
             <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
     skip
   </button> -->
-          </div>
-        </main>
+          <!-- </div>
+     
         <nav class="onboarding-action-bar">
           <button class="onboarding-button onboarding-button-prev" disabled>
 
@@ -112,16 +309,16 @@
 
 
         </nav>
-      </section>
+  
 
     </ion-slide>
     ​
 
 
-    <ion-slide >
-      <section class="onboarding">
-        <main class="onboarding-slides">
-          <div class="onboarding-slide">
+    <ion-slide > -->
+     
+    
+          <!-- <div class="onboarding-slide">
             <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/940/940682.svg" alt="" />
             <h1 class="onboarding-title">
               Add item to list
@@ -134,27 +331,27 @@
             <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
               Next
             </button>
-            <br>
+            <br> -->
             <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
     skip
   </button> -->
-          </div>
-        </main>
-        <nav class="onboarding-action-bar">
+          <!-- </div> -->
+     
+        <!-- <nav class="onboarding-action-bar">
           <button class="onboarding-button onboarding-button-prev" disabled>
 
           </button>
 
 
         </nav>
-      </section>
+  
 
     </ion-slide>
     ​
 
     <ion-slide>
-      <section class="onboarding">
-        <main class="onboarding-slides">
+     
+    
           <div class="onboarding-slide">
             <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/1680/1680070.svg" alt="" />
             <h2 class="onboarding-title">
@@ -167,12 +364,12 @@
             <button class="onboarding-button onboarding-button-next" (click)="nextslides()">
               Next
             </button>
-            <br>
+            <br> -->
             <!-- <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
     skip
   </button> -->
-          </div>
-        </main>
+          <!-- </div>
+     
         <nav class="onboarding-action-bar">
           <button class="onboarding-button onboarding-button-prev" disabled>
 
@@ -180,13 +377,13 @@
           ​
 
         </nav>
-      </section>
+  
       ​
     </ion-slide>
 
     <ion-slide >
-      <section class="onboarding">
-        <main class="onboarding-slides">
+     
+    
           <div class="onboarding-slide">
             <img class="onboarding-illustration" src="https://image.flaticon.com/icons/svg/2165/2165176.svg" alt="" />
             <h2 class="onboarding-title">
@@ -195,18 +392,13 @@
             <p class="onboarding-subtitle">
               Swipe left to delete your item.
             </p>
-            ​<br>
-            ​
-
-            <!-- <button class="onboarding-button onboarding-button-next">
-                    next
-                  </button> -->
-            <br>
+         
+            
             <button (click)="gotobudget()" class="onboarding-button onboarding-button-next">
               Get started
             </button>
           </div>
-        </main>
+     
         <nav class="onboarding-action-bar">
           <button class="onboarding-button onboarding-button-prev">
 
@@ -216,9 +408,9 @@
           ​
           ​
         </nav>
-      </section>
+  
       ​
-    </ion-slide>
+    </ion-slide> -->
 
   </ion-slides>
   ​
