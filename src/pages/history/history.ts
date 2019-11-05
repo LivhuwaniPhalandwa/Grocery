@@ -71,11 +71,8 @@ this.presentLoadingText(x,v)
     loading.present();
 
     loading.onDidDismiss(val=>{
-
       firebase.firestore().collection(this.items.usernumber+this.items.supermarket).add(x[v]);
-        
-      console.log("added")
-
+      
       let toast = this.toastController.create({
         message: 'Item copied from saved list to your current list.',
         duration: 3000,

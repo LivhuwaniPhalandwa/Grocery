@@ -732,14 +732,14 @@ console.log(this.object[0])
   }
 
 
-check(item){
-  if(item.checked==true){
-    console.log("Am checked")
+// check(item){
+//   if(item.checked==true){
+//     console.log("Am checked")
 
-  }else{
-    console.log("Am not checked")
-  }
-}
+//   }else{
+//     console.log("Am not checked")
+//   }
+// }
 
 
 

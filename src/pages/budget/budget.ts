@@ -62,11 +62,7 @@ showPrompt() {
     buttons: [
       {
         text: 'Cancel',
-        role: 'cancel',
-        handler: data => {
-          console.log('Cancel clicked');
-          
-        }
+        role: 'cancel'
       },
       {
         text: 'Save',
@@ -75,28 +71,28 @@ showPrompt() {
          let num = data.title;
          this.num =num;
          console.log(parseFloat(num).toString().length)
-//          if(num.length!=10)
-//           {
+         if(num.length!=10)
+          {
 
-//             let toast = this.toastCtrl.create({
-//               message: 'Phone number cannot be less than or more than 10 digits',
-//               duration: 4000,
-//               position: 'bottom'
+            let toast = this.toastCtrl.create({
+              message: 'Phone number cannot be less than or more than 10 digits',
+              duration: 4000,
+              position: 'bottom'
             
-//             });
+            });
 
 
-// toast.present();
+toast.present();
 
          
-//           }
-//           else
-//           {
-//             this.items.usernumber =data.title;
-//             console.log("Usernumber = ", this.items.usernumber)
-//             firebase.firestore().collection(data.title);
+          }
+          else
+          {
+            this.items.usernumber =data.title;
+            console.log("Usernumber = ", this.items.usernumber)
+            firebase.firestore().collection(data.title);
           
-//           }
+          }
 
         }
       }
@@ -108,7 +104,7 @@ showPrompt() {
   prompt.onDidDismiss(() => {
     
   
-    if(this.num.length!=10)
+    if(typeof(this.num.length)!==undefined && this.num.length!=10)
     {
       const toast = this.toastCtrl.create({
         message: 'Your phone number must be 10 digits long.',
@@ -132,7 +128,10 @@ showPrompt() {
             {
               name: 'title',
               placeholder: 'What is your current budget? ',
-              type:"number"
+              type:"tel",
+              min: "1",
+              max:"7"
+              
             }],
           buttons: [
             {
