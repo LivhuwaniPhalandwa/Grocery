@@ -408,14 +408,14 @@ page-home {
         flex-flow: column;
         justify-content: space-between;
         position: absolute;
-        z-index: 50;
+        z-index: 150;
         .top {
           width: 15px;
           height: 9px;
           // background: rgb(118, 118, 209);
           z-index: 10;
           position: relative;
-          bottom: 38px;
+          bottom: 42px;
           left: 53px;
           border-bottom-right-radius: 50%;
           border-bottom-left-radius: 50%;
