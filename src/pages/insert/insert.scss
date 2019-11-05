@@ -27,6 +27,7 @@ page-insert {
 
   // }
 
+<<<<<<< HEAD
   //   .card {
   //     box-shadow: 2px 4px 30px 0px rgba(0, 0, 0, 0.3);
   //     display: flex;
@@ -84,6 +85,35 @@ page-insert {
    height: 80vh;
     //border: 2px solid yellow;
     
+=======
+  .mobile-card {
+    width: 100;
+    height: 90%;
+    background-color: white;
+    border-radius: 5px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .mobile-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 8px 0;
+    font-size: 12px;
+  }
+
+  .mobile-status-icons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mobile-status-icon {
+    font-size: 13px;
+    padding: 0 2px;
+  }
+  .onboarding-slides {
+    flex: 1;
+>>>>>>> 1970c5dfdf6c01cabacbbaaf931c4677ae1ed32a
   }
 
   .onboarding-illustration {
@@ -223,6 +253,7 @@ page-insert {
   //   float: left;
   // }
 
+<<<<<<< HEAD
   // .onboarding-slides-indicator--active {
     // background-color: #6c63ff7d;
   // }
@@ -230,6 +261,11 @@ page-insert {
   // .btn.next {
   //   background: cyan;
   // }
+=======
+  .btn.next {
+    background: cyan;
+  }
+>>>>>>> 1970c5dfdf6c01cabacbbaaf931c4677ae1ed32a
 
   // .iconcolor {
   //   color: white;

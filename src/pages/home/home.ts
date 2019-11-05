@@ -700,8 +700,19 @@ export class HomePage {
           text: 'OK',
           handler: data => {
 
+<<<<<<< HEAD
             console.log(data);
 
+=======
+// check(item){
+//   if(item.checked==true){
+//     console.log("Am checked")
+
+//   }else{
+//     console.log("Am not checked")
+//   }
+// }
+>>>>>>> 1970c5dfdf6c01cabacbbaaf931c4677ae1ed32a
 
             this.items.supermarket = data;
             console.log(this.items.supermarket + this.items.usernumber)

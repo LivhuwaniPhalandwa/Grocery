@@ -62,8 +62,27 @@ export class HistoryPage {
       subTitle: 'Press and hold an item to move it to the shopping list.',
       buttons: ['Ok']
     });
+<<<<<<< HEAD
     alert.present();
 
+=======
+    loading.present();
+
+    loading.onDidDismiss(val=>{
+      firebase.firestore().collection(this.items.usernumber+this.items.supermarket).add(x[v]);
+      
+      let toast = this.toastController.create({
+        message: 'Item copied from saved list to your current list.',
+        duration: 3000,
+        position: 'bottom'
+      });
+      toast.present();
+
+
+
+      
+    })
+>>>>>>> 1970c5dfdf6c01cabacbbaaf931c4677ae1ed32a
   }
  
 
