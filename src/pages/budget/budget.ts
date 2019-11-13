@@ -5,7 +5,7 @@ import { HomePage } from '../home/home';
 import * as firebase from 'firebase';
 import { ItemsProvider } from '../../providers/items/items';
 // import { LoginPage } from '../login/login';
-
+ 
 
 @IonicPage()
 @Component({
@@ -13,115 +13,41 @@ import { ItemsProvider } from '../../providers/items/items';
   templateUrl: 'budget.html',
 })
 export class BudgetPage {
-  Items = [];
-  total: 0;
-  item = {
-    totalbudget: 0,
+Items=[];
+total:0;
+item={
+  totalbudget:0,
 
+}
+  constructor(public vw:ViewController,private toastCtrl: ToastController,public items:ItemsProvider,public navCtrl: NavController, private storage: Storage, public navParams: NavParams, private alertCtrl: AlertController ) {
+  
+   
+  
   }
-  constructor(public vw: ViewController, private toastCtrl: ToastController, public items: ItemsProvider, public navCtrl: NavController, private storage: Storage, public navParams: NavParams, private alertCtrl: AlertController) {
-  }
-  num;
+num;
   ionViewDidLoad() {
     console.log('ionViewDidLoad BudgetPage');
   }
-  landing() {
+  landing(){
 
     // this.navCtrl.push(LoginPage);
     this.showPrompt();
-
+    
   }
 
-  budget() {
-    if (this.total >= this.item.totalbudget) {
-      let alert = this.alertCtrl.create({
-        title: 'warning',
-        subTitle: 'you reached your limit',
-        buttons: ['exit']
-      });
-      alert.present();
-    }
-  }
+  budget()
+{
+ if(this.total>=this.item.totalbudget) {
+   let alert = this.alertCtrl.create({
+     title: 'warning',
+     subTitle: 'you reached your limit',
+     buttons: ['exit']
+   });
+   alert.present();
+ }
+}
 
 
-<<<<<<< HEAD
-  showPrompt() {
-    const prompt = this.alertCtrl.create({
-      title: 'Login',
-      message: "Enter your phone number before you proceed.",
-      inputs: [
-        {
-          name: 'title',
-          placeholder: 'Enter phone number ',
-          type: "number"
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'Cancel'
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            this.num = data.title;
-            if (this.num.length != 10){
-              let toast = this.toastCtrl.create({
-                message: 'Phone number cannot be less than or more than 10 digits',
-                duration: 4000,
-                position: 'bottom'
-              });
-              toast.present();
-            }
-            else {
-              this.items.usernumber = data.title;
-            }
-          }
-        }
-      ]
-    });
-    prompt.present();
-    prompt.onDidDismiss(() => {
-
-        firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).get().then(val => {
-          console.log("Budget = ", val.data())
-          
-          if (!val.exists ) {
-
-            let alert = this.alertCtrl.create({
-              title: 'Customer Budget',
-              inputs: [
-                {
-                
-                  type: "number",
-                  name: 'title',
-                  placeholder: 'What is your current budget? ',
-
-                  
-                
-                 
-                }],
-              buttons: [
-                {
-                  text: 'Cancel',
-                  role: 'cancel'
-                },
-                {
-                  text: 'Save',
-                  handler: (name) => {
-                    console.log('Buy clicked = ', name.title);
-                    this.items.budget = name.title;
-                    firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).set({ budget: name.title }).then(res => {
-                       this.shopalert();
-                    })
-                   
-                  }
-                }
-              ]
-            });
-            alert.present()
-// .then(result =>{document.getElementById('maxLength10').setAttribute('maxlength','10');});
-=======
 showPrompt() {
   const prompt = this.alertCtrl.create({
     title: 'Login',
@@ -167,20 +93,13 @@ toast.present();
             firebase.firestore().collection(data.title);
           
           }
->>>>>>> 1970c5dfdf6c01cabacbbaaf931c4677ae1ed32a
 
-          }
-          else {
-            this.items.budget = val.data().budget;
-            this.shopalert();
-          }
+        }
+      }
+    ]
+  });
 
-          console.log()
 
-<<<<<<< HEAD
-        })
-      
-=======
   prompt.present();
   prompt.onDidDismiss(() => {
     
@@ -195,20 +114,22 @@ toast.present();
     }
     else
     {
->>>>>>> 1970c5dfdf6c01cabacbbaaf931c4677ae1ed32a
 
+    firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).get().then(val=>{
+      console.log("Budget = ",val.data())
+      this.items.budget=val.data();
+  
+       if(val.data()==undefined)
+       {
 
-<<<<<<< HEAD
-=======
         let alert = this.alertCtrl.create({
           title: 'Customer Budget',
           inputs: [
             {
               name: 'title',
               placeholder: 'What is your current budget? ',
-              type:"tel",
-              min: "1",
-              max:"7"
+              type:"number"
+              
               
             }],
           buttons: [
@@ -241,61 +162,66 @@ toast.present();
       
   console.log()
   
->>>>>>> 1970c5dfdf6c01cabacbbaaf931c4677ae1ed32a
     })
   }
-  //////////////////////////////
+    
 
-  shopalert() {
+  })
+}
+//////////////////////////////
+
+shopalert()
+  {
     let alert = this.alertCtrl.create({
+      // message:"Budget: R"+this.items.budget,
       title: 'Select Supermarket',
       inputs: [
         {
           name: 'Shoprite',
           type: 'radio',
-          value: 'Shoprite',
+          value:'Shoprite',
           label: 'Shoprite',
         },
         {
           name: 'Pick n Pay',
           type: 'radio',
-          value: 'Pick n Pay',
+          value:'Pick n Pay',
           label: 'Pick n Pay',
         },
         {
           name: 'Checkers',
           type: 'radio',
-          value: 'Checkers',
-          label: 'Checkers'
+          value:'Checkers',
+          label:'Checkers'
         },
         {
           name: 'Game',
           type: 'radio',
-          value: 'Game',
-          label: 'Game'
+          value:'Game',
+          label:'Game'
         },
         {
           name: 'Spar',
           type: 'radio',
-          value: 'Spar',
-          label: 'Spar'
+          value:'Spar',
+          label:'Spar'
         },
         {
           name: 'Cambridge',
           type: 'radio',
-          value: 'Cambridge',
-          label: 'Cambridge'
+          value:'Cambridge',
+          label:'Cambridge'
         },
         {
           name: 'Boxer',
           type: 'radio',
-          value: 'Boxer',
-          label: 'Boxer'
+          value:'Boxer',
+          label:'Boxer'
         },
         {
           name: 'Other',
           type: 'radio',
-          value: 'Other',
+          value:'Other',
           label: 'Other',
           checked: true,
         }
@@ -303,22 +229,48 @@ toast.present();
       buttons: [
         {
           text: 'Cancel',
-          role: 'cancel'
+          role: 'cancel',
+        
+          handler: data => {
+    
+    
+            console.log('Cancel clicked',data);
+            if(data ==undefined)
+            {
+    
+            }
+          }
         },
         {
           text: 'OK',
           handler: data => {
-            this.items.supermarket = data;
-            this.navCtrl.setRoot(HomePage);
+         
+    console.log(data);
+    
+    
+    this.items.supermarket =data;
+    console.log(this.items.supermarket+this.items.usernumber)
+    
+    
+    this.navCtrl.setRoot(HomePage, this.navParams.data);
+    
+    
           }
         }
       ]
     });
     alert.present();
-
     
+
+
   }
 
 
-}
 
+
+  }
+
+
+
+
+  

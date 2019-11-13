@@ -172,6 +172,7 @@ export class HomePage {
   update = false;
   MyArray = [];
   MyItem = "Milk";
+  alreadyAdded: boolean;
 
   constructor(public modalCtrl: ModalController, private dragulaService: DragulaService, public items: ItemsProvider, public toastController: ToastController, public navCtrl: NavController, public menuCtrl: MenuController, private toastCtrl: ToastController, formBuilder: FormBuilder, public forms: FormBuilder, public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController, private popoverCtrl: PopoverController, private statusbar: StatusBar) {
 
@@ -270,11 +271,35 @@ export class HomePage {
       }
     }
 
+    
+
+  
+    
+      
+  //  this.Items.forEach((element) => {
+  //    console.log(element.doc.name);
+  //    this.database.collection(this.items.usernumber + this.items.supermarket).doc('name');
+  //    if(element.doc.name === this.itemForm.get('name').value) {
+  //      this.alreadyAdded = true;
+
+  //    }else {
+  //      this.alreadyAdded = false;
+  //    } 
+  //  })
+  //  console.log(this.alreadyAdded);
 
 
-
-
-    if (itemForm.valid) {
+  let itemRef = this.database.collection(this.items.usernumber + this.items.supermarket);
+  let query = itemRef.where('name', '==', this.item.name).get()
+  .then(snapshot => {
+    if (snapshot.empty) {
+      false;
+    }else{
+      true;
+    }
+return this.alreadyAdded;
+  })
+    if (this.alreadyAdded=false) {
       this.total = 0
       this.Items = []
       this.item.totalPrice = this.item.price * this.item.quantity,
@@ -313,7 +338,7 @@ export class HomePage {
 
       const prompt = this.alertCtrl.create({
         title: '',
-        message: "Please insert following item details!",
+        message: "You have already added the item",
 
         buttons: [
           {
@@ -322,12 +347,7 @@ export class HomePage {
               console.log('Cancel clicked');
             }
           },
-          // {
-          //   text: 'Delete',
-          //   handler: data => {
-
-          //   }
-          // }
+          
         ]
       });
       prompt.present();
@@ -576,7 +596,8 @@ export class HomePage {
 
   object = [];
   saveData(obj) {
-  
+   console.log(obj);
+   
     const prompt = this.alertCtrl.create({
       title: 'Save Item!',
       message: "Would you like to save item on the list?",
@@ -591,16 +612,16 @@ export class HomePage {
           text: 'Yes',
           handler: data => {
             
-            this.database.collection('Saved').add(obj.docid).then(res => {
+            this.database.collection('Saved').add(obj.doc).then(res => {
            
               // this.database.collection(this.items.usernumber + this.items.supermarket).doc(obj.docid).delete().then(res => {
-                // this.object.push({ ...{ id: obj.docid, phone: this.items.usernumber }, ...obj.doc });
+              //   this.object.push({ ...{ id: obj.docid, phone: this.items.usernumber }, ...obj.doc });
           
-                // this.database.collection("Saved").add(this.object[0]).then(res => {
-                //   this.pullData()
-                //   this.navCtrl.push(HistoryPage);
+              //   this.database.collection("Saved").add(this.object[0]).then(res => {
+              //     this.pullData()
+              //     this.navCtrl.push(HistoryPage);
               
-                // })
+              //   })
               // })
             })
             this.navCtrl.push(HistoryPage);
@@ -613,17 +634,6 @@ export class HomePage {
     prompt.present();
   
   }
-
-
-  check(item) {
-    if (item.checked == true) {
-      console.log("Am checked")
-
-    } else {
-      console.log("Am not checked")
-    }
-  }
-
 
 
   options() {
@@ -700,19 +710,8 @@ export class HomePage {
           text: 'OK',
           handler: data => {
 
-<<<<<<< HEAD
             console.log(data);
 
-=======
-// check(item){
-//   if(item.checked==true){
-//     console.log("Am checked")
-
-//   }else{
-//     console.log("Am not checked")
-//   }
-// }
->>>>>>> 1970c5dfdf6c01cabacbbaaf931c4677ae1ed32a
 
             this.items.supermarket = data;
             console.log(this.items.supermarket + this.items.usernumber)
