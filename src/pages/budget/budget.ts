@@ -6,7 +6,7 @@ import * as firebase from 'firebase';
 import { ItemsProvider } from '../../providers/items/items';
 import { BudgetInputComponent } from '../../components/budget-input/budget-input';
 // import { LoginPage } from '../login/login';
-
+ 
 
 @IonicPage()
 @Component({
@@ -14,91 +14,116 @@ import { BudgetInputComponent } from '../../components/budget-input/budget-input
   templateUrl: 'budget.html',
 })
 export class BudgetPage {
-  Items = [];
-  total: 0;
-  item = {
-    totalbudget: 0,
+Items=[];
+total:0;
+item={
+  totalbudget:0,
 
-  }
-
-  constructor(
-    public popoverCtrl: PopoverController,
-    public vw: ViewController, 
-    private toastCtrl: ToastController, 
-    public items: ItemsProvider, 
-    public navCtrl: NavController, 
-    private storage: Storage, 
-    public navParams: NavParams, 
-    private alertCtrl: AlertController
-    ) {
+}
+  constructor(public vw:ViewController,private toastCtrl: ToastController,public items:ItemsProvider,public navCtrl: NavController, private storage: Storage, public navParams: NavParams, private alertCtrl: AlertController ) {
   
+   
   
   }
-  num;
+num;
   ionViewDidLoad() {
     console.log('ionViewDidLoad BudgetPage');
   }
-  landing() {
+  landing(){
 
     // this.navCtrl.push(LoginPage);
     this.showPrompt();
-
+    
   }
 
-  budget() {
-    if (this.total >= this.item.totalbudget) {
-      let alert = this.alertCtrl.create({
-        title: 'warning',
-        subTitle: 'you reached your limit',
-        buttons: ['exit']
-      });
-      alert.present();
-    }
-  }
+  budget()
+{
+ if(this.total>=this.item.totalbudget) {
+   let alert = this.alertCtrl.create({
+     title: 'warning',
+     subTitle: 'you reached your limit',
+     buttons: ['exit']
+   });
+   alert.present();
+ }
+}
 
 
-  showPrompt() {
-    const prompt = this.alertCtrl.create({
-      title: 'Login',
-      message: "Enter your phone number before you proceed.",
-      inputs: [
-        {
-          name: 'title',
-          placeholder: 'Enter phone number ',
-          type: "number"
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'Cancel'
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            this.num = data.title;
-            if (this.num.length != 10){
-              let toast = this.toastCtrl.create({
-                message: 'Phone number cannot be less than or more than 10 digits',
-                duration: 4000,
-                position: 'bottom'
-              });
-              toast.present();
-            }
-            else {
-              this.items.usernumber = data.title;
-            }
+showPrompt() {
+  const prompt = this.alertCtrl.create({
+    title: 'Login',
+    message: "Enter your phone number before you proceed.",
+    inputs: [
+      {
+        name: 'title',
+        placeholder: 'Enter phone number ',
+        type:"number"
+      },
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      },
+      {
+        text: 'Save',
+        handler: data => {
+          console.log('Saved clicked = ',data.title );
+         let num = data.title;
+         this.num =num;
+         console.log(parseFloat(num).toString().length)
+         if(num.length!=10)
+          {
+
+            let toast = this.toastCtrl.create({
+              message: 'Phone number cannot be less than or more than 10 digits',
+              duration: 4000,
+              position: 'bottom'
+            
+            });
+
+
+toast.present();
+
+         
           }
+          else
+          {
+            this.items.usernumber =data.title;
+            console.log("Usernumber = ", this.items.usernumber)
+            firebase.firestore().collection(data.title);
+          
+          }
+
         }
-      ]
-    });
-    prompt.present();
-    prompt.onDidDismiss(() => {
-      this.budgetInput()
-    })
-  }
-  budgetInput() {
-    let budget = this.alertCtrl.create({
+      }
+    ]
+  });
+
+
+  prompt.present();
+  prompt.onDidDismiss(() => {
+    
+  
+    if(typeof(this.num.length)!==undefined && this.num.length!=10)
+    {
+      const toast = this.toastCtrl.create({
+        message: 'Your phone number must be 10 digits long.',
+        duration: 3000
+      });
+      toast.present();
+    }
+    else
+    {
+
+    firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).get().then(val=>{
+      console.log("Budget = ",val.data())
+      this.items.budget=val.data();
+  
+       if(val.data()==undefined)
+       {
+
+        let alert = this.alertCtrl.create({
           title: 'Customer Budget',
           inputs: [
             {
@@ -106,9 +131,9 @@ export class BudgetPage {
               type: "number",
               name: 'title',
               placeholder: 'What is your current budget? ',
-          
-            
-             
+              type:"number"
+              
+              
             }],
           buttons: [
             {
@@ -143,70 +168,68 @@ export class BudgetPage {
     firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).get().then(val => {
       console.log("Budget = ", val.data())
       
-      if (!val.exists ) {
-        budget.present()
-      }
-      else {
-        this.items.budget = val.data().budget;
-        this.shopalert();
-      }
-
-      console.log()
-
+  console.log()
+  
     })
   }
-  //////////////////////////////
+    
 
-  shopalert() {
+  })
+}
+//////////////////////////////
+
+shopalert()
+  {
     let alert = this.alertCtrl.create({
+      // message:"Budget: R"+this.items.budget,
       title: 'Select Supermarket',
       inputs: [
         {
           name: 'Shoprite',
           type: 'radio',
-          value: 'Shoprite',
+          value:'Shoprite',
           label: 'Shoprite',
         },
         {
           name: 'Pick n Pay',
           type: 'radio',
-          value: 'Pick n Pay',
+          value:'Pick n Pay',
           label: 'Pick n Pay',
         },
         {
           name: 'Checkers',
           type: 'radio',
-          value: 'Checkers',
-          label: 'Checkers'
+          value:'Checkers',
+          label:'Checkers'
         },
         {
           name: 'Game',
           type: 'radio',
-          value: 'Game',
-          label: 'Game'
+          value:'Game',
+          label:'Game'
         },
         {
           name: 'Spar',
           type: 'radio',
-          value: 'Spar',
-          label: 'Spar'
+          value:'Spar',
+          label:'Spar'
         },
         {
           name: 'Cambridge',
           type: 'radio',
-          value: 'Cambridge',
-          label: 'Cambridge'
+          value:'Cambridge',
+          label:'Cambridge'
         },
         {
           name: 'Boxer',
           type: 'radio',
-          value: 'Boxer',
-          label: 'Boxer'
+          value:'Boxer',
+          label:'Boxer'
         },
         {
           name: 'Other',
           type: 'radio',
-          value: 'Other',
+          value:'Other',
           label: 'Other',
           checked: true,
         }
@@ -214,22 +237,48 @@ export class BudgetPage {
       buttons: [
         {
           text: 'Cancel',
-          role: 'cancel'
+          role: 'cancel',
+        
+          handler: data => {
+    
+    
+            console.log('Cancel clicked',data);
+            if(data ==undefined)
+            {
+    
+            }
+          }
         },
         {
           text: 'OK',
           handler: data => {
-            this.items.supermarket = data;
-            this.navCtrl.setRoot(HomePage);
+         
+    console.log(data);
+    
+    
+    this.items.supermarket =data;
+    console.log(this.items.supermarket+this.items.usernumber)
+    
+    
+    this.navCtrl.setRoot(HomePage, this.navParams.data);
+    
+    
           }
         }
       ]
     });
     alert.present();
-
     
+
+
   }
 
 
-}
 
+
+  }
+
+
+
+
+  
