@@ -21,7 +21,7 @@ import { DragulaModule } from 'ng2-dragula';
 import {DreggerPage} from '../pages/dregger/dregger';
 // import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 // import { File } from '@ionic-native/file/ngx';
-
+import { BudgetInputComponent } from '../components/budget-input/budget-input';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import {DreggerPage} from '../pages/dregger/dregger';
   OnboardingPage,
   BudgetPage,
   InsertPage,
-
+  BudgetInputComponent,
   DreggerPage
   
   ],
@@ -65,6 +65,7 @@ import {DreggerPage} from '../pages/dregger/dregger';
     OnboardingPage,
     BudgetPage,
     InsertPage,
+    BudgetInputComponent,
 
     DreggerPage
 

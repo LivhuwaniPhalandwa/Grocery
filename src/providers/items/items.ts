@@ -28,5 +28,8 @@ budgets;
     
     
   }
+  getBudget() {
+    return this.budget;
+  }
 
 }

@@ -172,6 +172,8 @@ export class HomePage {
   update = false;
   MyArray = [];
   MyItem = "Milk";
+  disableButton:boolean;  
+  alreadyAdded = [];
 
   constructor(public modalCtrl: ModalController, private dragulaService: DragulaService, public items: ItemsProvider, public toastController: ToastController, public navCtrl: NavController, public menuCtrl: MenuController, private toastCtrl: ToastController, formBuilder: FormBuilder, public forms: FormBuilder, public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public loadingCtrl: LoadingController, private popoverCtrl: PopoverController, private statusbar: StatusBar) {
 
@@ -192,12 +194,12 @@ export class HomePage {
    }
   ionViewWillEnter() {
 
-    console.log("yyyyyyyyyyyyyyyyyyyy")
+    
     let fireItem = {
       docid: '',
       doc: {}
     }
-    this.database.collection(this.items.usernumber + this.items.supermarket).where('saved', '==', false).onSnapshot(data => {
+    this.database.collection(this.items.usernumber + this.items.supermarket).where('Saved', '==', false).onSnapshot(data => {
       this.MyItems = [];
       data.forEach(item => {
         fireItem.doc = item.data();
@@ -271,43 +273,69 @@ export class HomePage {
     }
 
 
+     this.alreadyAdded =[];
 
+    this.database.collection(this.items.usernumber + this.items.supermarket).where('name', '==', this.item.name).get().then((res) => {
+      this.alreadyAdded = [];
+     this.alreadyAdded.push(res.docs.length);
 
+     console.log('value = ',this.alreadyAdded,res.docs.length);
+     if(res.docs.length>0)
+     {
+      console.log("Item already added");
+      const prompt = this.alertCtrl.create({
+        title: '',
+        message: this.item.name+" already added to your list.",
 
-    if (itemForm.valid) {
-      this.total = 0
-      this.Items = []
-      this.item.totalPrice = this.item.price * this.item.quantity,
-        this.database.collection(this.items.usernumber + this.items.supermarket).doc().set(this.item).then(res => {
-          this.item = {
-            name: '',
-            price: '',
-            quantity: 1,
-            saved: false,
-            image: '',
-            phone:'',
-            totalPrice: 0,
-            
-          }
-          this.navCtrl.setRoot(SuccessPage);
-
-          /* LOADER  */
-          setTimeout(() => {
-            this.loaderAnimate = false;
-          }, 5000)
-
-          this.pullData();
-          this.itemForm.reset();
-          this.item.image = '';
-          this.toggle = !this.toggle;
-
-        }).catch(err => {
-          this.toastCtrl.create({
-            message: 'Error adding item',
-            duration: 2000
-          }).present()
-        })
-      this.loaderAnimate = true;
+        buttons: [
+          {
+            text: 'Ok',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          },
+        ]
+      });
+      prompt.present();
+     }
+     else{
+      if (itemForm.valid ) {
+     
+        this.total = 0
+        this.Items = []
+        this.item.totalPrice = this.item.price * this.item.quantity,
+          this.database.collection(this.items.usernumber + this.items.supermarket).doc().set(this.item).then(res => {
+            this.item = {
+              name: '',
+              price: '',
+              quantity: 1,
+              saved: false,
+              image: '',
+              phone:'',
+              totalPrice: 0,
+              
+            }
+            this.navCtrl.setRoot(SuccessPage);
+  
+            /* LOADER  */
+            setTimeout(() => {
+              this.loaderAnimate = false;
+            }, 5000)
+  
+            // this.pullData();
+            this.itemForm.reset();
+            this.item.image = '';
+            this.toggle = !this.toggle;
+  
+          }).catch(err => {
+            this.toastCtrl.create({
+              message: 'Error adding item',
+              duration: 2000
+            }).present()
+          })
+        this.loaderAnimate = true;
+      
+    
     }
     else {
 
@@ -322,17 +350,18 @@ export class HomePage {
               console.log('Cancel clicked');
             }
           },
-          // {
-          //   text: 'Delete',
-          //   handler: data => {
-
-          //   }
-          // }
+        
         ]
       });
       prompt.present();
 
     }
+  }
+
+     
+} )
+
+  
   }
   addData1(data) {
     console.log(data, 'Update data');
@@ -448,6 +477,7 @@ export class HomePage {
       doc.forEach(item => {
         data.docid = item.id
         data.doc = item.data();
+        
         this.Items.push(data);
         this.total = this.total + parseFloat(item.data().totalPrice);
         data = {
@@ -575,8 +605,37 @@ export class HomePage {
   }
 
   object = [];
-  saveData(obj) {
+  docid="";
+
+  saveData(docId) {
+
+    this.alreadyAdded =[];
+
+    this.database.collection(this.items.usernumber +"Saved").where('name', '==', docId.doc.name).get().then((res) => {
+      this.alreadyAdded = [];
+     this.alreadyAdded.push(res.docs.length);
+
+     console.log('value = ',this.alreadyAdded,res.docs.length);
+     if(res.docs.length>0)
+     {
   
+      const prompt = this.alertCtrl.create({
+        title: '',
+        message: this.item.name+ " Item already saved to your list.",
+
+        buttons: [
+          {
+            text: 'Ok',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          },
+        ]
+      });
+      prompt.present();
+    }else{
+       
+
     const prompt = this.alertCtrl.create({
       title: 'Save Item!',
       message: "Would you like to save item on the list?",
@@ -591,8 +650,8 @@ export class HomePage {
           text: 'Yes',
           handler: data => {
             
-            this.database.collection('Saved').add(obj.docid).then(res => {
-           
+            this.database.collection(this.items.usernumber +"Saved").add(docId.doc).then(res => {
+              
               // this.database.collection(this.items.usernumber + this.items.supermarket).doc(obj.docid).delete().then(res => {
                 // this.object.push({ ...{ id: obj.docid, phone: this.items.usernumber }, ...obj.doc });
           
@@ -603,6 +662,7 @@ export class HomePage {
                 // })
               // })
             })
+           
             this.navCtrl.push(HistoryPage);
             
             
@@ -611,8 +671,13 @@ export class HomePage {
       ]
     });
     prompt.present();
-  
-  }
+    
+    }
+    
+  })
+}
+
+
 
 
   check(item) {
@@ -700,19 +765,8 @@ export class HomePage {
           text: 'OK',
           handler: data => {
 
-<<<<<<< HEAD
             console.log(data);
 
-=======
-// check(item){
-//   if(item.checked==true){
-//     console.log("Am checked")
-
-//   }else{
-//     console.log("Am not checked")
-//   }
-// }
->>>>>>> 1970c5dfdf6c01cabacbbaaf931c4677ae1ed32a
 
             this.items.supermarket = data;
             console.log(this.items.supermarket + this.items.usernumber)
@@ -728,23 +782,7 @@ export class HomePage {
     alert.present();
   }
 
-// saving(){
-//   new_test = [{'itemname': '', 'image': ''}];
-//   new_test[0].value=test[0].value;
-//   new_test[0].id=[0].id;
-  
-//   for (var i = 0; i <= test.length - 1; i++) {
-//   var duplicate = false;  
-//     for(var j = new_test.length - 1; j >= 0; j--){
-//         if(test[i].value == new_test[j].value) duplicate = true;
-//       }
-//   if(!duplicate) new_test.push(test[i]);
-  
-//   } 
-//       alert(JSON.stringify(new_test));
-//   }
 
-// }
  
 }
 

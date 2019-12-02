@@ -55,6 +55,7 @@ export class HistoryPage {
   v1;
 
   item1: any;
+  alreadyAdded: any[];
 
   toast() {
     let alert = this.alertCtrl.create({
@@ -62,27 +63,8 @@ export class HistoryPage {
       subTitle: 'Press and hold an item to move it to the shopping list.',
       buttons: ['Ok']
     });
-<<<<<<< HEAD
     alert.present();
 
-=======
-    loading.present();
-
-    loading.onDidDismiss(val=>{
-      firebase.firestore().collection(this.items.usernumber+this.items.supermarket).add(x[v]);
-      
-      let toast = this.toastController.create({
-        message: 'Item copied from saved list to your current list.',
-        duration: 3000,
-        position: 'bottom'
-      });
-      toast.present();
-
-
-
-      
-    })
->>>>>>> 1970c5dfdf6c01cabacbbaaf931c4677ae1ed32a
   }
  
 
@@ -93,31 +75,31 @@ export class HistoryPage {
     this.saveDataa()
 
 
-    this.dragulaService.drag('oop')
-      .subscribe(({ name, el, source }) => {
-        el.setAttribute('color', 'danger');
+    // this.dragulaService.drag('oop')
+    //   .subscribe(({ name, el, source }) => {
+    //     el.setAttribute('color', 'danger');
 
-        let toast = this.toastController.create({
-          message: 'Wrong selection',
-          duration: 3000,
-          position: 'bottom'
-        });
+    //     let toast = this.toastController.create({
+    //       message: 'Wrong selection',
+    //       duration: 3000,
+    //       position: 'bottom'
+    //     });
 
-        toast.present();
-      });
+    //     toast.present();
+    //   });
 
-    this.dragulaService.drag('bag')
-      .subscribe(({ name, el, source }) => {
-        el.setAttribute('color', 'danger');
+    // this.dragulaService.drag('bag')
+    //   .subscribe(({ name, el, source }) => {
+    //     el.setAttribute('color', 'danger');
 
-      });
-    this.dragulaService.createGroup('bag', {
-      removeOnSpill: true
-    });
+    //   });
+    // this.dragulaService.createGroup('bag', {
+    //   removeOnSpill: true
+    // });
 
-    this.dragulaService.removeModel('bag')
-      .subscribe(({ item }) => {
-      });
+    // this.dragulaService.removeModel('bag')
+    //   .subscribe(({ item }) => {
+    //   });
 
     this.database.collection(this.items.usernumber + 'Shoprite').get().then(doc => {
       this.Items = []
@@ -231,6 +213,7 @@ export class HistoryPage {
       console.log('Finals7', this.totals00)
     })
   }
+
   data(document, index) {
     let tempDoc = document;
     console.log(document);
@@ -240,54 +223,46 @@ export class HistoryPage {
 
     let loading = this.loadingCtrl.create({
       spinner: 'hide',
-      content: 'Loading Please Wait...'
+      content: 'Loading Please Wait...',
+      duration:2000
     });
     loading.present();
-      firebase.firestore().collection(this.items.usernumber+this.items.supermarket).add(document.doc).then(res=> {
-         firebase.firestore().collection('Saved').doc(tempDoc.docid).delete().then(res => {
-          loading.dismiss()
+
+    this.alreadyAdded =[];
+
+    this.database.collection(this.items.usernumber + this.items.supermarket).where('name', '==', document.doc.name).get().then((res) => {
+      this.alreadyAdded = [];
+     this.alreadyAdded.push(res.docs.length);
+
+    
+      console.log('value = ',this.alreadyAdded,res.docs.length);
+      if (res.docs.length==0){
+      
+         firebase.firestore().collection(this.items.usernumber+this.items.supermarket).add(document.doc).then(res=> {
+  
           let toast = this.toastController.create({
-            message: 'Item copied from saved list to your current list.',
+            message: 'Item copied from saved list to your current list',
             duration: 3000,
             position: 'bottom'
           });
           toast.present();
-        })
-      })
+        
        
+       })
       
-
-  }
-
-  presentLoadingText(x, v) {
-
-    console.log(x[v]);
-
-    this.q1.push(x[v]);
-    //this.q1.push(x[0]);
-
-    let loading = this.loadingCtrl.create({
-      spinner: 'hide',
-      content: 'Loading Please Wait...',
-      duration: 1000
-    });
-    loading.present();
-
-    loading.onDidDismiss(val => {
-
-      firebase.firestore().collection(this.items.usernumber + this.items.supermarket).add(x[v]);
-      console.log("added")
+      }
+     
+    else{
+      console.log("Item already added");
+      loading.dismiss()
       let toast = this.toastController.create({
-        message: 'Item copied from saved list to your current list.',
+        message: 'Item already in the list',
         duration: 3000,
         position: 'bottom'
       });
       toast.present();
-    })
-  }
-  ionViewDidLeave() {
-    this.dragulaService.destroy('bag');
-    console.log("He left")
+    }
+  })
   }
 
   saveDataa() {
@@ -334,7 +309,8 @@ export class HistoryPage {
       docid: '',
       doc: {}
     }
-    firebase.firestore().collection("Saved").where("phone", "==", this.items.usernumber).onSnapshot(val => {
+              
+    firebase.firestore().collection(this.items.usernumber+"Saved").where("phone", "==", this.items.usernumber ).onSnapshot(val => {
       this.q2 = []
       val.forEach(res => {
         savedItem.doc = res.data()
@@ -364,7 +340,32 @@ export class HistoryPage {
     this.vw.dismiss();
   }
 
+  // deleteData(obj) {
+  
+  //   const prompt = this.alertCtrl.create({
+  //     title: 'DELETE!',
+  //     message: "Are you sure you want to delete this item?",
 
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel'
+  //       },
+  //       {
+  //         text: 'Delete',
+  //         handler: data => {
+  //           console.log('Saved clicked');
+  //            this.database.collection("Saved").doc(obj).delete().then(res => {
+  //           //    this.total = this.total - item.doc.price
+  //           // this.Items = []
+  //           })
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   prompt.present();
+
+  // }
 }
 
 

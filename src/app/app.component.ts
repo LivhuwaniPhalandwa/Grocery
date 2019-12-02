@@ -10,6 +10,7 @@ import { Storage } from '@ionic/storage';
 import { BudgetPage } from '../pages/budget/budget';
 import {InsertPage} from '../pages/insert/insert';
 
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -17,9 +18,12 @@ export class MyApp {
 
   
   rootPage:any ='';
+
  
    constructor(public platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private storage: Storage) {
 
+ 
+    
 
     this.platform.ready().then(() => {
 
