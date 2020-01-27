@@ -23,14 +23,16 @@ gamefruit:any;
   let x,xx ;
 
     
-  let gv =  firebase.database().ref('/game/vegetables');
+  let gv =  firebase.database().ref('/game');
   let lv =gv.on('value', function(snapshot) {
  x =  snapshot.val();
+ console.log(x)
     });
 
-    let gf =  firebase.database().ref('/game/fruit');
+    let gf =  firebase.database().ref('/game');
     let lf =gf.on('value', function(snapshot) {
    xx =  snapshot.val();
+   console.log(xx)
       });
 
 
@@ -43,7 +45,7 @@ gamefruit:any;
     loader.present();
     loader.onDidDismiss(res=>{
      
-      this.gameveg =x.Name.toString();
+      this.gameveg =xx.Name.toString();
       this.gamefruit =xx.Name.toString();
       console.log(this.gamefruit)
     })
