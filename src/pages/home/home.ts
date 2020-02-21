@@ -188,12 +188,12 @@ export class HomePage {
 
 
   }
-  ionViewWillLoad() { 
+  ionViewWillLoad() {
    this.item.phone = this.items.usernumber
    }
   ionViewWillEnter() {
 
-    
+
     let fireItem = {
       docid: '',
       doc: {}
@@ -209,7 +209,7 @@ export class HomePage {
           doc: {}
         }
       })
-      
+
     })
   }
 
@@ -271,11 +271,11 @@ export class HomePage {
       }
     }
 
-    
 
-  
-    
-      
+
+
+
+
   //  this.Items.forEach((element) => {
   //    console.log(element.doc.name);
   //    this.database.collection(this.items.usernumber + this.items.supermarket).doc('name');
@@ -284,7 +284,7 @@ export class HomePage {
 
   //    }else {
   //      this.alreadyAdded = false;
-  //    } 
+  //    }
   //  })
   //  console.log(this.alreadyAdded);
 
@@ -312,7 +312,7 @@ return this.alreadyAdded;
             image: '',
             phone:'',
             totalPrice: 0,
-            
+
           }
           this.navCtrl.setRoot(SuccessPage);
 
@@ -347,7 +347,7 @@ return this.alreadyAdded;
               console.log('Cancel clicked');
             }
           },
-          
+
         ]
       });
       prompt.present();
@@ -355,10 +355,10 @@ return this.alreadyAdded;
     }
   }
 
-     
+
 } )
 
-  
+
   }
   addData1(data) {
     console.log(data, 'Update data');
@@ -459,10 +459,10 @@ return this.alreadyAdded;
     this.item.image = ''
   }
 
-  
+
 
   pullData() {
-    
+
     let data = {
       docid: "",
       doc: {}
@@ -474,7 +474,7 @@ return this.alreadyAdded;
       doc.forEach(item => {
         data.docid = item.id
         data.doc = item.data();
-        
+
         this.Items.push(data);
         this.total = this.total + parseFloat(item.data().totalPrice);
         data = {
@@ -604,7 +604,7 @@ return this.alreadyAdded;
   object = [];
   saveData(obj) {
    console.log(obj);
-   
+
     const prompt = this.alertCtrl.create({
       title: 'Save Item!',
       message: "Would you like to save item on the list?",
@@ -618,31 +618,31 @@ return this.alreadyAdded;
         {
           text: 'Yes',
           handler: data => {
-            
+
             this.database.collection('Saved').add(obj.doc).then(res => {
-           
+
               // this.database.collection(this.items.usernumber + this.items.supermarket).doc(obj.docid).delete().then(res => {
               //   this.object.push({ ...{ id: obj.docid, phone: this.items.usernumber }, ...obj.doc });
-          
+
               //   this.database.collection("Saved").add(this.object[0]).then(res => {
               //     this.pullData()
               //     this.navCtrl.push(HistoryPage);
-              
+
               //   })
               // })
             })
-           
+
             this.navCtrl.push(HistoryPage);
-            
-            
+
+
           }
         }
       ]
     });
     prompt.present();
-    
+
     }
-    
+
   })
 }
 
@@ -741,7 +741,7 @@ return this.alreadyAdded;
   }
 
 
- 
+
 }
 
 

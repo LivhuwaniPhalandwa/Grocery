@@ -17,8 +17,7 @@ import { HistoryPage } from '../history/history';
 })
 export class SuccessPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  c
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SuccessPage');
