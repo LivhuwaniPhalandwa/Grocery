@@ -131,7 +131,7 @@ toast.present();
               type: "number",
               name: 'title',
               placeholder: 'What is your current budget? ',
-              type:"number"
+            
               
               
             }],
