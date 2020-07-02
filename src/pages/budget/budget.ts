@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, Item, ToastController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Item, ToastController, ViewController, PopoverController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import * as firebase from 'firebase';
 import { ItemsProvider } from '../../providers/items/items';
+import { BudgetInputComponent } from '../../components/budget-input/budget-input';
 // import { LoginPage } from '../login/login';
  
 
@@ -126,6 +127,8 @@ toast.present();
           title: 'Customer Budget',
           inputs: [
             {
+            
+              type: "number",
               name: 'title',
               placeholder: 'What is your current budget? ',
               type:"number"
@@ -135,30 +138,35 @@ toast.present();
           buttons: [
             {
               text: 'Cancel',
-              role: 'cancel',
-              handler: () => {
-                console.log('Cancel clicked');
-              }
+              role: 'cancel'
             },
-      
             {
               text: 'Save',
               handler: (name) => {
-                console.log('Buy clicked = ',name.title );
-                this.items.budget =name.title ;
-                this.storage.set('my-hotel', true);
-                firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).set({budget:name.title});
-                this.shopalert();
+                
+                console.log('Buy clicked = ', name.title);
+                this.items.budget = name.title;
+                if (name.title > 50000) {
+                  this.alertCtrl.create({
+                    message: 'Amount cannot be more than 50000.',
+                    buttons:[{
+                      text: 'Okay',
+                      handler: () => {
+                        this.budgetInput()
+                      }
+                    }]
+                  }).present()
+                } else {
+                  firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).set({ budget: name.title }).then(res => {
+                   this.shopalert();
+                })
+                }
               }
             }
           ]
         });
-        alert.present(); 
-        
-       }
-       else{
-        this.shopalert();
-       }
+    firebase.firestore().collection("CustomerBudget").doc(this.items.usernumber).get().then(val => {
+      console.log("Budget = ", val.data())
       
   console.log()
   

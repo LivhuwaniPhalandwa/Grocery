@@ -91,17 +91,17 @@
         </div>
         <br>
   
-            <ion-input class="inp"  type="text"  formControlName="name"  placeholder="Item name" [(ngModel)]="item.name" ></ion-input>
+            <ion-input class="inp"  type="text"  formControlName="name"  placeholder="Item name" [(ngModel)]="item.name"    autocapitalize="on" ></ion-input>
             <div class="error" *ngFor="let validate of validation_messages.name">
               <div class="messages" *ngIf="itemForm.get('name').hasError(validate.type) && (itemForm.get('name').dirty || itemForm.get('name').touched)">
                 {{validate.message}}
             </div> 
           </div>
-
+      
  
   <div class="flex-container">
       <div class="amount">
-          <ion-input class="input1"  type="number " min="1" max="6"   formControlName="price"  placeholder="Item price" [(ngModel)]="item.price" ></ion-input>
+          <ion-input class="input1"  type="number"  formControlName="price"  placeholder="Item price" [(ngModel)]="item.price" ></ion-input>
           <div class="error" *ngFor="let validate of validation_messages.price">
             <div class="messages" *ngIf="itemForm.get('price').hasError(validate.type) && (itemForm.get('price').dirty || itemForm.get('price').touched)">
               {{validate.message}}
@@ -165,7 +165,7 @@
               </button>
           
         </ion-item-options>
-       
+
         <ion-item-options side="left">
             <button (click)="edit(item)" ion-button color="#3657b3" >
                 <ion-icon color="secondary" name="md-create" class="icon1234"></ion-icon>
@@ -177,11 +177,7 @@
     
    
   
-       
-    
   </ion-list>
-
-  </ion-list> 
    </div>
 </ion-content> 
  

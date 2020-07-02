@@ -61,5 +61,8 @@ gamefruit:any;
     
     
   }
+  getBudget() {
+    return this.budget;
+  }
 
 }

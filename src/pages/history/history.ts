@@ -120,6 +120,31 @@ val.forEach(res=>{
     })
     
 
+    // this.dragulaService.drag('oop')
+    //   .subscribe(({ name, el, source }) => {
+    //     el.setAttribute('color', 'danger');
+
+    //     let toast = this.toastController.create({
+    //       message: 'Wrong selection',
+    //       duration: 3000,
+    //       position: 'bottom'
+    //     });
+
+    //     toast.present();
+    //   });
+
+    // this.dragulaService.drag('bag')
+    //   .subscribe(({ name, el, source }) => {
+    //     el.setAttribute('color', 'danger');
+
+    //   });
+    // this.dragulaService.createGroup('bag', {
+    //   removeOnSpill: true
+    // });
+
+    // this.dragulaService.removeModel('bag')
+    //   .subscribe(({ item }) => {
+    //   });
     
     this.dragulaService.drag('oop')
     .subscribe(({ name, el, source }) => {
@@ -361,6 +386,32 @@ this.MyItems.forEach(data => {
   }
   
 
+  ionViewDidLoad() {
+    let savedItem = {
+      docid: '',
+      doc: {}
+    }
+              
+    firebase.firestore().collection(this.items.usernumber+"Saved").where("phone", "==", this.items.usernumber ).onSnapshot(val => {
+      this.q2 = []
+      val.forEach(res => {
+        savedItem.doc = res.data()
+        savedItem.docid = res.id
+        this.q2.push(savedItem);
+        savedItem = {
+          docid: '',
+          doc: {}
+        }
+      })
+      console.log(this.q2);
+      
+    })
+    this.q1 = [];
+    firebase.firestore().collection(this.items.usernumber + this.items.supermarket).get().then(val => {
+      val.forEach(res => {
+        console.log(res.data());
+        this.q1.push(res.data());
+      })
 getdtata(){
   let itemsArray = []
   localStorage.setItem('Items', JSON.stringify(itemsArray))
@@ -399,7 +450,32 @@ close()
   this.vw.dismiss();
 }
 
+  // deleteData(obj) {
+  
+  //   const prompt = this.alertCtrl.create({
+  //     title: 'DELETE!',
+  //     message: "Are you sure you want to delete this item?",
 
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel'
+  //       },
+  //       {
+  //         text: 'Delete',
+  //         handler: data => {
+  //           console.log('Saved clicked');
+  //            this.database.collection("Saved").doc(obj).delete().then(res => {
+  //           //    this.total = this.total - item.doc.price
+  //           // this.Items = []
+  //           })
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   prompt.present();
+
+  // }
 }
 
 
